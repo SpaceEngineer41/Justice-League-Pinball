@@ -32,6 +32,10 @@ switches:
   s_start:
     number: 12
     tags: start
+  s_lockbar:
+    number: 47
+
+  # Playfield Switches
   s_right_inlane:
     number: 13
     tags: playfield_active
@@ -125,8 +129,6 @@ switches:
   s_right_outlane:
     number: 46
     tags: playfield_active
-  s_lockbar:
-    number: 47
   s_jet_lane_left:
     number: 48
   s_jet_lane_middle:
