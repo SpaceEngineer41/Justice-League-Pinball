@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bje84hrydlfxe"]
+[gd_scene load_steps=5 format=3 uid="uid://bje84hrydlfxe"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_r1mnt"]
+[ext_resource type="Script" uid="uid://bq052cwr8hqvd" path="res://addons/mpf-gmc/classes/mpf_carousel.gd" id="2_m2s46"]
+[ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_hhxni"]
+[ext_resource type="Texture2D" uid="uid://dounln3l35d26" path="res://addons/mpf-gmc/images/logo_mpf.png" id="4_f161n"]
 
 [node name="Attract" type="Control"]
 layout_mode = 3
@@ -14,12 +17,90 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.0156863, 0.0196078, 0.960784, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="MPFCarousel" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 41.0
+offset_bottom = 41.0
+script = ExtResource("2_m2s46")
+carousel_name = "attract"
+metadata/_custom_type_script = "uid://bq052cwr8hqvd"
+
+[node name="title" type="Label" parent="MPFCarousel"]
+visible = false
 layout_mode = 0
-offset_top = 443.0
 offset_right = 1919.0
-offset_bottom = 730.0
+offset_bottom = 1079.0
 theme_override_font_sizes/font_size = 80
 text = "Welcome to Justice League Pinball"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="credits" type="Label" parent="MPFCarousel"]
+visible = false
+layout_mode = 0
+offset_left = 1751.0
+offset_top = -23.0
+offset_right = 3668.0
+offset_bottom = 1055.0
+theme_override_font_sizes/font_size = 80
+text = "SAMPLE TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_hhxni")
+variable_type = 2
+variable_name = "credits_string"
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="last_scores_1p" type="Node2D" parent="MPFCarousel"]
+visible = false
+
+[node name="player1_score" type="Label" parent="MPFCarousel/last_scores_1p"]
+visible = false
+offset_right = 1917.0
+offset_bottom = 1079.0
+theme_override_font_sizes/font_size = 80
+text = "123,456"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_hhxni")
+variable_name = "player1_score"
+comma_separate = true
+min_digits = 2
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="last_scores_2p" type="Node2D" parent="MPFCarousel"]
+
+[node name="player1_score" type="Label" parent="MPFCarousel/last_scores_2p"]
+offset_right = 1917.0
+offset_bottom = 563.0
+theme_override_font_sizes/font_size = 80
+text = "123,456"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_hhxni")
+variable_name = "player1_score"
+comma_separate = true
+min_digits = 2
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="player2_score2" type="Label" parent="MPFCarousel/last_scores_2p"]
+offset_top = 488.0
+offset_right = 1917.0
+offset_bottom = 1079.0
+theme_override_font_sizes/font_size = 80
+text = "123,456"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_hhxni")
+variable_name = "player2_score"
+comma_separate = true
+min_digits = 2
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="mpf_logo" type="Sprite2D" parent="MPFCarousel"]
+visible = false
+position = Vector2(971, 551)
+scale = Vector2(3.6, 2.425)
+texture = ExtResource("4_f161n")

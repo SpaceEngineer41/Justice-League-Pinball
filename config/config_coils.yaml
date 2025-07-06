@@ -1,0 +1,62 @@
+#config_version=6
+
+coils:
+  c_flipper_left_main:
+    number: 1
+    default_pulse_ms: 20
+  c_flipper_left_hold:
+    number: 2
+    allow_enable: true
+  c_flipper_right_main:
+    number: 3
+    default_pulse_ms: 20
+  c_flipper_right_hold:
+    number: 4
+    allow_enable: true
+  c_trough_eject:
+    number: 5
+    default_pulse_ms: 20
+  c_plunger_eject:
+    number: 6
+    default_pulse_ms: 20
+  c_mystery_scoop:
+    number: 7
+    default_pulse_ms: 20
+  c_main_kickback:
+    number: 8
+    default_pulse_ms: 20
+  c_line_kickback:
+    number: 9
+    default_pulse_ms: 20
+  c_pop_bumper_left:
+    number: 10
+    default_pulse_ms: 20
+  c_pop_bumper_right:
+    number: 11
+    default_pulse_ms: 20
+  c_pop_bumper_bottom:
+    number: 12
+    default_pulse_ms: 20
+  c_slingshot_left:
+    number: 13
+    default_pulse_ms: 20
+  c_slingshot_right:
+    number: 14
+    default_pulse_ms: 20
+
+autofire_coils:
+  # left_slingshot:
+  #   coil: c_slingshot_left
+  #   switch: s_slingshot_left
+  # right_slingshot:
+  #   coil: c_slingshot_right
+  #   switch: s_slingshot_right
+  jet_left:
+    coil: c_pop_bumper_left
+    switch: s_pop_bumper_left
+  jet_right:
+    coil: c_pop_bumper_right
+    switch: s_pop_bumper_right
+  jet_bottom:
+    coil: c_pop_bumper_bottom
+    switch: s_pop_bumper_bottom

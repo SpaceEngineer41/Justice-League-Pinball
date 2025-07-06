@@ -1,0 +1,135 @@
+#config_version=6
+
+switches:
+  # cabinet switches
+  s_left_flipper:
+    number: 0
+    tags: left_flipper
+  s_right_flipper:
+    number: 1
+    tags: right_flipper
+  s_trough1:
+    number: 2
+  s_trough2:
+    number: 3
+  s_trough3:
+    number: 4
+  s_trough4:
+    number: 5
+  s_trough5:
+    number: 6
+  s_trough6:
+    number: 7
+  s_trough_jam:
+    number: 8
+  s_plunger:
+    number: 9
+  s_plunger_lane:
+    number: 10
+    tags: playfield_active
+  s_launch_button:
+    number: 11
+  s_start:
+    number: 12
+    tags: start
+  s_right_inlane:
+    number: 13
+    tags: playfield_active
+  s_left_inlane:
+    number: 14
+    tags: playfield_active
+  s_orbit_top:
+    number: 15
+    tags: playfield_active
+  s_orbit_right:
+    number: 18
+    tags: playfield_active
+  s_orbit_left:
+    number: 19
+    tags: playfield_active
+  s_slingshot_left:
+    number: 20
+    tags: playfield_active
+  s_slingshot_right:
+    number: 21
+    tags: playfield_active
+  s_pop_bumper_left:
+    number: 22
+    # tags: playfield_active
+  s_pop_bumper_right:
+    number: 23
+    # tags: playfield_active
+  s_pop_bumper_bottom:
+    number: 24
+    # tags: playfield_active
+  s_main_drop_left:
+    number: 25
+    tags: playfield_active
+  s_main_drop_middle:
+    number: 26
+    tags: playfield_active
+  s_main_drop_right:
+    number: 27
+    tags: playfield_active
+  s_main_drop_top:
+    number: 28
+    tags: playfield_active
+  s_main_kickback:
+    number: 29
+  s_left_drop_left:
+    number: 30
+    tags: playfield_active
+  s_left_drop_middle:
+    number: 31
+    tags: playfield_active
+  s_left_drop_right:
+    number: 32
+    tags: playfield_active
+  s_right_drop_right:
+    number: 33
+    tags: playfield_active
+  s_right_drop_middle:
+    number: 34
+    tags: playfield_active
+  s_right_drop_left:
+    number: 35
+    tags: playfield_active
+  s_mystery_drop:
+    number: 36
+    tags: playfield_active
+  s_mystery_scoop:
+    number: 37
+  s_line_drop_1:
+    number: 38
+    tags: playfield_active
+  s_line_drop_2:
+    number: 39
+    tags: playfield_active
+  s_line_drop_3:
+    number: 40
+    tags: playfield_active
+  s_line_kickback:
+    number: 41
+  s_spinner:
+    number: 42
+    tags: playfield_active
+  s_left_ramp:
+    number: 43
+    tags: playfield_active
+  s_right_ramp:
+    number: 44
+    tags: playfield_active
+  s_left_outlane:
+    number: 45
+    tags: playfield_active
+  s_right_outlane:
+    number: 46
+    tags: playfield_active
+  s_lockbar:
+    number: 47
+  s_jet_lane_left:
+    number: 48
+  s_jet_lane_middle:
+    number: 49
+  s_jet_lane_right:
+    number: 50
