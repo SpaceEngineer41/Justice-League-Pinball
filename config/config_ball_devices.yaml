@@ -11,20 +11,20 @@ ball_devices:
     debug: true
   bd_plunger:
     ball_switches: s_plunger
-    # entrance_count_delay: 300ms
-    # eject_timeout: 3s
     eject_coil: c_plunger_eject
-    # player_controller_eject_event: sw_launch
-    mechanical_eject: true
-  bd_mystery_scoop:
-    ball_switches: s_mystery_scoop
-    eject_coil: c_mystery_scoop
-    eject_timeouts: 1s
-  bd_main_kickback:
-    ball_switches: s_main_kickback
-    eject_coil: c_main_kickback
-    eject_timeouts: 1s
-  bd_line_kickback:
-    ball_switches: s_line_kickback
-    eject_coil: c_line_kickback
-    eject_timeouts: 1s
+    eject_targets: playfield
+    tags: plunger
+    # player_controller_eject_event: s_lockbar
+    # mechanical_eject: true
+  # bd_mystery_scoop:
+  #   ball_switches: s_mystery_scoop
+  #   eject_coil: c_mystery_scoop
+  #   eject_timeouts: 1s
+  # bd_main_kickback:
+  #   ball_switches: s_main_kickback
+  #   eject_coil: c_main_kickback
+  #   eject_timeouts: 1s
+  # bd_line_kickback:
+  #   ball_switches: s_line_kickback
+  #   eject_coil: c_line_kickback
+  #   eject_timeouts: 1s

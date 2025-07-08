@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjw7lyuyxsb87"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_mdrpy"]
+[ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="2_vkuta"]
+
+[node name="Hurryup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_mdrpy")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0156863, 1, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 2.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 200
+text = "Hurry Up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MPFVariable" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 200
+text = "100,000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_vkuta")
+variable_type = 1
+variable_name = "current_hurryup"
+comma_separate = true
+initialize_empty = false
+update_event = "hurryup_value"
+metadata/_custom_type_script = "uid://bkacutdegcp6n"

@@ -12,15 +12,20 @@ config:
   - config_coils.yaml
   - config_switches.yaml
 
+hardware:
+  platform: smart_virtual
+
 modes:
   - attract
   - base
   - bumpers
+  - hurryup
 
 playfields:
   playfield:
     tags: default
-    default_source_device: bd_plunger  
+    default_source_device: bd_plunger 
+
 
 virtual_platform_start_active_switches:
   - s_trough1
