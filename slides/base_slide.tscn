@@ -1,49 +1,423 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt44bgbhqa7sg"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_a4vdr"]
-[ext_resource type="Texture2D" uid="uid://6u7b6l708530" path="res://images/Home Screen_single_player.png" id="2_3761s"]
+[ext_resource type="Texture2D" uid="uid://b5rkbfqhr3pns" path="res://images/Home Screen.png" id="2_3761s"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_bu5wf"]
 
 [node name="BaseSlide" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_a4vdr")
 metadata/_custom_type_script = "uid://dm3a03xc57wbq"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(960, 540)
 texture = ExtResource("2_3761s")
+centered = false
 
-[node name="player_ball" type="Label" parent="."]
-layout_mode = 2
-offset_left = 877.0
-offset_top = -4.0
-offset_right = 1035.0
-offset_bottom = 79.0
+[node name="1player_score" type="Label" parent="Sprite2D"]
+z_index = 100
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -389.5
+offset_top = -96.0
+offset_right = 389.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 70
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 4
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+min_players = 1
+max_players = 1
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/1player_score"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="2player_score1" type="Label" parent="Sprite2D"]
+z_index = 100
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = -96.0
+offset_right = 929.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 70
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 4
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+template_string = "P1 %s"
+min_players = 2
+max_players = 2
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/2player_score1"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="2player_score2" type="Label" parent="Sprite2D"]
+z_index = 100
+custom_minimum_size = Vector2(-250, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -920.0
+offset_top = -96.0
+offset_right = -141.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 70
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 5
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+template_string = "P2 %s"
+min_players = 2
+max_players = 2
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/2player_score2"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="3player_score1" type="Label" parent="Sprite2D"]
+z_index = 100
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -96.0
+offset_right = 604.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 70
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 4
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+template_string = "P1 %s"
+min_players = 3
+max_players = 3
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/3player_score1"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="3player_score2" type="Label" parent="Sprite2D"]
+z_index = 100
+custom_minimum_size = Vector2(-250, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -277.0
+offset_top = -96.0
+offset_right = 277.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 70
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 5
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+template_string = "P2 %s"
+min_players = 3
+max_players = 3
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/3player_score2"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="3player_score3" type="Label" parent="Sprite2D"]
+z_index = 100
+custom_minimum_size = Vector2(-250, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -604.0
+offset_top = -96.0
+offset_right = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 70
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 6
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+template_string = "P3 %s"
+min_players = 3
+max_players = 3
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/3player_score3"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="4player_score1" type="Label" parent="Sprite2D"]
+z_index = 100
+custom_minimum_size = Vector2(-250, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -96.0
+offset_right = 480.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 55
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 4
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+template_string = "P1 %s"
+min_players = 4
+max_players = 4
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/4player_score1"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="4player_score2" type="Label" parent="Sprite2D"]
+z_index = 100
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -450.0
+offset_top = -96.0
+offset_right = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 55
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 5
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+template_string = "P2 %s"
+min_players = 4
+max_players = 4
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/4player_score2"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="4player_score3" type="Label" parent="Sprite2D"]
+z_index = 100
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -945.0
+offset_top = -96.0
+offset_right = -510.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 55
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 6
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+template_string = "P3 %s"
+min_players = 4
+max_players = 4
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/4player_score3"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="4player_score4" type="Label" parent="Sprite2D"]
+z_index = 100
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -96.0
+offset_right = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 55
+text = "100,123,456,789,"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bu5wf")
+variable_type = 7
+variable_name = "score"
+comma_separate = true
+min_digits = 2
+template_string = "P4 %s"
+min_players = 4
+max_players = 4
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/4player_score4"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="player_ball" type="Label" parent="Sprite2D"]
+z_index = 100
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -131.0
+offset_top = 25.0
+offset_right = 127.0
+offset_bottom = 108.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "Ball 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("3_bu5wf")
 variable_name = "ball"
 template_string = "Ball %s"
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
-[node name="player_score" type="Label" parent="."]
-layout_mode = 2
-offset_left = 570.0
-offset_top = 984.0
-offset_right = 1349.0
-offset_bottom = 1080.0
-theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 70
-text = "123,456,789"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("3_bu5wf")
-variable_name = "score"
-comma_separate = true
-min_digits = 2
-metadata/_custom_type_script = "uid://bkacutdegcp6n"
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/player_ball"]
+z_index = -100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

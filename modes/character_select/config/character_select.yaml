@@ -1,0 +1,182 @@
+#config_version=6
+
+mode:
+  start_events: start_character_select_mode
+  stop_events: character_select_item_selected
+  code: mpf.modes.carousel.code.carousel.Carousel
+  priority: 500
+mode_settings:
+  selectable_items: 
+  -  wonder_woman 
+  -  flash
+  -  batman
+  -  cyborg
+  -  superman
+  -  aquaman
+  select_item_events: s_lockbar_active
+  next_item_events: s_right_flipper_active
+  previous_item_events: s_left_flipper_active
+
+# Highlight and Selection player variables
+variable_player:
+  character_select_wonder_woman_highlighted:
+    highlighted_character:
+      string: "Wonder Woman"
+      action: set
+  character_select_flash_highlighted:
+    highlighted_character:
+      string: "Flash"
+      action: set
+  character_select_batman_highlighted:
+    highlighted_character:
+      string: "Batman"
+      action: set
+  character_select_cyborg_highlighted:
+    highlighted_character:
+      string: "Cyborg"
+      action: set
+  character_select_superman_highlighted:
+    highlighted_character:
+      string: "Aquaman"
+      action: set
+  character_select_aquaman_highlighted:
+    highlighted_character:
+      string: "Superman"
+      action: set
+  character_select_wonder_woman_selected:
+    selected_character:
+      string: "Wonder Woman"
+      action: set
+  character_select_flash_selected:
+    selected_character:
+      string: "Flash"
+      action: set
+  character_select_batman_selected:
+    selected_character:
+      string: "Batman"
+      action: set
+  character_select_cyborg_selected:
+    selected_character:
+      string: "Cyborg"
+      action: set
+  character_select_superman_selected:
+    selected_character:
+      string: "Superman"
+      action: set
+  character_select_aquaman_selected:
+    selected_character:
+      string: "Aquaman"
+      action: set
+
+slide_player:
+  mode_character_select_started: character_select
+  # character_select_wonder_woman_highlighted: wonder_woman_incomplete_slide_2
+  # character_select_wonder_woman_highlighted{current_player.wonder_woman_mode_status == 'complete'}: wonder_woman_complete_slide
+
+  # character_select_flash_highlighted: flash_incomplete_slide
+  # character_select_flash_highlighted{current_player.flash_mode_status == 'complete'}: flash_complete_slide
+
+  # character_select_batman_highlighted: batman_incomplete_slide
+  # character_select_batman_highlighted{current_player.batman_mode_status == 'complete'}: batman_complete_slide
+
+  # character_select_cyborg_highlighted: cyborg_incomplete_slide
+  # character_select_cyborg_highlighted{current_player.cyborg_mode_status == 'complete'}: cyborg_complete_slide
+
+  # character_select_superman_highlighted: superman_incomplete_slide
+  # character_select_superman_highlighted{current_player.superman_mode_status == 'complete'}: superman_complete_slide
+
+  # character_select_aquaman_highlighted: aquaman_incomplete_slide
+  # character_select_aquaman_highlighted{current_player.aquaman_mode_status == 'complete'}: aquaman_complete_slide
+
+
+sound_player:
+# Sounds played during character selection
+  character_select_wonder_woman_highlighted:
+    wonder_woman_theme:
+      action: play
+      loops: -1
+      bus: music
+    flash_theme:
+      action: stop
+      bus: music
+    aquaman_theme:
+      action: stop
+      bus: music
+  character_select_flash_highlighted:
+    flash_theme:
+      action: play
+      loops: -1
+      start_at: 4s
+      bus: music
+    wonder_woman_theme:
+      action: stop
+      bus: music
+    batman_theme:
+      action: stop
+      bus: music
+  character_select_batman_highlighted:
+    batman_theme:
+      action: play
+      loops: -1
+      bus: music
+    flash_theme:
+      action: stop
+      bus: music
+    cyborg_theme:
+      action: stop
+      bus: music
+  character_select_cyborg_highlighted:
+    cyborg_theme:
+      action: play
+      loops: -1
+      start_at: 360s
+      bus: music
+    batman_theme:
+      action: stop
+      bus: music
+    superman_theme:
+      action: stop
+      bus: music
+  character_select_superman_highlighted:
+    superman_theme:
+      action: play
+      loops: -1
+      start_at: 2s
+      bus: music
+    cyborg_theme:
+      action: stop
+      bus: music
+    aquaman_theme:
+      action: stop
+      bus: music
+  character_select_aquaman_highlighted:
+    aquaman_theme:
+      action: play
+      loops: -1
+      start_at: 10s
+      bus: music
+    wonder_woman_theme:
+      action: stop
+      bus: music
+    superman_theme:
+      action: stop
+      bus: music  
+  character_select_item_selected:
+    wonder_woman_theme:
+      action: stop
+      bus: music
+    flash_theme:
+      action: stop
+      bus: music
+    batman_theme:
+      action: stop
+      bus: music
+    cyborg_theme:
+      action: stop
+      bus: music
+    aquaman_theme:
+      action: stop
+      bus: music
+    superman_theme:
+      action: stop
+      bus: music

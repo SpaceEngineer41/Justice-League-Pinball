@@ -1,10 +1,11 @@
 #config_version=6
 
-# Attract mode that starts when the machine boots up, stops
-# whenever a game is started, and re-starts after the game ends.
+#Attract mode that starts when the machine boots up, stops
+#whenever a game is started, and re-starts after the game ends.
 
 mode_settings:
   selectable_items:
+    - intro_video
     - title
     - credits
     - last_scores_1p{machine.player1_score and not machine.player2_score}
@@ -18,10 +19,10 @@ mode_settings:
 slide_player:
   mode_attract_started: attract
 
-sound_player:
-  mode_attract_started:
-    icky_thump:
-      bus: music
+# sound_player:
+#   mode_attract_started:
+#     icky_thump:
+#       bus: music
 
 timers:
   attract_carousel_timer:

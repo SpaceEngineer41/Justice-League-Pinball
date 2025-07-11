@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://djkiuc54vdmf5"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_m80gf"]
+[ext_resource type="Texture2D" uid="uid://dl8oul3ksocal" path="res://images/aquaman.png" id="2_0tmem"]
+[ext_resource type="Script" uid="uid://bq052cwr8hqvd" path="res://addons/mpf-gmc/classes/mpf_carousel.gd" id="2_gj1yx"]
+[ext_resource type="Texture2D" uid="uid://iltcg7t3c0ap" path="res://images/batman.png" id="3_yemsg"]
+[ext_resource type="Texture2D" uid="uid://cxotrpe44r031" path="res://images/cyborg.png" id="5_8fddx"]
+[ext_resource type="Texture2D" uid="uid://dtppoiso3d3up" path="res://images/superman.png" id="6_lujow"]
+[ext_resource type="Texture2D" uid="uid://bkvv4k3qxc1g7" path="res://images/wonder_woman.png" id="7_6pvtl"]
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m80gf")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="MPFCarousel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_gj1yx")
+metadata/_custom_type_script = "uid://bq052cwr8hqvd"
+
+[node name="aquaman" type="Sprite2D" parent="MPFCarousel"]
+texture = ExtResource("2_0tmem")
+centered = false
+
+[node name="batman" type="Sprite2D" parent="MPFCarousel"]
+texture = ExtResource("3_yemsg")
+centered = false
+
+[node name="cyborg" type="Sprite2D" parent="MPFCarousel"]
+texture = ExtResource("5_8fddx")
+centered = false
+
+[node name="flash" type="Sprite2D" parent="MPFCarousel"]
+centered = false
+
+[node name="superman" type="Sprite2D" parent="MPFCarousel"]
+texture = ExtResource("6_lujow")
+centered = false
+
+[node name="wonder_woman" type="Sprite2D" parent="MPFCarousel"]
+texture = ExtResource("7_6pvtl")
+centered = false

@@ -37,6 +37,9 @@ enum EndBehavior {
 @export var preview_in_editor: bool = false
 
 
+@export var wait_for_done: bool = false
+
+
 @warning_ignore("shadowed_global_identifier")
 var log: GMCLogger
 
@@ -120,3 +123,6 @@ func _get_parent():
 		printerr("No parent slide or widget found?")
 		return
 
+func on_carousel_activated():
+	self.stop()
+	self.play()

@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxm8g807kfgai"
-path="res://.godot/imported/justice_league_multiball.png-0e806411896c6b07ff31484a8f1f17a1.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://u8lempuq1pix"
+valid=false
 
 [deps]
 
-source_file="res://images/justice_league_multiball.png"
-dest_files=["res://.godot/imported/justice_league_multiball.png-0e806411896c6b07ff31484a8f1f17a1.ctex"]
+source_file="res://monitor/playfield.jpg"
 
 [params]
 

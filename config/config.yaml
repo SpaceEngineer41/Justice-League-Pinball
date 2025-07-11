@@ -19,13 +19,42 @@ modes:
   - attract
   - base
   - bumpers
+  - character_select
   - hurryup
+
+
+player_vars:
+  batman_mode_status:
+    initial_value: incomplete
+    value_type: str
+  batman_count_status:
+    initial_value: incomplete
+    value_type: str
+  flash_mode_status:
+    initial_value: incomplete
+    value_type: str
+  wonder_woman_mode_status:
+    initial_value: incomplete
+    value_type: str
+  cyborg_mode_status:
+    initial_value: incomplete
+    value_type: str
+  aquaman_mode_status:
+    initial_value: incomplete
+    value_type: str
+  superman_mode_status:
+    initial_value: incomplete
+    value_type: str
 
 playfields:
   playfield:
     tags: default
     default_source_device: bd_plunger 
 
+slide_player:
+  init_done: attract
+
+  
 
 virtual_platform_start_active_switches:
   - s_trough1
@@ -34,3 +63,7 @@ virtual_platform_start_active_switches:
   - s_trough4
   - s_trough5
   - s_trough6
+
+
+
+
