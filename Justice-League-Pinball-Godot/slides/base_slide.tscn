@@ -19,7 +19,7 @@ texture = ExtResource("2_3761s")
 centered = false
 
 [node name="1player_score" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -46,7 +46,7 @@ max_players = 1
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/1player_score"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,7 +56,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="2player_score1" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -81,7 +81,7 @@ max_players = 2
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/2player_score1"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,7 +91,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="2player_score2" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 custom_minimum_size = Vector2(-250, 0)
 anchors_preset = 3
 anchor_left = 1.0
@@ -120,7 +120,7 @@ max_players = 2
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/2player_score2"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,7 +130,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="3player_score1" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -155,7 +155,7 @@ max_players = 3
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/3player_score1"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,7 +165,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="3player_score2" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 custom_minimum_size = Vector2(-250, 0)
 anchors_preset = 7
 anchor_left = 0.5
@@ -194,7 +194,7 @@ max_players = 3
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/3player_score2"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,7 +204,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="3player_score3" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 custom_minimum_size = Vector2(-250, 0)
 anchors_preset = 3
 anchor_left = 1.0
@@ -233,7 +233,7 @@ max_players = 3
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/3player_score3"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,7 +243,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="4player_score1" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 custom_minimum_size = Vector2(-250, 0)
 anchors_preset = 2
 anchor_top = 1.0
@@ -269,7 +269,7 @@ max_players = 4
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/4player_score1"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -279,7 +279,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="4player_score2" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -307,7 +307,7 @@ max_players = 4
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/4player_score2"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -317,7 +317,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="4player_score3" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -345,7 +345,7 @@ max_players = 4
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/4player_score3"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -355,7 +355,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="4player_score4" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -383,7 +383,7 @@ max_players = 4
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/4player_score4"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -393,7 +393,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="player_ball" type="Label" parent="Sprite2D"]
-z_index = 100
+z_index = 10
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -413,7 +413,7 @@ template_string = "Ball %s"
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/player_ball"]
-z_index = -100
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -37,8 +37,6 @@ enum EndBehavior {
 @export var preview_in_editor: bool = false
 
 
-@export var wait_for_done: bool = false
-
 
 @warning_ignore("shadowed_global_identifier")
 var log: GMCLogger

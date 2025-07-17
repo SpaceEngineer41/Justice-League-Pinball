@@ -13,7 +13,6 @@ extends Control
 @warning_ignore("shadowed_global_identifier")
 var log: GMCLogger
 
-
 func _enter_tree():
 	# Create a log
 	self.log = preload("res://addons/mpf-gmc/scripts/log.gd").new("Carousel<%s:%s>" % [self.name, carousel_name])

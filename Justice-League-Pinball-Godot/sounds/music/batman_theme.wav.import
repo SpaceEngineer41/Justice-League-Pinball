@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c5r6fkmwfqcwq"
-path="res://.godot/imported/Beautiful_Lie.wav-de4d0b1cb698ff856547b21c4e6c8e28.sample"
+path="res://.godot/imported/batman_theme.wav-bda6b09e3ee001393b2a181fe057926d.sample"
 
 [deps]
 
-source_file="res://sounds/music/Beautiful_Lie.wav"
-dest_files=["res://.godot/imported/Beautiful_Lie.wav-de4d0b1cb698ff856547b21c4e6c8e28.sample"]
+source_file="res://sounds/music/batman_theme.wav"
+dest_files=["res://.godot/imported/batman_theme.wav-bda6b09e3ee001393b2a181fe057926d.sample"]
 
 [params]
 

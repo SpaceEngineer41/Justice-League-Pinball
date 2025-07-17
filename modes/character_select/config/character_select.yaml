@@ -5,17 +5,22 @@ mode:
   stop_events: character_select_item_selected
   code: mpf.modes.carousel.code.carousel.Carousel
   priority: 500
+
 mode_settings:
   selectable_items: 
-  -  wonder_woman 
-  -  flash
-  -  batman
-  -  cyborg
-  -  superman
-  -  aquaman
+    -  wonder_woman 
+    -  flash
+    -  batman
+    -  cyborg
+    -  superman
+    -  aquaman
   select_item_events: s_lockbar_active
   next_item_events: s_right_flipper_active
   previous_item_events: s_left_flipper_active
+
+slide_player:
+  mode_character_select_started: character_select
+
 
 # Highlight and Selection player variables
 variable_player:
@@ -68,8 +73,6 @@ variable_player:
       string: "Aquaman"
       action: set
 
-slide_player:
-  mode_character_select_started: character_select
   # character_select_wonder_woman_highlighted: wonder_woman_incomplete_slide_2
   # character_select_wonder_woman_highlighted{current_player.wonder_woman_mode_status == 'complete'}: wonder_woman_complete_slide
 
@@ -91,7 +94,7 @@ slide_player:
 
 sound_player:
 # Sounds played during character selection
-  character_select_wonder_woman_highlighted:
+  item_highlighted{item=="wonder_woman"}:
     wonder_woman_theme:
       action: play
       loops: -1
@@ -102,7 +105,7 @@ sound_player:
     aquaman_theme:
       action: stop
       bus: music
-  character_select_flash_highlighted:
+  item_highlighted{item=="flash"}:
     flash_theme:
       action: play
       loops: -1
@@ -114,7 +117,7 @@ sound_player:
     batman_theme:
       action: stop
       bus: music
-  character_select_batman_highlighted:
+  item_highlighted{item=="batman"}:
     batman_theme:
       action: play
       loops: -1
@@ -125,7 +128,7 @@ sound_player:
     cyborg_theme:
       action: stop
       bus: music
-  character_select_cyborg_highlighted:
+  item_highlighted{item=="cyborg"}:
     cyborg_theme:
       action: play
       loops: -1
@@ -137,7 +140,7 @@ sound_player:
     superman_theme:
       action: stop
       bus: music
-  character_select_superman_highlighted:
+  item_highlighted{item=="superman"}:
     superman_theme:
       action: play
       loops: -1
@@ -149,7 +152,7 @@ sound_player:
     aquaman_theme:
       action: stop
       bus: music
-  character_select_aquaman_highlighted:
+  item_highlighted{item=="aquaman"}:
     aquaman_theme:
       action: play
       loops: -1

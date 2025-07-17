@@ -9,37 +9,40 @@ mode:
   priority: 100
 
 event_player:
-  ball_started{ball==1}:
-  -  start_character_select_mode
-  player_selected_character{value=='Batman'}:
-  -  start_batman_mode
-  player_selected_character{value=='Superman'}:
-  -  start_superman_mode
-  player_selected_character{value=='Flash'}:
-  -  start_flash_mode
-  player_selected_character{value=='Aquaman'}:
-  -  start_aquaman_mode
-  player_selected_character{value=='Cyborg'}:
-  -  start_cyborg_mode
-  player_selected_character{value=='Wonder Woman'}:
-  -  start_wonder_woman_mode
-  start_character_select_wonder_woman:
-  -  start_character_select_mode
-  start_character_select_mode_batman:
-  -  start_character_select_mode
-  start_character_select_superman:
-  -  start_character_select_mode
-  start_character_select_flash:
-  -  start_character_select_mode
-  start_character_select_aquaman:
-  -  start_character_select_mode
-  start_character_select_cyborg:
-  -  start_character_select_mode
-  mode_base_started:
-  -  start_mode_bumpers
-  mode_base_will_stop:
-  -  stop_mode_bumpers
-  shot_left_ramp_hit: start_mode_hurryup
+  ball_started{ball==1}: start_character_select_mode
+
+  # player_selected_character{value=='Batman'}:
+  # -  start_batman_mode
+  # player_selected_character{value=='Superman'}:
+  # -  start_superman_mode
+  # player_selected_character{value=='Flash'}:
+  # -  start_flash_mode
+  # player_selected_character{value=='Aquaman'}:
+  # -  start_aquaman_mode
+  # player_selected_character{value=='Cyborg'}:
+  # -  start_cyborg_mode
+  # player_selected_character{value=='Wonder Woman'}:
+  # -  start_wonder_woman_mode
+  # start_character_select_wonder_woman:
+  # -  start_character_select_mode
+  # start_character_select_mode_batman:
+  # -  start_character_select_mode
+  # start_character_select_superman:
+  # -  start_character_select_mode
+  # start_character_select_flash:
+  # -  start_character_select_mode
+  # start_character_select_aquaman:
+  # -  start_character_select_mode
+  # start_character_select_cyborg:
+  # -  start_character_select_mode
+  # mode_base_started:
+  # -  start_mode_bumpers
+  # mode_base_will_stop:
+  # -  stop_mode_bumpers
+  # shot_left_ramp_hit: start_mode_hurryup
+
+slide_player:
+  mode_base_started: base_slide
 
 shots:
   shot_left_ramp:
@@ -113,5 +116,4 @@ shots:
   # shot_right_outlane:
   #   switch: s_right_outlane
 
-slide_player:
-  mode_base_started: base_slide
+
