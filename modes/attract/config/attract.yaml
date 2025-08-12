@@ -3,8 +3,13 @@
 #Attract mode that starts when the machine boots up, stops
 #whenever a game is started, and re-starts after the game ends.
 
+show_player:
+  mode_attract_started: attract_light_show
 
-
+event_player:
+  mode_attract_stopping: 
+    remove_slide: 
+      slide: attract
 
 mode_settings:
   selectable_items:

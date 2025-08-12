@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfor4jeuel48n"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_ukgs3"]
+[ext_resource type="VideoStream" uid="uid://dsua0yd5jo50l" path="res://videos/character_select_wonder_woman(1528x846).ogv" id="2_gepra"]
+[ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_ec0uc"]
+
+[node name="WonderWomanCharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ukgs3")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="wonder_woman_character_select" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 196.0
+offset_top = 117.0
+offset_right = -196.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_gepra")
+autoplay = true
+script = ExtResource("3_ec0uc")
+preview_in_editor = true
+metadata/_custom_type_script = "uid://b0pcq24i8x4or"
+
+[node name="Label" type="Label" parent="wonder_woman_character_select"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -905.0
+offset_right = 794.0
+offset_bottom = -628.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 75
+text = "Ball Save Extended"
+horizontal_alignment = 1
+vertical_alignment = 1

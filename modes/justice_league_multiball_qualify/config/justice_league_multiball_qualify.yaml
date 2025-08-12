@@ -1,0 +1,351 @@
+#config_version=6
+
+mode:
+  start_events: mode_base_started
+
+
+shots:
+  justice_league_multiball:
+    switch: s_mystery_scoop
+  character_select:
+    switch: s_mystery_scoop
+
+achievements:
+  justice_league_assembled:
+    start_events: justice_league_count_complete
+    complete_events: justice_league_assembled
+    show_when_started: justice_league_lit
+    show_when_completed: justice_league_complete
+    reset_events: justice_league_count_reset
+
+    # show_when_enabled:
+
+  batman_assembled:
+    start_events: shot_left_ramp_hit
+    complete_events: batman_count_complete
+    events_when_completed: character_select_lit
+    show_when_completed: batman_complete 
+    reset_events: justice_league_count_reset
+
+    # show_when_enabled:
+
+  wonder_woman_assembled:
+    start_events: shot_left_drop_left_hit, shot_left_drop_middle_hit, shot_left_drop_right_hit, shot_right_drop_right_hit, shot_right_drop_middle_hit, shot_right_drop_left_hit
+    complete_events: wonder_woman_count_complete
+    events_when_completed: character_select_lit
+    show_when_completed: wonder_woman_complete
+    reset_events: justice_league_count_reset
+ 
+    # show_when_enabled:
+
+  flash_assembled:
+    start_events: shot_orbit_left_hit
+    complete_events: flash_count_complete
+    events_when_completed: character_select_lit
+    show_when_completed: flash_complete 
+    reset_events: justice_league_count_reset 
+    # show_when_enabled:
+
+  cyborg_assembled:
+    start_events: shot_line_1_hit
+    complete_events: cyborg_count_complete
+    events_when_completed: character_select_lit
+    show_when_completed: cyborg_complete   
+    reset_events: justice_league_count_reset 
+    # show_when_enabled:
+
+  superman_assembled:
+    start_events: shot_right_ramp_hit
+    complete_events: superman_count_complete
+    events_when_completed: character_select_lit
+    show_when_completed: superman_complete
+    reset_events: justice_league_count_reset 
+    # show_when_enabled:
+
+  aquaman_assembled:
+    start_events: shot_orbit_right_hit
+    complete_events: aquaman_count_complete
+    events_when_completed: character_select_lit
+    show_when_completed: aquaman_complete
+    reset_events: justice_league_count_reset 
+    # show_when_enabled:
+
+accruals:
+  justice_league_count_complete:
+    events: wonder_woman_count_complete, cyborg_count_complete, flash_count_complete, batman_count_complete, superman_count_complete, aquaman_count_complete
+    events_when_complete: justice_league_count_complete
+    persist_state: true
+    reset_events: justice_league_count_reset
+    disable_on_complete: false
+
+  justice_league_assembled:
+    events: justice_league_count_complete, justice_league_multiball_hit
+    events_when_complete: justice_league_assembled, justice_league_completion_points
+    persist_state: true
+    reset_events: justice_league_count_reset
+    disable_on_complete: false
+
+  cyborg_count:
+    events: shot_line_1_hit, shot_line_2_hit, shot_line_3_hit, shot_line_kickback_hit
+    events_when_complete: cyborg_count_complete, cyborg_completion_points
+    reset_on_complete: false
+    persist_state: true
+    reset_events: justice_league_count_reset
+    disable_on_complete: false
+
+  wonder_woman_count:
+    events: shot_left_drop_left_hit, shot_left_drop_middle_hit, shot_left_drop_right_hit, shot_right_drop_right_hit, shot_right_drop_middle_hit, shot_right_drop_left_hit
+    events_when_complete: wonder_woman_count_complete, wonder_woman_completion_points
+    reset_on_complete: false
+    persist_state: true
+    reset_events: justice_league_count_reset
+    disable_on_complete: false
+
+  character_select_start:
+    events: character_select_lit, shot_mystery_scoop_hit
+    events_when_complete: start_character_select_mode
+    disable_on_complete: false
+
+counters:
+  flash_count:
+    starting_count: 0
+    count_complete_value: 3
+    count_events: shot_orbit_left_hit
+    events_when_complete: flash_count_complete, flash_completion_points
+    persist_state: true
+    reset_on_complete: false
+    disable_on_complete: false
+    reset_events: justice_league_count_reset
+
+  superman_count:
+    starting_count: 0
+    count_complete_value: 4
+    count_events: shot_right_ramp_hit
+    events_when_complete: superman_count_complete, superman_completion_points
+    persist_state: true
+    reset_on_complete: false
+    disable_on_complete: false
+    reset_events: justice_league_count_reset
+
+  aquaman_count:
+    starting_count: 0
+    count_complete_value: 3
+    count_events: shot_orbit_right_hit
+    events_when_complete: aquaman_count_complete, aquaman_completion_points
+    persist_state: true
+    reset_on_complete: false
+    # reset_events: justice_league_count_reset
+    disable_on_complete: false
+    disable_events: mode_justice_league_multiball_stopping
+
+  batman_count:
+    starting_count: 0
+    count_complete_value: 4
+    count_events: shot_left_ramp_hit
+    reset_on_complete: false
+    events_when_complete: batman_count_complete, batman_completion_points
+    persist_state: true
+    disable_on_complete: false
+    reset_events: justice_league_count_reset
+
+variable_player:
+  flash_count_complete:
+    flash_mode_status:
+      action: set
+      string: complete
+
+  superman_count_complete:
+    superman_mode_status:
+      action: set
+      string: complete
+
+  aquaman_count_complete:
+    aquaman_mode_status:
+      action: set
+      string: complete
+
+  batman_count_complete:
+    batman_mode_status:
+      action: set
+      string: complete
+
+  wonder_woman_count_complete:
+    wonder_woman_mode_status:
+      action: set
+      string: complete
+
+  cyborg_count_complete:
+    cyborg_mode_status:
+      action: set
+      string: complete
+
+  wonder_woman_completion_points:
+    score: 250000
+  flash_completion_points:
+    score: 250000
+  batman_completion_points:
+    score: 250000
+  cyborg_completion_points:
+    score: 250000
+  superman_completion_points:
+    score: 250000
+  aquaman_completion_points:
+    score: 250000
+  justice_league_completion_points:
+    score: 500000
+
+show_player:
+  # logicblock_wonder_woman_count_hit{step == 0}:
+
+  logicblock_flash_count_updated{enabled}:
+    flash_show:
+      key: flash_counter_show
+      start_step: value + 1
+      show_tokens:
+        color: red
+  logicblock_flash_count_updated{not enabled}:
+    flash_counter_show: stop
+  
+  logicblock_batman_count_updated{enabled}:
+    batman_show:
+      key: batman_counter_show
+      start_step: value + 1
+      show_tokens:
+        color: yellow
+  logicblock_batman_count_updated{not enabled}:
+    batman_counter_show: stop
+
+  logicblock_cyborg_count_hit{step == 2}: cyborg_show_flashing
+  logicblock_cyborg_count_hit{step == 3}: cyborg_show
+
+  logicblock_superman_count_updated{enabled}:
+    superman_show:
+      key: superman_counter_show
+      start_step: value + 1
+      show_tokens:
+        color: blue
+  logicblock_superman_count_updated{not enabled}:
+    superman_counter_show: stop
+
+  logicblock_aquaman_count_updated{enabled}:
+    aquaman_show:
+      key: aquaman_counter_show
+      start_step: value + 1
+      show_tokens:
+        color: green
+  logicblock_aquaman_count_updated{not enabled}:
+    aquaman_counter_show: stop
+
+
+
+light_player:
+  shot_right_drop_left_hit:
+    l_right_drop_left: yellow
+  shot_right_drop_middle_hit:
+    l_right_drop_middle: yellow
+  shot_right_drop_right_hit:
+    l_right_drop_right: yellow
+  shot_left_drop_right_hit:
+    l_left_drop_right: yellow
+  shot_left_drop_middle_hit:
+    l_left_drop_middle: yellow
+  shot_left_drop_left_hit:
+    l_left_drop_left: yellow
+#   counter_superman_count_hit{count == 1}:
+#     l_right_ramp_3: blue
+#   counter_superman_count_hit{count == 2}:
+#     l_right_ramp_2: blue
+#   counter_superman_count_hit{count == 3}:
+#     l_right_ramp_1: blue
+#   counter_superman_count_hit{count == 4}:
+#     l_right_ramp_arrow: blue
+
+#   counter_batman_count_hit{count == 1}:
+#     l_left_ramp_3: yellow
+#   counter_batman_count_hit{count == 2}:
+#     l_left_ramp_2: yellow
+#   counter_batman_count_hit{count == 3}:
+#     l_left_ramp_1: yellow
+#   counter_batman_count_hit{count == 4}:
+#     l_left_ramp_arrow: yellow
+
+#   counter_flash_count_hit{count == 1}:
+#     l_orbit_left_3: red
+#   counter_flash_count_hit{count == 2}:
+#     l_orbit_left_2: red
+#   counter_flash_count_hit{count == 3}:
+#     l_orbit_left_1: red
+
+#   counter_aquaman_count_hit{count == 1}:
+#     l_orbit_right_3: green
+#   counter_aquaman_count_hit{count == 2}:
+#     l_orbit_right_2: green
+#   counter_aquaman_count_hit{count == 3}:
+#     l_orbit_right_1: green
+
+#   shot_line_kickback_hit:
+#     l_line: red
+
+# blinkenlight_player:
+#   character_select_lit:
+#     blinkenlight_character_select:
+#       color: blue
+
+#   counter_superman_count_hit{count == 1}:
+#     blinkenlight_right_ramp_x2:
+#       color: blue
+#   counter_superman_count_hit{count == 2}:
+#     blinkenlight_right_ramp_x3:
+#       color: blue
+#     blinkenlight_right_ramp_x2: remove
+#   counter_superman_count_hit{count == 3}:
+#     blinkenlight_right_ramp_arrow:
+#       color: blue
+#     blinkenlight_right_ramp_x3: remove
+#   counter_superman_count_hit{count == 4}:
+#     blinkenlight_right_ramp_arrow: remove
+
+#   counter_batman_count_hit{count == 1}:
+#     blinkenlight_left_ramp_x2:
+#       color: yellow
+#   counter_batman_count_hit{count == 2}:
+#     blinkenlight_left_ramp_x3:
+#       color: yellow
+#     blinkenlight_left_ramp_x2: remove
+#   counter_batman_count_hit{count == 3}:
+#     blinkenlight_left_ramp_arrow:
+#       color: yellow
+#     blinkenlight_left_ramp_x3: remove
+#   counter_batman_count_hit{count == 4}:
+#     blinkenlight_left_ramp_arrow: remove
+
+#   counter_flash_count_hit{count == 1}:
+#     blinkenlight_left_orbit_x2:
+#       color: red
+#   counter_flash_count_hit{count == 2}:
+#     blinkenlight_left_orbit_x3:
+#       color: red
+#     blinkenlight_left_orbit_x2: remove
+#   counter_flash_count_hit{count == 3}:
+#     blinkenlight_left_orbit_x3: remove
+
+#   counter_aquaman_count_hit{count == 1}:
+#     blinkenlight_right_orbit_x2:
+#       color: green
+#   counter_aquaman_count_hit{count == 2}:
+#     blinkenlight_right_orbit_x3:
+#       color: green
+#     blinkenlight_right_orbit_x2: remove
+#   counter_aquaman_count_hit{count == 3}:
+#     blinkenlight_right_orbit_x3: remove
+
+#   shot_line_3_hit: 
+#     blinkenlight_cyborg:
+#       color: red
+#   shot_line_kickback_hit: 
+#     blinkenlight_cyborg: remove
+
+  
+
+
+

@@ -1,0 +1,11 @@
+#show_version=6
+
+- time: 0
+  lights:
+    l_superman: red
+
+
+  # blinkenlights:
+  #   blinkenlight_left_ramp_x1: yellow
+
+

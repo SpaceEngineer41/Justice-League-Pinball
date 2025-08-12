@@ -1,0 +1,62 @@
+#config_version=6
+
+mode:
+  start_events: ball_starting
+  # stop_events:
+  priority: 300
+
+shots:
+  left_jet_lane:
+    switch: s_jet_lane_left
+    show_tokens:
+      light: l_jet_lane_left  
+  right_jet_lane:
+    switch: s_jet_lane_right
+    show_tokens:
+      light: l_jet_lane_right
+  middle_jet_lane:
+    switch: s_jet_lane_middle
+    show_tokens:
+      light: l_jet_lane_middle
+  left_outlane:
+    switch: s_left_outlane
+    show_tokens:
+      light: l_outlane_left  
+  right_outlane:
+    switch: s_right_outlane
+    show_tokens:
+      light: l_outlane_right
+  left_inlane:
+    switch: s_left_inlane
+    show_tokens:
+      light: l_inlane_left
+  right_inlane:
+    switch: s_right_inlane
+    show_tokens:
+      light: l_inlane_right
+
+shot_groups:
+  rollover_lanes:
+    shots: left_jet_lane, right_jet_lane, middle_jet_lane, left_outlane, right_outlane, left_inlane, right_inlane
+    rotate_left_events: s_left_flipper_active
+    rotate_right_events: s_right_flipper_active
+    reset_events:
+      rollover_lanes_lit_complete: 1s
+
+counters:
+  lb_rollover_complete_count:
+    count_events: rollover_lanes_complete
+    events_when_hit: rollover_lanes_done
+    starting_count: 0
+    count_complete_value: 40
+    reset_on_complete: false
+    direction: up
+    persist_state: false
+
+variable_player:
+  rollover_lanes_complete:
+    score: 50000
+
+event_player:
+  rollover_lanes_complete: enable_mystery_award
+  

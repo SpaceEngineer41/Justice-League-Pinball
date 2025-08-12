@@ -1,0 +1,25 @@
+#show_version=6
+
+- duration: 0.5
+  lights:
+    l_orbit_left_3: off
+    l_orbit_left_2: off
+    l_orbit_left_1: off
+
+- duration: 0.5
+  lights:
+    l_orbit_left_3: red
+    l_orbit_left_2: off
+    l_orbit_left_1: off
+
+- duration: 0.5
+  lights:
+    l_orbit_left_3: red
+    l_orbit_left_2: red
+    l_orbit_left_1: off
+
+- duration: 0.5
+  lights:
+    l_orbit_left_3: red
+    l_orbit_left_2: red
+    l_orbit_left_1: red

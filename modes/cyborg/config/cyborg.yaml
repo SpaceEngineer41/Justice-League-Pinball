@@ -1,0 +1,22 @@
+#config_version=6
+
+mode:
+  start_events: start_cyborg_mode,
+  stop_events: stop_mode_cyborg, start_character_select_cyborg
+  priority: 600
+
+variable_player: 
+
+slide_player:
+  mode_cyborg_started: 
+    cyborg_character_select:
+      expire: 5s
+
+sound_player:
+  slide_cyborg_character_select_removed: 
+    cyborg_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.05
+        

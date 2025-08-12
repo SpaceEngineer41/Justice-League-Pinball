@@ -1,0 +1,35 @@
+#config_version=6
+
+mode:
+  start_events: start_wonder_woman_mode,
+  stop_events: stop_mode_wonder_woman, start_character_select_wonder_woman
+  priority: 600
+
+variable_player:
+  shot_left_drop_left_hit:
+    score: 25000
+  shot_left_drop_middle_hit:
+    score: 25000
+  shot_left_drop_right_hit:
+    score: 25000
+  shot_right_drop_left_hit:
+    score: 25000
+  shot_right_drop_middle_hit:
+    score: 25000
+  shot_right_drop_right_hit:
+    score: 25000
+
+slide_player:
+  mode_wonder_woman_started: 
+    wonder_woman_character_select:
+      expire: 5s
+
+sound_player:
+  slide_wonder_woman_character_select_removed: 
+    wonder_woman_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.05
+
+

@@ -1,0 +1,36 @@
+#show_version=6
+
+- duration: 0.5
+  lights:
+    l_left_ramp_3: off
+    l_left_ramp_2: off
+    l_left_ramp_1: off
+    l_left_ramp_arrow: off
+
+- duration: 0.5
+  lights:
+    l_left_ramp_3: yellow
+    l_left_ramp_2: off
+    l_left_ramp_1: off
+    l_left_ramp_arrow: off
+
+- duration: 0.5
+  lights:
+    l_left_ramp_3: yellow
+    l_left_ramp_2: yellow
+    l_left_ramp_1: off
+    l_left_ramp_arrow: off
+
+- duration: 0.5
+  lights:
+    l_left_ramp_3: yellow
+    l_left_ramp_2: yellow
+    l_left_ramp_1: yellow
+    l_left_ramp_arrow: off
+
+- duration: 0.5
+  lights:
+    l_left_ramp_3: yellow
+    l_left_ramp_2: yellow
+    l_left_ramp_1: yellow
+    l_left_ramp_arrow: yellow

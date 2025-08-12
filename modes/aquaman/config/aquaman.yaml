@@ -1,0 +1,26 @@
+#config_version=6
+
+mode:
+  start_events: start_aquaman_mode,
+  stop_events: stop_mode_aquaman, start_character_select_aquaman
+  priority: 600
+
+variable_player: 
+  shot_left_ramp_hit:
+    score: 25000
+
+slide_player:
+  mode_aquaman_started: 
+    aquaman_character_select:
+      expire: 5s
+
+sound_player:
+  slide_aquaman_character_select_removed: 
+    aquaman_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.05
+
+
+        

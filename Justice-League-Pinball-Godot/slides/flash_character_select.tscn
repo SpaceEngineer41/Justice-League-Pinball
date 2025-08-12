@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjqs2n72036vr"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_xtali"]
+[ext_resource type="VideoStream" uid="uid://0imddqtsj7v6" path="res://videos/flash_character_select.ogv" id="2_gfe8a"]
+[ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_cn10b"]
+
+[node name="FlashCharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_xtali")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="flash_character_select" type="VideoStreamPlayer" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = 198.0
+offset_top = 119.0
+offset_right = 1726.0
+offset_bottom = 965.0
+stream = ExtResource("2_gfe8a")
+autoplay = true
+script = ExtResource("3_cn10b")
+preview_in_editor = true
+metadata/_custom_type_script = "uid://b0pcq24i8x4or"
+
+[node name="Label" type="Label" parent="flash_character_select"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -805.0
+offset_right = 811.0
+offset_bottom = -528.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "Combo Scoring 
+x2"
+horizontal_alignment = 1
+vertical_alignment = 1

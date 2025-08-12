@@ -31,25 +31,48 @@ carousel_name = "character_select"
 metadata/_custom_type_script = "uid://bq052cwr8hqvd"
 
 [node name="wonder_woman" type="Sprite2D" parent="character_select"]
+z_index = 10
+position = Vector2(196, 117)
+scale = Vector2(0.796354, 0.784259)
 texture = ExtResource("3_6pvtl")
 centered = false
 
 [node name="flash" type="Sprite2D" parent="character_select"]
+visible = false
+z_index = 10
+position = Vector2(196, 117)
+scale = Vector2(0.796354, 0.784259)
 texture = ExtResource("4_5silw")
 centered = false
 
 [node name="batman" type="Sprite2D" parent="character_select"]
+visible = false
+z_index = 10
+position = Vector2(196, 117)
+scale = Vector2(0.796354, 0.784259)
 texture = ExtResource("5_bnqek")
 centered = false
 
 [node name="cyborg" type="Sprite2D" parent="character_select"]
+visible = false
+z_index = 10
+position = Vector2(196, 117)
+scale = Vector2(0.796354, 0.784259)
 texture = ExtResource("6_67y1v")
 centered = false
 
 [node name="superman" type="Sprite2D" parent="character_select"]
+visible = false
+z_index = 10
+position = Vector2(196, 117)
+scale = Vector2(0.796354, 0.784259)
 texture = ExtResource("7_k1f14")
 centered = false
 
 [node name="aquaman" type="Sprite2D" parent="character_select"]
+visible = false
+z_index = 10
+position = Vector2(196, 117)
+scale = Vector2(0.796354, 0.784259)
 texture = ExtResource("8_sevyy")
 centered = false

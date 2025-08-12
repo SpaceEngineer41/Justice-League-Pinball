@@ -1,0 +1,11 @@
+#config_version=6
+
+mode:
+  start_events: machine_reset_phase_3
+  game_mode: false
+
+  variable_player:
+    game_started:
+      number_of_games_started:
+        action: add_machine
+        int: 1

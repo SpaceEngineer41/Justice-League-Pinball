@@ -1,0 +1,14 @@
+#config_version=6
+
+mode:
+  start_events: justice_league_assembled
+  stop_events: ball_ending
+
+# slide_player:
+#   mode_justice_league_multiball_started:
+#     widgets:
+#       - type: image
+#         image: justice_league_multiball
+
+event_player:
+  ball_ending: justice_league_count_reset

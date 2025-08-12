@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxp50tegx8khl"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_5q5au"]
+[ext_resource type="VideoStream" uid="uid://dnh5l65ybem2d" path="res://videos/aquaman_character_select(1528x846).ogv" id="2_cao7a"]
+[ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_ak7xn"]
+
+[node name="AquamanCharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5q5au")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="aquaman_character_select" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -764.0
+offset_top = -423.0
+offset_right = 764.0
+offset_bottom = 423.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_cao7a")
+autoplay = true
+script = ExtResource("3_ak7xn")
+preview_in_editor = true
+metadata/_custom_type_script = "uid://b0pcq24i8x4or"
+
+[node name="Label" type="Label" parent="aquaman_character_select"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -709.0
+offset_top = -768.0
+offset_right = 114.0
+offset_bottom = -491.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 100
+text = "Trident Multiball
+Start With 2 Balls"
+horizontal_alignment = 1
+vertical_alignment = 1

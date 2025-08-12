@@ -1,0 +1,8 @@
+#config_version=6
+
+mode:
+  start_events: martian_go, martian_resume_go
+  # stop_events:
+  priority: 400
+  
+

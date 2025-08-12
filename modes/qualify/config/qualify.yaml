@@ -1,0 +1,55 @@
+#config_version=6
+
+mode:
+  start_events: ball_started
+counters:
+  left_ramp_qualify_counter:
+    starting_count: 0
+    count_complete_value: 3
+    direction: up
+    # events_when_complete: disable_qualify, start_mode_left_ramp
+    events_when_complete: start_mode_left_ramp
+    # enable_events: enable_qualify
+    # disable_events: disable_qualify
+    start_enabled: true
+    persist_state: true
+    reset_on_complete: false
+    restart_events: reset_qualify_modes
+    count_events: shot_left_ramp_hit
+  right_ramp_qualify_counter:
+    starting_count: 0
+    count_complete_value: 3
+    # events_when_complete: disable_qualify, start_mode_right_ramp
+    events_when_complete: start_mode_right_ramp
+    # enable_events: enable_qualify
+    # disable_events: disable_qualify
+    start_enabled: true
+    persist_state: true
+    reset_on_complete: false
+    restart_events: reset_qualify_modes
+    count_events: shot_right_ramp_hit
+
+# show_player:
+#   logicblock_my_counter_updated{value == 0}:
+#     my_show_initial:
+#       key: my_counter_show
+#   logicblock_my_counter_updated{value == 1}:
+#     my_show_first_hit:
+#       key: my_counter_show
+#   logicblock_my_counter_updated{value >= 2}:
+#     my_show_final:
+#       key: my_counter_show
+
+show_player:
+  logicblock_my_counter_updated{enabled}:
+    my_show:
+      key: my_counter_show
+      start_step: value + 1
+      show_tokens:
+        led1: l_left_ramp_1
+        led2: l_left_ramp_2
+        led3: l_left_ramp_3
+        color: yellow
+  logicblock_my_counter_updated{not enabled}:
+    my_counter_show: stop
+

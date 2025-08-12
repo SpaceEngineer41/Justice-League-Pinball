@@ -1,0 +1,25 @@
+#show_version=6
+
+- duration: 0.5
+  lights:
+    l_orbit_right_3: off
+    l_orbit_right_2: off
+    l_orbit_right_1: off
+
+- duration: 0.5
+  lights:
+    l_orbit_right_3: green
+    l_orbit_right_2: off
+    l_orbit_right_1: off
+
+- duration: 0.5
+  lights:
+    l_orbit_right_3: green
+    l_orbit_right_2: green
+    l_orbit_right_1: off
+
+- duration: 0.5
+  lights:
+    l_orbit_right_3: green
+    l_orbit_right_2: green
+    l_orbit_right_1: green

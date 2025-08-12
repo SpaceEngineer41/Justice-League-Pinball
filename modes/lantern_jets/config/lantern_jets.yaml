@@ -1,0 +1,38 @@
+#config_version=6
+
+mode:
+  start_events: lantern_jets_go, lantern_jets_resume_go
+  # stop_events:
+  priority: 300
+
+variable_player:
+  s_pop_bumper_left_active:
+    score: 20000|block
+  s_pop_bumper_middle_active:
+    score: 20000|block
+  s_pop_bumper_bottom_active:
+    score: 20000|block
+
+# show_player:
+#   mode_lantern_jets_started:
+#     lantern_jets_startup:
+#       # loops: 0
+#       show_tokens:
+#         lights: l_lantern_jets
+#     lantern_jets_on:
+#       show_tokens:
+#         lights: l_lantern_jets
+
+
+# slides:
+#   lantern_jets_startup:
+#     widgets:
+#     - type: text
+#       text: Green Lantern Jets!
+#       font_size: 20
+#       y: 60%
+#       priority: 200
+
+# - time: 0
+# lights:
+#   l_lantern_jets: ff

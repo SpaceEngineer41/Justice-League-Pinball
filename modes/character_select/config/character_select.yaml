@@ -99,87 +99,158 @@ sound_player:
       action: play
       loops: -1
       bus: music
+      fade_in: 1
     flash_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     aquaman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
   item_highlighted{item=="flash"}:
     flash_theme:
       action: play
       loops: -1
       start_at: 4s
       bus: music
+      fade_in: 1
     wonder_woman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     batman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
   item_highlighted{item=="batman"}:
     batman_theme:
       action: play
       loops: -1
       bus: music
+      fade_in: 1
     flash_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     cyborg_theme:
       action: stop
       bus: music
+      fade_out: 0.5
   item_highlighted{item=="cyborg"}:
     cyborg_theme:
       action: play
       loops: -1
       start_at: 360s
       bus: music
+      fade_in: 1
     batman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     superman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
   item_highlighted{item=="superman"}:
     superman_theme:
       action: play
       loops: -1
       start_at: 2s
       bus: music
+      fade_in: 1
     cyborg_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     aquaman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
   item_highlighted{item=="aquaman"}:
     aquaman_theme:
       action: play
       loops: -1
       start_at: 10s
       bus: music
+      fade_in: 1
     wonder_woman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     superman_theme:
       action: stop
-      bus: music  
+      bus: music
+      fade_out: 0.5
   character_select_item_selected:
     wonder_woman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     flash_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     batman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     cyborg_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     aquaman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
     superman_theme:
       action: stop
       bus: music
+      fade_out: 0.5
+
+show_player:
+  item_highlighted{item=="wonder_woman"}: 
+    wonder_woman_show:
+      action: play
+    aquaman_show:
+      action: stop
+    flash_show:
+      action: stop
+  
+  item_highlighted{item=="flash"}: 
+    flash_show:
+      action: play
+    wonder_woman_show:
+      action: stop
+    batman_show:
+      action: stop
+  
+  item_highlighted{item=="batman"}:
+    batman_show:
+      action: play
+    flash_show:
+      action: stop
+    cyborg_show:
+      action: stop
+  
+  item_highlighted{item=="cyborg"}:
+    cyborg_show:
+      action: play
+    batman_show:
+      action: stop
+    superman_show:
+      action: stop
+  item_highlighted{item=="superman"}:
+    superman_show:
+      action: play
+    cyborg_show:
+      action: stop
+    aquaman_show:
+      action: stop
+  item_highlighted{item=="aquaman"}:
+    aquaman_show:
+      action: play
+    superman_show:
+      action: stop
+    wonder_woman_show:
+      action: stop

@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://pi3djurvduhk"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_tqtlr"]
+[ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_06see"]
+[ext_resource type="VideoStream" uid="uid://cdyvpvmrwgx4k" path="res://videos/character_select_batman (1528x846).ogv" id="4_42kuw"]
+
+[node name="BatmanCharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tqtlr")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="batman_character_select" type="VideoStreamPlayer" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = 198.0
+offset_top = 119.0
+offset_right = 1726.0
+offset_bottom = 965.0
+stream = ExtResource("4_42kuw")
+autoplay = true
+script = ExtResource("3_06see")
+preview_in_editor = true
+metadata/_custom_type_script = "uid://b0pcq24i8x4or"
+
+[node name="Label" type="Label" parent="batman_character_select"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -663.0
+offset_top = -328.0
+offset_right = 664.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 100
+text = "+1,000,000
+Batman Ramp Multiplier X2"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,15 @@
+#config_version=6
+
+mode:
+  start_events: mode_base_started
+
+achievements_groups:
+  achievements: themyscira, atlantis, gotham, metropolis, pozharnov
+  enable_events: 
+  events_when_all_completed: steppenwolf_defeated
+
+
+  
+
+
+

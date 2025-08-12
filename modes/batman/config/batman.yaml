@@ -1,0 +1,26 @@
+#config_version=6
+
+mode:
+  start_events: start_batman_mode,
+  stop_events: stop_mode_batman, start_character_select_mode_batman
+  priority: 600
+
+variable_player: 
+  shot_left_ramp_hit:
+    score: 25000
+  mode_batman_started:
+    score: 1000000
+ 
+slide_player:
+  mode_batman_started: 
+    batman_character_select:
+      expire: 5s
+
+sound_player:
+  slide_batman_character_select_removed: 
+    batman_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.05
+

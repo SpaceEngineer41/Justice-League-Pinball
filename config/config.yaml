@@ -12,15 +12,22 @@ config:
   - config_coils.yaml
   - config_switches.yaml
 
+
 hardware:
   platform: smart_virtual
 
 modes:
   - attract
+  - aquaman
   - base
+  - batman
   - bumpers
   - character_select
+  - cyborg
+  - flash
   - hurryup
+  - superman
+  - wonder_woman
 
 
 player_vars:
@@ -65,5 +72,172 @@ virtual_platform_start_active_switches:
   - s_trough6
 
 
+blinkenlights:
+  blinkenlight_character_select:
+    cycle_duration: 0.5s
+    light: l_mystery
+  blinkenlight_justice_league:
+    cycle_duration: 0.5s
+    light: l_justice_league
+  blinkenlight_left_ramp_x1:
+    cycle_duration: 0.5s
+    light: l_left_ramp_3
+  blinkenlight_left_ramp_x2:
+    cycle_duration: 0.5s
+    light: l_left_ramp_2
+  blinkenlight_left_ramp_x3:
+    cycle_duration: 0.5s
+    light: l_left_ramp_1
+  blinkenlight_left_ramp_arrow:
+    cycle_duration: 0.5s
+    light: l_left_ramp_arrow
+  blinkenlight_batman_select:
+    cycle_duration: 0.5s
+    light: l_mystery
+  blinkenlight_right_ramp_x1:
+    cycle_duration: 0.5s
+    light: l_right_ramp_3
+  blinkenlight_right_ramp_x2:
+    cycle_duration: 0.5s
+    light: l_right_ramp_2
+  blinkenlight_right_ramp_x3:
+    cycle_duration: 0.5s
+    light: l_right_ramp_1
+  blinkenlight_right_ramp_arrow:
+    cycle_duration: 0.5s
+    light: l_right_ramp_arrow
+  blinkenlight_superman_select:
+    cycle_duration: 0.5s
+    light: l_mystery
+  blinkenlight_left_orbit_x1:
+    cycle_duration: 0.5s
+    light: l_orbit_left_3
+  blinkenlight_left_orbit_x2:
+    cycle_duration: 0.5s
+    light: l_orbit_left_2
+  blinkenlight_left_orbit_x3:
+    cycle_duration: 0.5s
+    light: l_orbit_left_1
+  blinkenlight_flash_select:
+    cycle_duration: 0.5s
+    light: l_mystery
+  blinkenlight_right_orbit_x1:
+    cycle_duration: 0.5s
+    light: l_orbit_right_3
+  blinkenlight_right_orbit_x2:
+    cycle_duration: 0.5s
+    light: l_orbit_right_2
+  blinkenlight_right_orbit_x3:
+    cycle_duration: 0.5s
+    light: l_orbit_right_1
+  blinkenlight_aquaman_select:
+    cycle_duration: 0.5s
+    light: l_mystery
+  blinkenlight_cyborg:
+    cycle_duration: 0.5s
+    light: l_line
 
+lights:
+  l_led1:
+    number: 1
+  l_led2:
+    number: 2
+  l_led3:
+    number: 3
+  l_left_ramp_arrow:
+    number: 4
+  l_left_ramp_1:
+    number: 5
+  l_left_ramp_2:
+    number: 6
+  l_left_ramp_3:
+    number: 7
+  l_right_ramp_arrow:
+    number: 8
+  l_right_ramp_1:
+    number: 9
+  l_right_ramp_2:
+    number: 10
+  l_right_ramp_3:
+    number: 11
+  l_line:
+    number: 12
+  l_mystery:
+    number: 13
+  l_orbit_left_arrow:
+    number: 14
+  l_orbit_left_1:
+    number: 15
+  l_orbit_left_2:
+    number: 16
+  l_orbit_left_3:
+    number: 17
+  l_right_drop_right:
+    number: 18
+  l_right_drop_middle:
+    number: 19
+  l_right_drop_left:
+    number: 20
+  l_left_drop_left:
+    number: 21
+  l_left_drop_middle:
+    number: 22
+  l_left_drop_right:
+    number: 23
+  l_orbit_right_arrow:
+    number: 24
+  l_orbit_right_1:
+    number: 25
+  l_orbit_right_2:
+    number: 26
+  l_orbit_right_3:
+    number: 27
+  l_batman:
+    number: 28
+  l_superman:
+    number: 29
+  l_flash:
+    number: 30
+  l_cyborg:
+    number: 31
+  l_aquaman:
+    number: 32
+  l_wonder_woman:
+    number: 33
+  l_steppenwolf:
+    number: 34
+  l_main_drop_left:
+    number: 35
+  l_main_drop_middle:
+    number: 36
+  l_main_drop_right:
+    number: 37
+  l_jet_lane_left:
+    number: 38
+  l_jet_lane_middle:
+    number: 39
+  l_jet_lane_right:
+    number: 40
+  l_outlane_left:
+    number: 41
+  l_outlane_right:
+    number: 42
+  l_inlane_left:
+    number: 43
+  l_inlane_right:
+    number: 44
+  l_themyscira:
+    number: 45
+  l_atlantis:
+    number: 46
+  l_gotham:
+    number: 47
+  l_metropolis:
+    number: 48
+  l_pozharnov:
+    number: 49   
+  l_lantern_jets:
+    number: 50
+  l_justice_league:
+    number: 51
 

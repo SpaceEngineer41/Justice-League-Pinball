@@ -1,0 +1,42 @@
+#show_version=6
+
+- duration: 3s
+  slides:
+    intro_slide:
+      widgets:
+      - type: text
+        text: SUPERMAN RAMP X2
+        font_size: 300
+        font_name: DharmaGothicC-ExBold
+
+      - type: text
+        text: 'PLAYER: (number)'
+        font_size: 80
+        font_name: DharmaGothicC-ExBold
+        anchor_x: left
+        anchor_y: bottom
+        x: 1
+        y: 1
+        z: 100
+
+      - type: text
+        text: (score)
+        min_digits: 2
+        font_size: 80
+        font_name: DharmaGothicC-ExBold
+        anchor_x: right
+        anchor_y: bottom
+        x: 600
+        y: 1
+        z: 100
+        
+
+      - type: text
+        text: 'BALL: (ball)'
+        font_size: 72
+        font_name: DharmaGothicC-ExBold
+        anchor_x: right
+        anchor_y: bottom
+        x: 1817
+        y: 1
+        z: 100

@@ -11,18 +11,19 @@ mode:
 event_player:
   ball_started{ball==1}: start_character_select_mode
 
-  # player_selected_character{value=='Batman'}:
-  # -  start_batman_mode
-  # player_selected_character{value=='Superman'}:
-  # -  start_superman_mode
-  # player_selected_character{value=='Flash'}:
-  # -  start_flash_mode
-  # player_selected_character{value=='Aquaman'}:
-  # -  start_aquaman_mode
-  # player_selected_character{value=='Cyborg'}:
-  # -  start_cyborg_mode
-  # player_selected_character{value=='Wonder Woman'}:
-  # -  start_wonder_woman_mode
+  character_select_batman_selected:
+  -  start_batman_mode
+  character_select_wonder_woman_selected:
+  -  start_wonder_woman_mode
+  character_select_aquaman_selected:
+  -  start_aquaman_mode
+  character_select_cyborg_selected:
+  -  start_cyborg_mode
+  character_select_flash_selected:
+  -  start_flash_mode
+  character_select_superman_selected:
+  -  start_superman_mode
+
   # start_character_select_wonder_woman:
   # -  start_character_select_mode
   # start_character_select_mode_batman:
@@ -30,10 +31,6 @@ event_player:
   # start_character_select_superman:
   # -  start_character_select_mode
   # start_character_select_flash:
-  # -  start_character_select_mode
-  # start_character_select_aquaman:
-  # -  start_character_select_mode
-  # start_character_select_cyborg:
   # -  start_character_select_mode
   # mode_base_started:
   # -  start_mode_bumpers
@@ -49,71 +46,140 @@ shots:
     switch: s_left_ramp
   shot_right_ramp:
     switch: s_right_ramp
-  # shot_line_1:
-  #   switch: s_line_drop_1
-  # shot_line_2:
-  #   switch: s_line_drop_2
-  # shot_line_3:
-  #   switch: s_line_drop_3
-  # shot_line_kickback:
-  #   switch: s_line_kickback
-  # shot_jet_lane_left:
-  #   switch: s_jet_lane_left
-  # shot_jet_lane_middle:
-  #   switch: s_jet_lane_middle
-  # shot_jet_lane_right:
-  #   switch: s_jet_lane_right
-  # shot_pop_bumper_left:
-  #   switch: s_pop_bumper_left
-  # shot_pop_bumper_right:
-  #   switch: s_pop_bumper_right
-  # shot_pop_bumper_bottom:
-  #   switch: s_pop_bumper_bottom
-  # shot_right_inlane:
-  #   switch: s_right_inlane
-  # shot_left_inlane:
-  #   switch: s_left_inlane
-  # shot_orbit_top:
-  #   switch: s_orbit_top
-  # shot_orbit_left:
-  #   switch: s_orbit_left
-  # shot_orbit_right:
-  #   switch: s_orbit_right
-  # shot_slingshot_left:
-  #   switch: s_slingshot_left
-  # shot_slingshot_right:
-  #   switch: s_slingshot_right
-  # shot_main_drop_left:
-  #   switch: s_main_drop_left
-  # shot_main_drop_middle:
-  #   switch: s_main_drop_middle
-  # shot_main_drop_right:
-  #   switch: s_main_drop_right
-  # shot_main_drop_top:
-  #   switch: s_main_drop_top
-  # shot_main_kickback:
-  #   switch: s_main_kickback
-  # shot_left_drop_left:
-  #   switch: s_left_drop_left
-  # shot_left_drop_middle:
-  #   switch: s_left_drop_middle
-  # shot_left_drop_right:
-  #   switch: s_left_drop_right
-  # shot_right_drop_left:
-  #   switch: s_right_drop_left
-  # shot_right_drop_middle:
-  #   switch: s_right_drop_middle
-  # shot_right_drop_right:
-  #   switch: s_right_drop_right
-  # shot_mystery_drop:
-  #   switch: s_mystery_drop
-  # shot_mystery_scoop:
-  #   switch: s_mystery_scoop
-  # shot_spinner:
-  #   switch: s_spinner
-  # shot_left_outlane
-  #   switch: s_left_outlane
-  # shot_right_outlane:
-  #   switch: s_right_outlane
+  shot_line_1:
+    switch: s_line_drop_1
+  shot_line_2:
+    switch: s_line_drop_2
+  shot_line_3:
+    switch: s_line_drop_3
+  shot_line_kickback:
+    switch: s_line_kickback
+  shot_jet_lane_left:
+    switch: s_jet_lane_left
+  shot_jet_lane_middle:
+    switch: s_jet_lane_middle
+  shot_jet_lane_right:
+    switch: s_jet_lane_right
+  shot_pop_bumper_left:
+    switch: s_pop_bumper_left
+  shot_pop_bumper_right:
+    switch: s_pop_bumper_right
+  shot_pop_bumper_bottom:
+    switch: s_pop_bumper_bottom
+  shot_right_inlane:
+    switch: s_right_inlane
+  shot_left_inlane:
+    switch: s_left_inlane
+  shot_orbit_top:
+    switch: s_orbit_top
+  shot_orbit_left:
+    switch: s_orbit_left
+  shot_orbit_right:
+    switch: s_orbit_right
+  shot_slingshot_left:
+    switch: s_slingshot_left
+  shot_slingshot_right:
+    switch: s_slingshot_right
+  shot_main_drop_left:
+    switch: s_main_drop_left
+  shot_main_drop_middle:
+    switch: s_main_drop_middle
+  shot_main_drop_right:
+    switch: s_main_drop_right
+  shot_main_drop_top:
+    switch: s_main_drop_top
+  shot_main_kickback:
+    switch: s_main_kickback
+  shot_left_drop_left:
+    switch: s_left_drop_left
+  shot_left_drop_middle:
+    switch: s_left_drop_middle
+  shot_left_drop_right:
+    switch: s_left_drop_right
+  shot_right_drop_left:
+    switch: s_right_drop_left
+  shot_right_drop_middle:
+    switch: s_right_drop_middle
+  shot_right_drop_right:
+    switch: s_right_drop_right
+  shot_mystery_drop:
+    switch: s_mystery_drop
+  shot_mystery_scoop:
+    switch: s_mystery_scoop
+  shot_spinner:
+    switch: s_spinner
+  shot_left_outlane:
+    switch: s_left_outlane
+  shot_right_outlane:
+    switch: s_right_outlane
 
-
+      
+variable_player:
+  shot_left_ramp_hit:
+    score: 10000
+  shot_right_ramp_hit:
+    score: 10000
+  shot_line_1_hit:
+    score: 10000
+  shot_line_2_hit:
+    score: 10000
+  shot_line_3_hit:
+    score: 10000
+  shot_line_kickback_hit:
+    score: 10000
+  shot_pop_lane_left_hit:
+    score: 10000
+  shot_pop_lane_right_hit:
+    score: 10000
+  shot_pop_bumper_left_hit:
+    score: 10000
+  shot_pop_bumper_right_hit:
+    score: 10000
+  shot_pop_bumper_middle_hit:
+    score: 10000
+  shot_right_inlane_hit:
+    score: 10000
+  shot_left_inlane_hit:
+    score: 10000
+  shot_orbit_top_hit:
+    score: 10000
+  shot_orbit_left_hit:
+    score: 10000
+  shot_orbit_right_hit:
+    score: 10000
+  shot_slingshot_left_hit:
+    score: 10000
+  shot_slingshot_right_hit:
+    score: 10000
+  shot_main_drop_left_hit:
+    score: 10000
+  shot_main_drop_middle_hit:
+    score: 10000
+  shot_main_drop_right_hit:
+    score: 10000
+  shot_main_drop_top_hit:
+    score: 10000
+  shot_main_kickback_hit:
+    score: 10000
+  shot_left_drop_left_hit:
+    score: 10000
+  shot_left_drop_middle_hit:
+    score: 10000
+  shot_left_drop_right_hit:
+    score: 10000
+  shot_right_drop_left_hit:
+    score: 10000
+  shot_right_drop_middle_hit:
+    score: 10000
+  shot_right_drop_right_hit:
+    score: 10000
+  shot_mystery_drop_hit:
+    score: 10000
+  shot_mystery_scoop_hit:
+    score: 10000
+  shot_spinner_hit:
+    score: 10000
+  shot_left_outlane_hit:
+    score: 10000
+  shot_right_outlane_hit:
+    score: 10000
