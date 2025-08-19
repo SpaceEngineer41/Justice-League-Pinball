@@ -240,6 +240,7 @@ show_player:
       action: stop
     superman_show:
       action: stop
+
   item_highlighted{item=="superman"}:
     superman_show:
       action: play
@@ -247,6 +248,7 @@ show_player:
       action: stop
     aquaman_show:
       action: stop
+      
   item_highlighted{item=="aquaman"}:
     aquaman_show:
       action: play

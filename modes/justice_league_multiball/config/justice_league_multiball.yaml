@@ -2,13 +2,10 @@
 
 mode:
   start_events: justice_league_assembled
-  stop_events: ball_ending
+  stop_events: ball_ending, s_lockbar_active
 
-# slide_player:
-#   mode_justice_league_multiball_started:
-#     widgets:
-#       - type: image
-#         image: justice_league_multiball
+slide_player:
+  mode_justice_league_multiball_started: justice_league_multiball
 
 event_player:
-  ball_ending: justice_league_count_reset
+  mode_justice_league_multiball_will_stop: justice_league_count_reset 

@@ -1,112 +1,115 @@
 events:
   game_ended: 0
-  game_started: 130
+  game_started: 147
 missing_switches:
-  s_jet_lane_left: 130
-  s_jet_lane_middle: 130
-  s_jet_lane_right: 130
-  s_launch_button: 21
-  s_left_drop_left: 130
-  s_left_drop_middle: 130
-  s_left_drop_right: 130
-  s_left_inlane: 130
-  s_left_outlane: 130
-  s_left_ramp: 33
-  s_line_drop_1: 130
-  s_line_drop_2: 130
-  s_line_drop_3: 130
-  s_line_kickback: 130
-  s_main_drop_left: 130
-  s_main_drop_middle: 130
-  s_main_drop_right: 130
-  s_main_drop_top: 130
-  s_main_kickback: 130
-  s_mystery_drop: 130
-  s_mystery_scoop: 130
-  s_orbit_left: 130
-  s_orbit_right: 130
-  s_orbit_top: 130
-  s_plunger_lane: 110
-  s_pop_bumper_bottom: 104
-  s_pop_bumper_left: 104
-  s_pop_bumper_right: 104
-  s_right_drop_left: 130
-  s_right_drop_middle: 130
-  s_right_drop_right: 130
-  s_right_inlane: 130
-  s_right_outlane: 130
-  s_right_ramp: 33
-  s_slingshot_left: 130
-  s_slingshot_right: 130
-  s_spinner: 130
-  s_start: 24
-  s_trough1: 127
-  s_trough2: 130
-  s_trough3: 130
-  s_trough4: 130
-  s_trough5: 130
-  s_trough6: 130
-  s_trough_jam: 130
+  s_jet_lane_left: 147
+  s_jet_lane_middle: 147
+  s_jet_lane_right: 147
+  s_launch_button: 38
+  s_left_inlane: 147
+  s_left_outlane: 147
+  s_main_drop_left: 147
+  s_main_drop_middle: 147
+  s_main_drop_right: 147
+  s_main_drop_top: 147
+  s_main_kickback: 147
+  s_mystery_drop: 10
+  s_orbit_top: 10
+  s_plunger_lane: 127
+  s_pop_bumper_bottom: 121
+  s_pop_bumper_left: 121
+  s_pop_bumper_right: 121
+  s_right_inlane: 147
+  s_right_outlane: 147
+  s_slingshot_left: 147
+  s_slingshot_right: 147
+  s_spinner: 10
+  s_start: 41
+  s_trough1: 4
+  s_trough2: 4
+  s_trough3: 147
+  s_trough4: 147
+  s_trough5: 147
+  s_trough6: 147
+  s_trough_jam: 147
 player:
   score:
     average: 0
     top: []
     total: 0
 shots:
+  character_select: 47
   hurryup: 158
+  justice_league_multiball: 47
   pop_bumper_bottom: 9
   pop_bumper_left: 60
   pop_bumper_right: 10
-  shot_left_ramp: 709
+  shot_left_drop_left: 11
+  shot_left_drop_middle: 11
+  shot_left_drop_right: 11
+  shot_left_ramp: 755
+  shot_line_1: 9
+  shot_line_2: 9
+  shot_line_3: 10
+  shot_line_kickback: 9
+  shot_mystery_drop: 1
+  shot_mystery_scoop: 47
+  shot_orbit_left: 38
+  shot_orbit_right: 38
+  shot_orbit_top: 4
   shot_pop_bumper_bottom: 9
   shot_pop_bumper_left: 10
   shot_pop_bumper_right: 10
-  shot_right_ramp: 25
+  shot_right_drop_left: 11
+  shot_right_drop_middle: 11
+  shot_right_drop_right: 11
+  shot_right_ramp: 61
+  shot_spinner: 1
 switches:
   s_jet_lane_left: 0
   s_jet_lane_middle: 0
   s_jet_lane_right: 0
   s_launch_button: 1
-  s_left_drop_left: 0
-  s_left_drop_middle: 0
-  s_left_drop_right: 0
-  s_left_flipper: 65
+  s_left_drop_left: 11
+  s_left_drop_middle: 11
+  s_left_drop_right: 11
+  s_left_flipper: 82
   s_left_inlane: 0
   s_left_outlane: 0
-  s_left_ramp: 826
-  s_line_drop_1: 0
-  s_line_drop_2: 0
-  s_line_drop_3: 0
-  s_line_kickback: 0
-  s_lockbar: 43
+  s_left_ramp: 872
+  s_line_drop_1: 9
+  s_line_drop_2: 9
+  s_line_drop_3: 10
+  s_line_kickback: 9
+  s_lockbar: 90
   s_main_drop_left: 0
   s_main_drop_middle: 0
   s_main_drop_right: 0
   s_main_drop_top: 0
   s_main_kickback: 0
-  s_mystery_drop: 0
-  s_mystery_scoop: 0
-  s_orbit_left: 0
-  s_orbit_right: 0
-  s_orbit_top: 0
-  s_plunger: 57
+  s_mystery_drop: 1
+  s_mystery_scoop: 47
+  s_orbit_left: 38
+  s_orbit_right: 38
+  s_orbit_top: 4
+  s_plunger: 72
   s_plunger_lane: 28
   s_pop_bumper_bottom: 9
   s_pop_bumper_left: 60
   s_pop_bumper_right: 10
-  s_right_drop_left: 0
-  s_right_drop_middle: 0
-  s_right_drop_right: 0
-  s_right_flipper: 245
+  s_right_drop_left: 11
+  s_right_drop_middle: 11
+  s_right_drop_right: 11
+  s_right_flipper: 325
   s_right_inlane: 0
   s_right_outlane: 0
-  s_right_ramp: 84
+  s_right_ramp: 120
   s_slingshot_left: 0
   s_slingshot_right: 0
-  s_spinner: 0
+  s_spinner: 1
   s_start: 82
-  s_trough1: 1
-  s_trough2: 0
+  s_trough1: 3
+  s_trough2: 1
   s_trough3: 0
   s_trough4: 0
   s_trough5: 0

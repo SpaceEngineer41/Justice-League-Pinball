@@ -134,9 +134,9 @@ counters:
     events_when_complete: aquaman_count_complete, aquaman_completion_points
     persist_state: true
     reset_on_complete: false
-    # reset_events: justice_league_count_reset
+    reset_events: justice_league_count_reset
     disable_on_complete: false
-    disable_events: mode_justice_league_multiball_stopping
+    disable_events: 
 
   batman_count:
     starting_count: 0
@@ -194,47 +194,47 @@ variable_player:
   justice_league_completion_points:
     score: 500000
 
-show_player:
-  # logicblock_wonder_woman_count_hit{step == 0}:
+# show_player:
+#   # logicblock_wonder_woman_count_hit{step == 0}:
 
-  logicblock_flash_count_updated{enabled}:
-    flash_show:
-      key: flash_counter_show
-      start_step: value + 1
-      show_tokens:
-        color: red
-  logicblock_flash_count_updated{not enabled}:
-    flash_counter_show: stop
+#   logicblock_flash_count_updated{enabled}:
+#     flash_show:
+#       key: flash_counter_show
+#       start_step: value + 1
+#       show_tokens:
+#         color: red
+#   logicblock_flash_count_updated{not enabled}:
+#     flash_counter_show: stop
   
-  logicblock_batman_count_updated{enabled}:
-    batman_show:
-      key: batman_counter_show
-      start_step: value + 1
-      show_tokens:
-        color: yellow
-  logicblock_batman_count_updated{not enabled}:
-    batman_counter_show: stop
+#   logicblock_batman_count_updated{enabled}:
+#     batman_show:
+#       key: batman_counter_show
+#       start_step: value + 1
+#       show_tokens:
+#         color: yellow
+#   logicblock_batman_count_updated{not enabled}:
+#     batman_counter_show: stop
 
-  logicblock_cyborg_count_hit{step == 2}: cyborg_show_flashing
-  logicblock_cyborg_count_hit{step == 3}: cyborg_show
+#   logicblock_cyborg_count_hit{step == 2}: cyborg_show_flashing
+#   logicblock_cyborg_count_hit{step == 3}: cyborg_show
 
-  logicblock_superman_count_updated{enabled}:
-    superman_show:
-      key: superman_counter_show
-      start_step: value + 1
-      show_tokens:
-        color: blue
-  logicblock_superman_count_updated{not enabled}:
-    superman_counter_show: stop
+#   logicblock_superman_count_updated{enabled}:
+#     superman_show:
+#       key: superman_counter_show
+#       start_step: value + 1
+#       show_tokens:
+#         color: blue
+#   logicblock_superman_count_updated{not enabled}:
+#     superman_counter_show: stop
 
-  logicblock_aquaman_count_updated{enabled}:
-    aquaman_show:
-      key: aquaman_counter_show
-      start_step: value + 1
-      show_tokens:
-        color: green
-  logicblock_aquaman_count_updated{not enabled}:
-    aquaman_counter_show: stop
+#   logicblock_aquaman_count_updated{enabled}:
+#     aquaman_show:
+#       key: aquaman_counter_show
+#       start_step: value + 1
+#       show_tokens:
+#         color: green
+#   logicblock_aquaman_count_updated{not enabled}:
+#     aquaman_counter_show: stop
 
 
 
@@ -251,99 +251,150 @@ light_player:
     l_left_drop_middle: yellow
   shot_left_drop_left_hit:
     l_left_drop_left: yellow
-#   counter_superman_count_hit{count == 1}:
-#     l_right_ramp_3: blue
-#   counter_superman_count_hit{count == 2}:
-#     l_right_ramp_2: blue
-#   counter_superman_count_hit{count == 3}:
-#     l_right_ramp_1: blue
-#   counter_superman_count_hit{count == 4}:
-#     l_right_ramp_arrow: blue
 
-#   counter_batman_count_hit{count == 1}:
-#     l_left_ramp_3: yellow
-#   counter_batman_count_hit{count == 2}:
-#     l_left_ramp_2: yellow
-#   counter_batman_count_hit{count == 3}:
-#     l_left_ramp_1: yellow
-#   counter_batman_count_hit{count == 4}:
-#     l_left_ramp_arrow: yellow
+  counter_superman_count_hit{count == 1}:
+    l_right_ramp_3: blue
+  counter_superman_count_hit{count == 2}:
+    l_right_ramp_2: blue
+  counter_superman_count_hit{count == 3}:
+    l_right_ramp_1: blue
+  counter_superman_count_hit{count == 4}:
+    l_right_ramp_arrow: blue
 
-#   counter_flash_count_hit{count == 1}:
-#     l_orbit_left_3: red
-#   counter_flash_count_hit{count == 2}:
-#     l_orbit_left_2: red
-#   counter_flash_count_hit{count == 3}:
-#     l_orbit_left_1: red
+  counter_batman_count_hit{count == 1}:
+    l_left_ramp_3: yellow
+  counter_batman_count_hit{count == 2}:
+    l_left_ramp_2: yellow
+  counter_batman_count_hit{count == 3}:
+    l_left_ramp_1: yellow
+  counter_batman_count_hit{count == 4}:
+    l_left_ramp_arrow: yellow
 
-#   counter_aquaman_count_hit{count == 1}:
-#     l_orbit_right_3: green
-#   counter_aquaman_count_hit{count == 2}:
-#     l_orbit_right_2: green
-#   counter_aquaman_count_hit{count == 3}:
-#     l_orbit_right_1: green
+  counter_flash_count_hit{count == 1}:
+    l_orbit_left_3: red
+  counter_flash_count_hit{count == 2}:
+    l_orbit_left_2: red
+  counter_flash_count_hit{count == 3}:
+    l_orbit_left_1: red
 
-#   shot_line_kickback_hit:
-#     l_line: red
+  counter_aquaman_count_hit{count == 1}:
+    l_orbit_right_3: green
+  counter_aquaman_count_hit{count == 2}:
+    l_orbit_right_2: green
+  counter_aquaman_count_hit{count == 3}:
+    l_orbit_right_1: green
 
-# blinkenlight_player:
-#   character_select_lit:
-#     blinkenlight_character_select:
-#       color: blue
+  shot_line_kickback_hit:
+    l_line: red
 
-#   counter_superman_count_hit{count == 1}:
-#     blinkenlight_right_ramp_x2:
-#       color: blue
-#   counter_superman_count_hit{count == 2}:
-#     blinkenlight_right_ramp_x3:
-#       color: blue
-#     blinkenlight_right_ramp_x2: remove
-#   counter_superman_count_hit{count == 3}:
-#     blinkenlight_right_ramp_arrow:
-#       color: blue
-#     blinkenlight_right_ramp_x3: remove
-#   counter_superman_count_hit{count == 4}:
-#     blinkenlight_right_ramp_arrow: remove
+  mode_justice_league_multiball_will_stop:
+    l_left_ramp_arrow: off
+    l_left_ramp_1: off
+    l_left_ramp_2: off
+    l_left_ramp_3: off
+    l_right_ramp_arrow: off
+    l_right_ramp_1: off
+    l_right_ramp_2: off
+    l_right_ramp_3: off
+    l_line: off
+    l_mystery: off
+    l_orbit_left_arrow: off
+    l_orbit_left_1: off
+    l_orbit_left_2: off
+    l_orbit_left_3: off
+    l_right_drop_right: off
+    l_right_drop_middle: off
+    l_right_drop_left: off
+    l_left_drop_left: off
+    l_left_drop_middle: off
+    l_left_drop_right: off
+    l_orbit_right_arrow: off
+    l_orbit_right_1: off
+    l_orbit_right_2: off
+    l_orbit_right_3: off
+    l_batman: off
+    l_superman: off
+    l_flash: off
+    l_cyborg: off
+    l_aquaman: off
+    l_wonder_woman: off
+    l_steppenwolf: off
+    l_main_drop_left: off
+    l_main_drop_middle: off
+    l_main_drop_right: off
+    l_jet_lane_left: off
+    l_jet_lane_middle: off
+    l_jet_lane_right: off
+    l_outlane_left: off
+    l_outlane_right: off
+    l_inlane_left: off
+    l_inlane_right: off
+    l_justice_league: off
 
-#   counter_batman_count_hit{count == 1}:
-#     blinkenlight_left_ramp_x2:
-#       color: yellow
-#   counter_batman_count_hit{count == 2}:
-#     blinkenlight_left_ramp_x3:
-#       color: yellow
-#     blinkenlight_left_ramp_x2: remove
-#   counter_batman_count_hit{count == 3}:
-#     blinkenlight_left_ramp_arrow:
-#       color: yellow
-#     blinkenlight_left_ramp_x3: remove
-#   counter_batman_count_hit{count == 4}:
-#     blinkenlight_left_ramp_arrow: remove
 
-#   counter_flash_count_hit{count == 1}:
-#     blinkenlight_left_orbit_x2:
-#       color: red
-#   counter_flash_count_hit{count == 2}:
-#     blinkenlight_left_orbit_x3:
-#       color: red
-#     blinkenlight_left_orbit_x2: remove
-#   counter_flash_count_hit{count == 3}:
-#     blinkenlight_left_orbit_x3: remove
 
-#   counter_aquaman_count_hit{count == 1}:
-#     blinkenlight_right_orbit_x2:
-#       color: green
-#   counter_aquaman_count_hit{count == 2}:
-#     blinkenlight_right_orbit_x3:
-#       color: green
-#     blinkenlight_right_orbit_x2: remove
-#   counter_aquaman_count_hit{count == 3}:
-#     blinkenlight_right_orbit_x3: remove
+blinkenlight_player:
+  character_select_lit:
+    blinkenlight_character_select:
+      color: blue
+  
+  mode_character_select_will_stop:
+    blinkenlight_character_select:
+      action: remove
 
-#   shot_line_3_hit: 
-#     blinkenlight_cyborg:
-#       color: red
-#   shot_line_kickback_hit: 
-#     blinkenlight_cyborg: remove
+  counter_superman_count_hit{count == 1}:
+    blinkenlight_right_ramp_x2:
+      color: blue
+  counter_superman_count_hit{count == 2}:
+    blinkenlight_right_ramp_x3:
+      color: blue
+    blinkenlight_right_ramp_x2: remove
+  counter_superman_count_hit{count == 3}:
+    blinkenlight_right_ramp_arrow:
+      color: blue
+    blinkenlight_right_ramp_x3: remove
+  counter_superman_count_hit{count == 4}:
+    blinkenlight_right_ramp_arrow: remove
+
+  counter_batman_count_hit{count == 1}:
+    blinkenlight_left_ramp_x2:
+      color: yellow
+  counter_batman_count_hit{count == 2}:
+    blinkenlight_left_ramp_x3:
+      color: yellow
+    blinkenlight_left_ramp_x2: remove
+  counter_batman_count_hit{count == 3}:
+    blinkenlight_left_ramp_arrow:
+      color: yellow
+    blinkenlight_left_ramp_x3: remove
+  counter_batman_count_hit{count == 4}:
+    blinkenlight_left_ramp_arrow: remove
+
+  counter_flash_count_hit{count == 1}:
+    blinkenlight_left_orbit_x2:
+      color: red
+  counter_flash_count_hit{count == 2}:
+    blinkenlight_left_orbit_x3:
+      color: red
+    blinkenlight_left_orbit_x2: remove
+  counter_flash_count_hit{count == 3}:
+    blinkenlight_left_orbit_x3: remove
+
+  counter_aquaman_count_hit{count == 1}:
+    blinkenlight_right_orbit_x2:
+      color: green
+  counter_aquaman_count_hit{count == 2}:
+    blinkenlight_right_orbit_x3:
+      color: green
+    blinkenlight_right_orbit_x2: remove
+  counter_aquaman_count_hit{count == 3}:
+    blinkenlight_right_orbit_x3: remove
+
+  shot_line_3_hit: 
+    blinkenlight_cyborg:
+      color: red
+  shot_line_kickback_hit: 
+    blinkenlight_cyborg: remove
 
   
 

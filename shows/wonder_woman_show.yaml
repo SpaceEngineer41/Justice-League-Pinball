@@ -11,7 +11,7 @@
 
 - duration: 0.5
   lights:
-    l_left_drop_left: on
+    l_left_drop_left: yellow
     l_left_drop_middle: off
     l_left_drop_right: off
     l_right_drop_left: off
@@ -20,8 +20,8 @@
 
 - duration: 0.5
   lights:
-    l_left_drop_left: on
-    l_left_drop_middle: on
+    l_left_drop_left: yellow
+    l_left_drop_middle: yellow
     l_left_drop_right: off
     l_right_drop_left: off
     l_right_drop_middle: off
@@ -29,36 +29,36 @@
 
 - duration: 0.5
   lights:
-    l_left_drop_left: on
-    l_left_drop_middle: on
-    l_left_drop_right: on
+    l_left_drop_left: yellow
+    l_left_drop_middle: yellow
+    l_left_drop_right: yellow
     l_right_drop_left: off
     l_right_drop_middle: off
     l_right_drop_right: off
 
 - duration: 0.5
   lights:
-    l_left_drop_left: on
-    l_left_drop_middle: on
-    l_left_drop_right: on
-    l_right_drop_left: on
+    l_left_drop_left: yellow
+    l_left_drop_middle: yellow
+    l_left_drop_right: yellow
+    l_right_drop_left: yellow
     l_right_drop_middle: off
     l_right_drop_right: off
 
 - duration: 0.5
   lights:
-    l_left_drop_left: on
-    l_left_drop_middle: on
-    l_left_drop_right: on
-    l_right_drop_left: on
-    l_right_drop_middle: on
+    l_left_drop_left: yellow
+    l_left_drop_middle: yellow
+    l_left_drop_right: yellow
+    l_right_drop_left: yellow
+    l_right_drop_middle: yellow
     l_right_drop_right: off
 
 - duration: 0.5
   lights:
-    l_left_drop_left: on
-    l_left_drop_middle: on
-    l_left_drop_right: on
-    l_right_drop_left: on
-    l_right_drop_middle: on
-    l_right_drop_right: on
+    l_left_drop_left: yellow
+    l_left_drop_middle: yellow
+    l_left_drop_right: yellow
+    l_right_drop_left: yellow
+    l_right_drop_middle: yellow
+    l_right_drop_right: yellow

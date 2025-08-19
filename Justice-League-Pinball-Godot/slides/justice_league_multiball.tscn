@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1h10rjc2kr2l"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_r3w3i"]
+[ext_resource type="VideoStream" uid="uid://bwbqe88mke1yu" path="res://videos/justice_league_multiball.ogv" id="2_4epjd"]
+[ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_jh04u"]
+
+[node name="JusticeLeagueMultiball" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r3w3i")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="justice_league_multiball" type="VideoStreamPlayer" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = 198.0
+offset_top = 119.0
+offset_right = 1726.0
+offset_bottom = 965.0
+stream = ExtResource("2_4epjd")
+autoplay = true
+script = ExtResource("3_jh04u")
+preview_in_editor = true
+metadata/_custom_type_script = "uid://b0pcq24i8x4or"
+
+[node name="Label" type="Label" parent="justice_league_multiball"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -448.0
+offset_top = -154.0
+offset_right = 465.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "Justice League Multiball"
+horizontal_alignment = 1
+vertical_alignment = 1
