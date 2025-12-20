@@ -1,15 +1,218 @@
 #config_version=6
 
 mode:
-  start_events: mode_base_started
+  start_events: ball_starting
+  priority: 700
+  stop_events: battle_all_locations_completed
 
-achievements_groups:
-  achievements: themyscira, atlantis, gotham, metropolis, pozharnov
-  enable_events: 
-  events_when_all_completed: steppenwolf_defeated
+variable_player:
+  mode_battle_locations_started:
+    battle_location_index:
+      action: set
+      int: 0
+    battle_sequences_made:
+      action: set
+      int: 0
+    battle_bank_ready:
+      action: set
+      int: 0
 
+  battle_advance_location:
+    battle_location_index:
+      action: add
+      int: 1
+    battle_sequences_made:
+      action: set
+      int: 0
+    battle_bank_ready:
+      action: set
+      int: 0
 
-  
+  battle_set_bank_ready:
+    battle_bank_ready:
+      action: set
+      int: 1
 
+  battle_clear_bank_ready:
+    battle_bank_ready:
+      action: set
+      int: 0
 
+  battle_inc_sequences:
+    battle_sequences_made:
+      action: add
+      int: 1
 
+  # Optional scoring for drops
+  drop_target_drop_main_left_down:
+    score: 10000
+  drop_target_drop_main_middle_down:
+    score: 10000
+  drop_target_drop_main_right_down:
+    score: 10000
+
+  # Optional scoring for Steppenwolf sequence completion
+  battle_steppenwolf_made:
+    score: 250000
+
+event_player:
+
+  # --- MODE START ---
+  mode_battle_locations_started:
+    battle_start_current_location:
+      delay: 1ms
+
+  # --- BANK READY LOGIC ---
+  # Your log shows these events:
+  #   drop_target_bank_center_bank_down
+  #   drop_target_bank_center_bank_mixed
+  #
+  # We only want to "arm" Steppenwolf when the bank is COMPLETE (all down).
+  # So we listen to _down but gate it with the bank's "complete" flag.
+  drop_target_bank_center_bank_down{device.drop_target_banks.center_bank.complete}:
+    battle_set_bank_ready: {}
+
+  # Any time the bank becomes mixed again, disarm it.
+  drop_target_bank_center_bank_mixed:
+    battle_clear_bank_ready: {}
+
+  # --- STEPPENWOLF HIT -> SEQUENCE PROGRESSION ---
+  # Use the shot event (your log shows shot_steppenwolf_hit)
+  shot_steppenwolf_hit{current_player.battle_bank_ready==1}:
+    battle_steppenwolf_made: {}
+
+  # On Steppenwolf made:
+  # - clear ready so you can't spam
+  # - increment sequences
+  # - check completion for current location
+  battle_steppenwolf_made:
+    - battle_clear_bank_ready
+    - battle_inc_sequences
+    - battle_check_location_complete
+
+  # --- SUBWAY CONFIRM / SAFE RESET + KICKOUT ---
+  # When ball arrives at mystery scoop, it's safely past the bank.
+  balldevice_bd_mystery_scoop_ball_enter:
+    drop_target_bank_center_bank_reset:
+      delay: 300ms
+    eject_bd_mystery_scoop:
+      delay: 600ms
+
+  # --- START CURRENT LOCATION (BLINK) ---
+  battle_start_current_location{current_player.battle_location_index==0}: battle_start_themyscira
+  battle_start_current_location{current_player.battle_location_index==1}: battle_start_atlantis
+  battle_start_current_location{current_player.battle_location_index==2}: battle_start_gotham
+  battle_start_current_location{current_player.battle_location_index==3}: battle_start_metropolis
+  battle_start_current_location{current_player.battle_location_index==4}: battle_start_pozharnov
+  battle_start_current_location{current_player.battle_location_index==5}: battle_start_darkseid
+
+  # --- COMPLETION THRESHOLDS ---
+  battle_check_location_complete{current_player.battle_location_index==0 and current_player.battle_sequences_made>=1}: battle_location_completed
+  battle_check_location_complete{current_player.battle_location_index==1 and current_player.battle_sequences_made>=2}: battle_location_completed
+  battle_check_location_complete{current_player.battle_location_index==2 and current_player.battle_sequences_made>=3}: battle_location_completed
+  battle_check_location_complete{current_player.battle_location_index==3 and current_player.battle_sequences_made>=4}: battle_location_completed
+  battle_check_location_complete{current_player.battle_location_index==4 and current_player.battle_sequences_made>=5}: battle_location_completed
+  battle_check_location_complete{current_player.battle_location_index==5 and current_player.battle_sequences_made>=6}: battle_location_completed
+
+  # --- ON LOCATION COMPLETE: SOLID IT, ADVANCE, START NEXT BLINK ---
+  battle_location_completed:
+    - battle_lights_location_completed
+    - battle_advance_location
+    - battle_start_current_location
+
+  # Solid the one we just completed (based on current index BEFORE it advances)
+  battle_lights_location_completed{current_player.battle_location_index==0}: battle_location_completed_themyscira
+  battle_lights_location_completed{current_player.battle_location_index==1}: battle_location_completed_atlantis
+  battle_lights_location_completed{current_player.battle_location_index==2}: battle_location_completed_gotham
+  battle_lights_location_completed{current_player.battle_location_index==3}: battle_location_completed_metropolis
+  battle_lights_location_completed{current_player.battle_location_index==4}: battle_location_completed_pozharnov
+  battle_lights_location_completed{current_player.battle_location_index==5}: battle_location_completed_darkseid
+
+  battle_location_completed_darkseid: battle_all_locations_completed
+
+show_player:
+  # Blink current location (only one at a time)
+  battle_start_themyscira:
+    blink_themyscira:
+      key: battle_location_blink
+      loops: -1
+      priority: 3000
+
+  battle_start_atlantis:
+    blink_atlantis:
+      key: battle_location_blink
+      loops: -1
+      priority: 3000
+
+  battle_start_gotham:
+    blink_gotham:
+      key: battle_location_blink
+      loops: -1
+      priority: 3000
+
+  battle_start_metropolis:
+    blink_metropolis:
+      key: battle_location_blink
+      loops: -1
+      priority: 3000
+
+  battle_start_pozharnov:
+    blink_pozharnov:
+      key: battle_location_blink
+      loops: -1
+      priority: 3000
+
+  battle_start_darkseid:
+    blink_darkseid:
+      key: battle_location_blink
+      loops: -1
+      priority: 3000
+
+  # Solid completed locations (each keeps its own key)
+  battle_location_completed_themyscira:
+    solid_themyscira:
+      key: battle_location_themyscira
+      loops: -1
+      priority: 2500
+
+  battle_location_completed_atlantis:
+    solid_atlantis:
+      key: battle_location_atlantis
+      loops: -1
+      priority: 2500
+
+  battle_location_completed_gotham:
+    solid_gotham:
+      key: battle_location_gotham
+      loops: -1
+      priority: 2500
+
+  battle_location_completed_metropolis:
+    solid_metropolis:
+      key: battle_location_metropolis
+      loops: -1
+      priority: 2500
+
+  battle_location_completed_pozharnov:
+    solid_pozharnov:
+      key: battle_location_pozharnov
+      loops: -1
+      priority: 2500
+
+  battle_location_completed_darkseid:
+    solid_darkseid:
+      key: battle_location_darkseid
+      loops: -1
+      priority: 2500
+
+timers:
+  steppenwolf_to_scoop_guard:
+    start_value: 1
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - event: shot_steppenwolf_hit
+        action: start
+      - event: balldevice_bd_mystery_scoop_ball_enter
+        action: stop

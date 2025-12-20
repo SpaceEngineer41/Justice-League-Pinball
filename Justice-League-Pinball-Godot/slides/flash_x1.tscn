@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwu4yg1rp3jni"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_xeiyx"]
+[ext_resource type="VideoStream" uid="uid://vwrfxysnff4j" path="res://videos/Flash X1.ogv" id="2_jradr"]
+[ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="2_ta2oy"]
+[ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="4_n87up"]
+[ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_w6ce7"]
+
+[node name="FlashX1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_xeiyx")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_left = 196.0
+offset_top = 117.0
+offset_right = 2116.0
+offset_bottom = 1197.0
+scale = Vector2(0.796, 0.796)
+stream = ExtResource("2_jradr")
+autoplay = true
+script = ExtResource("2_ta2oy")
+preview_in_editor = true
+metadata/_custom_type_script = "uid://b0pcq24i8x4or"
+
+[node name="HIGH SCORE 1" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -280.0
+offset_right = 1040.0
+offset_bottom = -100.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_n87up")
+theme_override_font_sizes/font_size = 150
+text = "+ 10,000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_w6ce7")
+variable_name = "flash_last_award"
+comma_separate = true
+min_digits = 0
+template_string = "+ %s"
+initialize_empty = false
+max_players = 4
+metadata/_custom_type_script = "uid://bkacutdegcp6n"

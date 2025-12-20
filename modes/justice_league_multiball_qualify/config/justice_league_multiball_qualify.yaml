@@ -1,8 +1,83 @@
 #config_version=6
-
+# this is a test! doesitupdatethecodeautomatically to onedrive?
 mode:
   start_events: mode_base_started
 
+slide_player:
+  counter_flash_count_hit{count==1}:
+    flash_x1:
+      expire: 7.1s
+  counter_flash_count_hit{count==2}:
+    flash_x1:
+      expire: 7.1s
+  counter_flash_count_hit{count==3}:
+    flash_x1:
+      expire: 7.1s
+
+  counter_batman_count_hit{count==1}:
+    batman_x1:
+      expire: 7.1s
+  counter_batman_count_hit{count==2}:
+    batman_x2:
+      expire: 7.1s
+  counter_batman_count_hit{count==3}:
+    batman_x3:
+      expire: 7.1s
+  counter_batman_count_hit{count==4}:
+    batman_x4:
+      expire: 7.1s
+
+  shot_line_1_hit:
+    cyborg_x1:
+      expire: 7.1s
+  shot_line_2_hit:
+    cyborg_x2:
+      expire: 7.1s
+  shot_line_3_hit:
+    cyborg_x3:
+      expire: 7.1s
+
+  counter_superman_count_hit{count==1}:
+    superman_x1:
+      # expire: 7.1s
+  counter_superman_count_hit{count==2}:
+    superman_x2:
+      expire: 7.1s
+  counter_superman_count_hit{count==3}:
+    superman_x3:
+      expire: 7.1s
+  counter_superman_count_hit{count==4}:
+    superman_x4:
+      expire: 7.1s
+
+  counter_aquaman_count_hit{count==1}:
+    aquaman_x1:
+      expire: 7.1s
+  counter_aquaman_count_hit{count==2}:
+    aquaman_x2:
+      expire: 7.1s
+  counter_aquaman_count_hit{count==3}:
+    aquaman_x3:
+      expire: 7.1s
+
+  shot_left_drop_left_hit:
+      wonder_woman_x1:
+        expire: 7.1s
+  shot_left_drop_middle_hit:
+      wonder_woman_x2:
+        expire: 7.1s
+  shot_left_drop_right_hit:
+      wonder_woman_x3:
+        expire: 7.1s
+  shot_right_drop_left_hit:
+      wonder_woman_x4:
+        expire: 7.1s
+  shot_right_drop_middle_hit:
+      wonder_woman_x5:
+        expire: 7.1s
+  shot_right_drop_right_hit:
+      wonder_woman_x6:
+        expire: 7.1s
 
 shots:
   justice_league_multiball:
@@ -13,7 +88,8 @@ shots:
 achievements:
   justice_league_assembled:
     start_events: justice_league_count_complete
-    complete_events: justice_league_assembled
+    # complete_events: justice_league_assembled
+    events_when_completed: justice_league_multiball_lit 
     show_when_started: justice_league_lit
     show_when_completed: justice_league_complete
     reset_events: justice_league_count_reset
@@ -80,7 +156,7 @@ accruals:
 
   justice_league_assembled:
     events: justice_league_count_complete, justice_league_multiball_hit
-    events_when_complete: justice_league_assembled, justice_league_completion_points
+    events_when_complete: start_justice_league_multiball, justice_league_completion_points
     persist_state: true
     reset_events: justice_league_count_reset
     disable_on_complete: false
@@ -106,6 +182,11 @@ accruals:
     events_when_complete: start_character_select_mode
     disable_on_complete: false
 
+  # justice_league_multiball_start:
+  #   events: justice_league_multiball_lit, shot_mystery_scoop_hit, character_select_lit
+  #   events_when_complete: start_justice_league_multiball
+  #   disable_on_complete: false
+
 counters:
   flash_count:
     starting_count: 0
@@ -113,7 +194,7 @@ counters:
     count_events: shot_orbit_left_hit
     events_when_complete: flash_count_complete, flash_completion_points
     persist_state: true
-    reset_on_complete: false
+    reset_on_complete: true
     disable_on_complete: false
     reset_events: justice_league_count_reset
 
@@ -153,31 +234,61 @@ variable_player:
     flash_mode_status:
       action: set
       string: complete
+    flash_cycle_multi: 1
+  counter_flash_count_hit:
+    flash_last_award:
+      int: 10000 * device.counters.flash_count.value * current_player.flash_cycle_mult
+    score: 10000 * device.counters.flash_count.value * current_player.flash_cycle_mult
 
   superman_count_complete:
     superman_mode_status:
       action: set
       string: complete
+    superman_cycle_multi: 1
+  counter_superman_count_hit:
+    superman_last_award:
+      int: 10000 * device.counters.superman_count.value * current_player.superman_cycle_mult
+    score: 10000 * device.counters.superman_count.value * current_player.superman_cycle_mult
 
   aquaman_count_complete:
     aquaman_mode_status:
       action: set
       string: complete
+    aquaman_cycle_multi: 1
+  counter_aquaman_count_hit:
+    aquaman_last_award:
+      int: 10000 * device.counters.aquaman_count.value * current_player.aquaman_cycle_mult
+    score: 10000 * device.counters.aquaman_count.value * current_player.aquaman_cycle_mult
 
   batman_count_complete:
     batman_mode_status:
       action: set
       string: complete
+    batman_cycle_multi: 1
+  counter_batman_count_hit:
+    batman_last_award:
+      int: 10000 * device.counters.batman_count.value * current_player.batman_cycle_mult
+    score: 10000 * device.counters.batman_count.value * current_player.batman_cycle_mult
 
   wonder_woman_count_complete:
     wonder_woman_mode_status:
       action: set
       string: complete
-
+    wonder_woman_cycle_multi: 1
+  counter_wonder_woman_count_hit:
+    wonder_woman_last_award:
+      int: 10000 * device.counters.wonder_woman_count.value * current_player.wonder_woman_cycle_mult
+    score: 10000 * device.counters.wonder_woman_count.value * current_player.wonder_woman_cycle_mult
+    
   cyborg_count_complete:
     cyborg_mode_status:
       action: set
       string: complete
+    cyborg_cycle_multi: 1
+  counter_cyborg_count_hit:
+    cyborg_last_award:
+      int: 10000 * device.counters.cyborg_count.value * current_player.cyborg_cycle_mult
+    score: 10000 * device.counters.cyborg_count.value * current_player.cyborg_cycle_mult
 
   wonder_woman_completion_points:
     score: 250000
@@ -193,50 +304,6 @@ variable_player:
     score: 250000
   justice_league_completion_points:
     score: 500000
-
-# show_player:
-#   # logicblock_wonder_woman_count_hit{step == 0}:
-
-#   logicblock_flash_count_updated{enabled}:
-#     flash_show:
-#       key: flash_counter_show
-#       start_step: value + 1
-#       show_tokens:
-#         color: red
-#   logicblock_flash_count_updated{not enabled}:
-#     flash_counter_show: stop
-  
-#   logicblock_batman_count_updated{enabled}:
-#     batman_show:
-#       key: batman_counter_show
-#       start_step: value + 1
-#       show_tokens:
-#         color: yellow
-#   logicblock_batman_count_updated{not enabled}:
-#     batman_counter_show: stop
-
-#   logicblock_cyborg_count_hit{step == 2}: cyborg_show_flashing
-#   logicblock_cyborg_count_hit{step == 3}: cyborg_show
-
-#   logicblock_superman_count_updated{enabled}:
-#     superman_show:
-#       key: superman_counter_show
-#       start_step: value + 1
-#       show_tokens:
-#         color: blue
-#   logicblock_superman_count_updated{not enabled}:
-#     superman_counter_show: stop
-
-#   logicblock_aquaman_count_updated{enabled}:
-#     aquaman_show:
-#       key: aquaman_counter_show
-#       start_step: value + 1
-#       show_tokens:
-#         color: green
-#   logicblock_aquaman_count_updated{not enabled}:
-#     aquaman_counter_show: stop
-
-
 
 light_player:
   shot_right_drop_left_hit:
@@ -337,8 +404,16 @@ blinkenlight_player:
   character_select_lit:
     blinkenlight_character_select:
       color: blue
+
+  justice_league_multiball_lit:
+    blinkenlight_character_select:
+      color: blue
   
-  mode_character_select_will_stop:
+  mode_character_select_will_start:
+    blinkenlight_character_select:
+      action: remove
+
+  mode_justice_league_multiball_will_start:
     blinkenlight_character_select:
       action: remove
 
@@ -379,7 +454,7 @@ blinkenlight_player:
     blinkenlight_left_orbit_x2: remove
   counter_flash_count_hit{count == 3}:
     blinkenlight_left_orbit_x3: remove
-
+  
   counter_aquaman_count_hit{count == 1}:
     blinkenlight_right_orbit_x2:
       color: green
@@ -390,13 +465,8 @@ blinkenlight_player:
   counter_aquaman_count_hit{count == 3}:
     blinkenlight_right_orbit_x3: remove
 
-  shot_line_3_hit: 
+  shot_line_3_hit:
     blinkenlight_cyborg:
       color: red
-  shot_line_kickback_hit: 
+  shot_line_kickback_hit:
     blinkenlight_cyborg: remove
-
-  
-
-
-

@@ -1,0 +1,150 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgqif8j4nr55r"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_htvou"]
+[ext_resource type="Texture2D" uid="uid://iuey2opuaxlw" path="res://images/high_score_enter_initials 3.png" id="2_htvou"]
+[ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="3_o0bkt"]
+[ext_resource type="AudioStream" uid="uid://dkd3msk4qvr6w" path="res://sounds/effects/pinball-knocker.wav" id="4_s6ok7"]
+[ext_resource type="Script" uid="uid://clvci5fgub54x" path="res://slides/initials_logic.gd" id="5_3a6f5"]
+
+[sub_resource type="Animation" id="Animation_o0bkt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arrows_label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_htvou"]
+resource_name = "blink_info"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arrows_label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s6ok7"]
+_data = {
+&"RESET": SubResource("Animation_o0bkt"),
+&"blink_info": SubResource("Animation_htvou")
+}
+
+[node name="high_score_enter_initials" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_htvou")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="background image" type="Sprite2D" parent="."]
+texture = ExtResource("2_htvou")
+centered = false
+
+[node name="award_label" type="Label" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.029
+anchor_right = 0.5
+anchor_bottom = -0.029
+offset_left = -944.0
+offset_top = 403.32
+offset_right = -354.0
+offset_bottom = 583.32
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_o0bkt")
+theme_override_font_sizes/font_size = 150
+text = "GRAND CHAMPION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player_label" type="Label" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.029
+anchor_right = 0.5
+anchor_bottom = -0.029
+offset_left = -951.0
+offset_top = 189.32
+offset_right = -361.0
+offset_bottom = 429.32
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_o0bkt")
+theme_override_font_sizes/font_size = 200
+text = "PLAYER 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="initials_container" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 528.0
+offset_right = 496.0
+offset_bottom = 768.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="letter_1" type="Label" parent="initials_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_o0bkt")
+theme_override_font_sizes/font_size = 200
+text = "A"
+
+[node name="letter_2" type="Label" parent="initials_container"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_o0bkt")
+theme_override_font_sizes/font_size = 200
+text = "A"
+
+[node name="letter_3" type="Label" parent="initials_container"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_o0bkt")
+theme_override_font_sizes/font_size = 200
+text = "A"
+
+[node name="arrows_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 620.0
+offset_right = 423.0
+offset_bottom = 1040.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_o0bkt")
+theme_override_font_sizes/font_size = 350
+text = "<    >"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s6ok7")
+}
+
+[node name="finish_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_s6ok7")
+bus = &"effects"
+
+[node name="initials_logic" type="Node" parent="."]
+script = ExtResource("5_3a6f5")

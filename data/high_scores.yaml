@@ -1,0 +1,43 @@
+aquaman:
+- - AAA
+  - 3
+batman:
+- - AAA
+  - 3
+cyborg:
+- - AAA
+  - 3
+flash:
+- - AAA
+  - 3
+justice_league_multiball:
+- - AAA
+  - 1,000,000
+motherbox_multiball:
+- - AAA
+  - 500,000
+score:
+- - ESE
+  - 4170000
+- - ESE
+  - 2935000
+- - AAA
+  - 1000000
+- - BBB
+  - 900000
+- - CCC
+  - 800000
+- - DDD
+  - 700000
+- - EEE
+  - 600000
+- - FFF
+  - 500000
+- - GGG
+  - 400000
+superman:
+- - AAA
+  - 3
+wonder_woman:
+- - AAA
+  - 3

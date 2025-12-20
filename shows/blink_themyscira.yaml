@@ -1,0 +1,7 @@
+#show_version=6
+- duration: 200ms
+  lights:
+    l_themyscira: ff
+- duration: 200ms
+  lights:
+    l_themyscira: 00

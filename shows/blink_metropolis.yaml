@@ -1,0 +1,14 @@
+#show_version=6
+
+  - duration: 200ms
+    lights:
+      l_metropolis: on
+  - duration: 200ms
+    lights:
+      l_metropolis: off
+  - duration: 200ms
+    lights:
+      l_metropolis: on
+  - duration: 200ms
+    lights:
+      l_metropolis: off

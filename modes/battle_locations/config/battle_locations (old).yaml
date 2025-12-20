@@ -1,0 +1,155 @@
+#config_version=6
+
+mode:
+  start_events: ball_started
+  priority: 700
+  stop_events: battle_all_locations_completed
+
+# When the mode starts, default to the first location if not already set
+variable_player:
+  mode_battle_locations_started:
+    battle_location_index:
+      action: set
+      int: 0
+      condition: device.variables.battle_location_index < 0 or device.variables.battle_location_index > 5
+
+# --- LOCATION ADVANCE LOGIC ---
+
+# Every time a location is completed, advance the index.
+event_player:
+  battle_location_completed:
+    - advance_battle_location
+
+variable_player:
+  advance_battle_location:
+    battle_location_index:
+      action: add
+      int: 1
+
+# When the center bank completes, start (or re-start) the current location mode.
+event_player:
+  center_bank_completed:
+    - battle_start_current_location
+
+# When we advance, also start the next location.
+  battle_location_completed:
+    - battle_start_current_location
+
+# Map "battle_start_current_location" into specific events based on index.
+event_player:
+  battle_start_current_location:
+    - battle_start_themyscira:
+        condition: device.variables.battle_location_index == 0
+    - battle_start_atlantis:
+        condition: device.variables.battle_location_index == 1
+    - battle_start_gotham:
+        condition: device.variables.battle_location_index == 2
+    - battle_start_metropolis:
+        condition: device.variables.battle_location_index == 3
+    - battle_start_pozharnov:
+        condition: device.variables.battle_location_index == 4
+    - battle_start_darkseid:
+        condition: device.variables.battle_location_index == 5
+
+  
+counters:
+  battle_damage:
+    count_events: center_bank_hit
+    events_when_complete: battle_location_completed
+    starting_count: 0
+    count_complete_value: 5   # 5 hits to complete – tweak to taste
+    reset_on_complete: true
+    disable_on_complete: false
+
+show_player:
+  # Whenever we start any location, first turn all inserts off.
+  battle_start_themyscira:
+    all_battle_inserts_off:
+      loops: 0
+    blink_themyscira:
+      loops: -1
+
+  battle_start_atlantis:
+    all_battle_inserts_off:
+      loops: 0
+    blink_atlantis:
+      loops: -1
+
+  battle_start_gotham:
+    all_battle_inserts_off:
+      loops: 0
+    blink_gotham:
+      loops: -1
+
+  battle_start_metropolis:
+    all_battle_inserts_off:
+      loops: 0
+    blink_metropolis:
+      loops: -1
+
+  battle_start_pozharnov:
+    all_battle_inserts_off:
+      loops: 0
+    blink_pozharnov:
+      loops: -1
+
+  battle_start_darkseid:
+    all_battle_inserts_off:
+      loops: 0
+    blink_darkseid:
+      loops: -1
+
+  # When a location is completed, make its insert solid.
+  battle_location_completed_themyscira:
+    all_battle_inserts_off:
+      loops: 0
+    solid_themyscira:
+      loops: -1
+
+  battle_location_completed_atlantis:
+    all_battle_inserts_off:
+      loops: 0
+    solid_atlantis:
+      loops: -1
+
+  battle_location_completed_gotham:
+    all_battle_inserts_off:
+      loops: 0
+    solid_gotham:
+      loops: -1
+
+  battle_location_completed_metropolis:
+    all_battle_inserts_off:
+      loops: 0
+    solid_metropolis:
+      loops: -1
+
+  battle_location_completed_pozharnov:
+    all_battle_inserts_off:
+      loops: 0
+    solid_pozharnov:
+      loops: -1
+
+  battle_location_completed_darkseid:
+    all_battle_inserts_off:
+      loops: 0
+    solid_darkseid:
+      loops: -1
+
+event_player:
+  battle_location_completed:
+    - battle_location_completed_themyscira:
+        condition: device.variables.battle_location_index == 0
+    - battle_location_completed_atlantis:
+        condition: device.variables.battle_location_index == 1
+    - battle_location_completed_gotham:
+        condition: device.variables.battle_location_index == 2
+    - battle_location_completed_metropolis:
+        condition: device.variables.battle_location_index == 3
+    - battle_location_completed_pozharnov:
+        condition: device.variables.battle_location_index == 4
+    - battle_location_completed_darkseid:
+        condition: device.variables.battle_location_index == 5
+
+  battle_location_completed_darkseid:
+    - battle_all_locations_completed

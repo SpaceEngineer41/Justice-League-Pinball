@@ -1,0 +1,13 @@
+#show_version=6
+  - duration: 200ms
+    lights:
+      l_atlantis: on
+  - duration: 200ms
+    lights:
+      l_atlantis: off
+  - duration: 200ms
+    lights:
+      l_atlantis: on
+  - duration: 200ms
+    lights:
+      l_atlantis: off

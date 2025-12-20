@@ -19,6 +19,7 @@ texture = ExtResource("2_3761s")
 centered = false
 
 [node name="1player_score" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 anchors_preset = 7
 anchor_left = 0.5
@@ -56,6 +57,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="2player_score1" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 anchors_preset = 2
 anchor_top = 1.0
@@ -91,6 +93,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="2player_score2" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 custom_minimum_size = Vector2(-250, 0)
 anchors_preset = 3
@@ -130,6 +133,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="3player_score1" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 anchors_preset = 2
 anchor_top = 1.0
@@ -165,6 +169,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="3player_score2" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 custom_minimum_size = Vector2(-250, 0)
 anchors_preset = 7
@@ -204,6 +209,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="3player_score3" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 custom_minimum_size = Vector2(-250, 0)
 anchors_preset = 3
@@ -243,6 +249,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="4player_score1" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 custom_minimum_size = Vector2(-250, 0)
 anchors_preset = 2
@@ -279,6 +286,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="4player_score2" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 anchors_preset = 7
 anchor_left = 0.5
@@ -317,6 +325,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="4player_score3" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 anchors_preset = 3
 anchor_left = 1.0
@@ -355,6 +364,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="4player_score4" type="Label" parent="Sprite2D"]
+visible = false
 z_index = 10
 anchors_preset = 3
 anchor_left = 1.0
@@ -412,6 +422,8 @@ vertical_alignment = 1
 script = ExtResource("3_bu5wf")
 variable_name = "ball"
 template_string = "Ball %s"
+min_players = 1
+max_players = 4
 metadata/_custom_type_script = "uid://bkacutdegcp6n"
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/player_ball"]

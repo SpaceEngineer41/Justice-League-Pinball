@@ -16,6 +16,9 @@ slide_player:
     batman_character_select:
       expire: 5s
 
+  slide_batman_character_select_removed:
+    batman_mode_background:
+
 sound_player:
   slide_batman_character_select_removed: 
     batman_theme:

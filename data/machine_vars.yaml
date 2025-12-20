@@ -1,0 +1,12 @@
+battle_location_index:
+  expire: null
+  expire_secs: null
+  value: 1
+master_volume:
+  expire: null
+  expire_secs: null
+  value: 0.5
+player1_score:
+  expire: null
+  expire_secs: null
+  value: 2935000

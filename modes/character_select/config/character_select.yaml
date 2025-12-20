@@ -2,7 +2,7 @@
 
 mode:
   start_events: start_character_select_mode
-  stop_events: character_select_item_selected
+  stop_events: character_select_item_selected, slide_justice_league_multiball_created
   code: mpf.modes.carousel.code.carousel.Carousel
   priority: 500
 

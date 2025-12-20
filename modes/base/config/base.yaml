@@ -41,6 +41,7 @@ event_player:
 slide_player:
   mode_base_started: base_slide
 
+
 shots:
   shot_left_ramp:
     switch: s_left_ramp
@@ -86,10 +87,8 @@ shots:
     switch: s_main_drop_middle
   shot_main_drop_right:
     switch: s_main_drop_right
-  shot_main_drop_top:
-    switch: s_main_drop_top
-  shot_main_kickback:
-    switch: s_main_kickback
+  shot_steppenwolf:
+    switch: s_steppenwolf
   shot_left_drop_left:
     switch: s_left_drop_left
   shot_left_drop_middle:
@@ -113,73 +112,73 @@ shots:
   shot_right_outlane:
     switch: s_right_outlane
 
-      
+# uncomment out to add scores to certain base shots....
 variable_player:
-  shot_left_ramp_hit:
-    score: 10000
-  shot_right_ramp_hit:
-    score: 10000
-  shot_line_1_hit:
-    score: 10000
-  shot_line_2_hit:
-    score: 10000
-  shot_line_3_hit:
-    score: 10000
-  shot_line_kickback_hit:
-    score: 10000
-  shot_pop_lane_left_hit:
-    score: 10000
-  shot_pop_lane_right_hit:
-    score: 10000
-  shot_pop_bumper_left_hit:
-    score: 10000
-  shot_pop_bumper_right_hit:
-    score: 10000
-  shot_pop_bumper_middle_hit:
-    score: 10000
-  shot_right_inlane_hit:
-    score: 10000
-  shot_left_inlane_hit:
-    score: 10000
-  shot_orbit_top_hit:
-    score: 10000
-  shot_orbit_left_hit:
-    score: 10000
-  shot_orbit_right_hit:
-    score: 10000
-  shot_slingshot_left_hit:
-    score: 10000
-  shot_slingshot_right_hit:
-    score: 10000
-  shot_main_drop_left_hit:
-    score: 10000
-  shot_main_drop_middle_hit:
-    score: 10000
-  shot_main_drop_right_hit:
-    score: 10000
-  shot_main_drop_top_hit:
-    score: 10000
-  shot_main_kickback_hit:
-    score: 10000
-  shot_left_drop_left_hit:
-    score: 10000
-  shot_left_drop_middle_hit:
-    score: 10000
-  shot_left_drop_right_hit:
-    score: 10000
-  shot_right_drop_left_hit:
-    score: 10000
-  shot_right_drop_middle_hit:
-    score: 10000
-  shot_right_drop_right_hit:
-    score: 10000
-  shot_mystery_drop_hit:
-    score: 10000
-  shot_mystery_scoop_hit:
-    score: 10000
-  shot_spinner_hit:
-    score: 10000
-  shot_left_outlane_hit:
-    score: 10000
-  shot_right_outlane_hit:
-    score: 10000
+  # shot_left_ramp_hit:
+  #   score: 10000
+  # shot_right_ramp_hit:
+  #   score: 10000
+  # shot_line_1_hit:
+  #   score: 10000
+  # shot_line_2_hit:
+  #   score: 10000
+  # shot_line_3_hit:
+  #   score: 10000
+  # shot_line_kickback_hit:
+  #   score: 10000
+  # shot_pop_lane_left_hit:
+  #   score: 10000
+  # shot_pop_lane_right_hit:
+  #   score: 10000
+  # shot_pop_bumper_left_hit:
+  #   score: 10000
+  # shot_pop_bumper_right_hit:
+  #   score: 10000
+  # shot_pop_bumper_middle_hit:
+  #   score: 10000
+  # shot_right_inlane_hit:
+  #   score: 10000
+  # shot_left_inlane_hit:
+  #   score: 10000
+  # shot_orbit_top_hit:
+  #   score: 10000
+  # shot_orbit_left_hit:
+  #   score: 10000
+  # shot_orbit_right_hit:
+  #   score: 10000
+  # shot_slingshot_left_hit:
+  #   score: 10000
+  # shot_slingshot_right_hit:
+  #   score: 10000
+  # shot_main_drop_left_hit:
+  #   score: 10000
+  # shot_main_drop_middle_hit:
+  #   score: 10000
+  # shot_main_drop_right_hit:
+  #   score: 10000
+  # shot_main_drop_top_hit:
+  #   score: 10000
+  # shot_main_kickback_hit:
+  #   score: 10000
+  # shot_left_drop_left_hit:
+  #   score: 10000
+  # shot_left_drop_middle_hit:
+  #   score: 10000
+  # shot_left_drop_right_hit:
+  #   score: 10000
+  # shot_right_drop_left_hit:
+  #   score: 10000
+  # shot_right_drop_middle_hit:
+  #   score: 10000
+  # shot_right_drop_right_hit:
+  #   score: 10000
+  # shot_mystery_drop_hit:
+  #   score: 10000
+  # shot_mystery_scoop_hit:
+  #   score: 10000
+  # shot_spinner_hit:
+  #   score: 10000
+  # shot_left_outlane_hit:
+  #   score: 10000
+  # shot_right_outlane_hit:
+  #   score: 10000

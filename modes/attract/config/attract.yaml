@@ -10,38 +10,62 @@ event_player:
   mode_attract_stopping: 
     remove_slide: 
       slide: attract
+  
+  item_highlighted{item=="JusticeLeagueTitleNew"}: play_attract_music
+
+  item_highlighted{item=="intro_video"}: stop_attract_music
 
 mode_settings:
   selectable_items:
     - intro_video
-    - title
+    - JusticeLeagueTitleNew
+    - last_scores_1p{machine.player1_score and not machine.player2_score}
+    - last_scores_2p{machine.player2_score and not machine.player3_score}
+    - last_scores_3p{machine.player3_score and not machine.player4_score}
+    - last_scores_4p{machine.player4_score}
+    - grand_champion
+    - high_scores
+    - motherbox_multiball_champion
+    - justice_league_multiball_champion
+    - logos
     - credits
-    # - last_scores_1p{machine.player1_score and not machine.player2_score}
-    # - last_scores_2p{machine.player2_score and not machine.player3_score}
-    # - last_scores_3p{machine.player3_score and not machine.player4_score}
-    # - last_scores_4p{machine.player4_score}
-    - mpf_logo
-  next_item_events: s_right_flipper_active, timer_attract_carousel_timer_complete
+  next_item_events: s_right_flipper_active, timer_attract_carousel_timer_complete, attract_intro_done
   previous_item_events: s_left_flipper_active
 
 slide_player:
   mode_attract_started: attract
 
-# sound_player:
-#   mode_attract_started:
-#     icky_thump:
-#       bus: music
+sound_player:
+  play_attract_music:
+    icky_thump:
+      bus: music
+      action: play
+      loops: -1
+      fade_in: 1s
+
+  stop_attract_music:
+    icky_thump:
+      action: stop
+      bus: music
+      fade_out: 300ms
+
+  mode_attract_stopping:
+    icky_thump:
+      action: stop
+      bus: music
+      fade_out: 300ms
 
 timers:
   attract_carousel_timer:
     end_value: 1
     tick_interval: 5s
-    start_running: true
+    start_running: false
     control_events:
-      - event: item_highlighted
+      - event: item_highlighted{item!="intro_video"}
         action: restart
+      - event: item_highlighted{item=="intro_video"}
+        action: stop
       - event: flipper_cradle
         action: stop
       - event: flipper_cradle_release
         action: restart
-

@@ -1,36 +1,37 @@
 #config_version=6
 
-## MPF Main Machine Config File
-#
-# This file defines your system-wide properties like switches,
-# drivers, ball devices, hardware platforms, and more. You can
-# include everything here, or create sub-config files to be
-# imported and merged with this one.
-
 config:
   - config_ball_devices.yaml
   - config_coils.yaml
   - config_switches.yaml
 
-
 hardware:
   platform: smart_virtual
+
+# MACHINE-WIDE VARIABLES
+machine_vars:
+  battle_location_index:
+    initial_value: 0
+
+smart_virtual:
+  # use_default_keyboard: false
 
 modes:
   - attract
   - aquaman
   - base
+  - battle_locations
   - batman
   - bumpers
   - character_select
   - cyborg
   - flash
   - hurryup
+  - high_score
   - justice_league_multiball
   - justice_league_multiball_qualify
   - superman
   - wonder_woman
-
 
 player_vars:
   batman_mode_status:
@@ -55,6 +56,30 @@ player_vars:
     initial_value: incomplete
     value_type: str
 
+  flash_cycle_mult:
+    value_type: int
+    initial_value: 1      # first time through: 1x
+
+  batman_cycle_mult:
+    value_type: int
+    initial_value: 1      # first time through: 1x
+
+  cyborg_cycle_mult:
+    value_type: int
+    initial_value: 1      # first time through: 1x    
+
+  superman_cycle_mult:
+    value_type: int
+    initial_value: 1      # first time through: 1x
+
+  aquaman_cycle_mult:
+    value_type: int
+    initial_value: 1      # first time through: 1x
+
+  wonder_woman_cycle_mult:
+    value_type: int
+    initial_value: 1      # first time through: 1x
+
 playfields:
   playfield:
     tags: default
@@ -63,8 +88,6 @@ playfields:
 slide_player:
   init_done: attract
 
-  
-
 virtual_platform_start_active_switches:
   - s_trough1
   - s_trough2
@@ -72,6 +95,11 @@ virtual_platform_start_active_switches:
   - s_trough4
   - s_trough5
   - s_trough6
+
+event_player:
+  drop_target_drop_main_left_down: center_bank_hit
+  drop_target_drop_main_middle_down: center_bank_hit
+  drop_target_drop_main_right_down: center_bank_hit
 
 
 blinkenlights:
@@ -242,4 +270,5 @@ lights:
     number: 50
   l_justice_league:
     number: 51
-
+  l_darkseid_battle:        # <- changed from L_darkseid_battle
+    number: 52

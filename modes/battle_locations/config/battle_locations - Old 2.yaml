@@ -1,0 +1,127 @@
+#config_version=6
+
+mode:
+  start_events: ball_started
+  priority: 700
+  stop_events: battle_all_locations_completed
+
+variable_player:
+  mode_battle_locations_started:
+    battle_location_index:
+      action: set
+      int: 0
+
+  battle_advance_location:
+    battle_location_index:
+      action: add
+      int: 1
+
+event_player:
+  center_bank_completed: battle_start_current_location
+
+  battle_start_current_location:
+    battle_start_themyscira:
+      condition: machine.battle_location_index == 0
+    battle_start_atlantis:
+      condition: machine.battle_location_index == 1
+    battle_start_gotham:
+      condition: machine.battle_location_index == 2
+    battle_start_metropolis:
+      condition: machine.battle_location_index == 3
+    battle_start_pozharnov:
+      condition: machine.battle_location_index == 4
+    battle_start_darkseid:
+      condition: machine.battle_location_index == 5
+
+  battle_location_completed:
+    - battle_lights_location_completed
+    - battle_advance_location
+    - battle_start_current_location
+
+  battle_lights_location_completed:
+    battle_location_completed_themyscira:
+      condition: machine.battle_location_index == 0
+    battle_location_completed_atlantis:
+      condition: machine.battle_location_index == 1
+    battle_location_completed_gotham:
+      condition: machine.battle_location_index == 2
+    battle_location_completed_metropolis:
+      condition: machine.battle_location_index == 3
+    battle_location_completed_pozharnov:
+      condition: machine.battle_location_index == 4
+    battle_location_completed_darkseid:
+      condition: machine.battle_location_index == 5
+
+  battle_location_completed_darkseid: battle_all_locations_completed
+
+counters:
+  battle_damage:
+    count_events: center_bank_hit
+    events_when_complete: battle_location_completed
+    starting_count: 0
+    count_complete_value: 5
+    reset_on_complete: true
+    disable_on_complete: false
+
+show_player:
+  # Start-location events: just blink that insert
+  battle_start_themyscira:
+    blink_themyscira:
+      loops: -1
+
+  battle_start_atlantis:
+    blink_atlantis:
+      loops: -1
+
+  battle_start_gotham:
+    blink_gotham:
+      loops: -1
+
+  battle_start_metropolis:
+    blink_metropolis:
+      loops: -1
+
+  battle_start_pozharnov:
+    blink_pozharnov:
+      loops: -1
+
+  battle_start_darkseid:
+    blink_darkseid:
+      loops: -1
+
+  # Completion events: stop blink & go solid
+  battle_location_completed_themyscira:
+    blink_themyscira:
+      action: stop
+    solid_themyscira:
+      loops: -1
+
+  battle_location_completed_atlantis:
+    blink_atlantis:
+      action: stop
+    solid_atlantis:
+      loops: -1
+
+  battle_location_completed_gotham:
+    blink_gotham:
+      action: stop
+    solid_gotham:
+      loops: -1
+
+  battle_location_completed_metropolis:
+    blink_metropolis:
+      action: stop
+    solid_metropolis:
+      loops: -1
+
+  battle_location_completed_pozharnov:
+    blink_pozharnov:
+      action: stop
+    solid_pozharnov:
+      loops: -1
+
+  battle_location_completed_darkseid:
+    blink_darkseid:
+      action: stop
+    solid_darkseid:
+      loops: -1

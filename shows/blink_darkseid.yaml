@@ -1,0 +1,13 @@
+#show_version=6
+  - duration: 200ms
+    lights:
+      l_darkseid_battle: on
+  - duration: 200ms
+    lights:
+      l_darkseid_battle: off
+  - duration: 200ms
+    lights:
+      l_darkseid_battle: on
+  - duration: 200ms
+    lights:
+      l_darkseid_battle: off

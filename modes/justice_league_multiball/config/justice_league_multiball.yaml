@@ -1,11 +1,25 @@
 #config_version=6
 
 mode:
-  start_events: justice_league_assembled
-  stop_events: ball_ending, s_lockbar_active
+  start_events: start_justice_league_multiball
+  stop_events: ball_ending
+  priority: 1000
 
 slide_player:
   mode_justice_league_multiball_started: justice_league_multiball
 
 event_player:
   mode_justice_league_multiball_will_stop: justice_league_count_reset 
+
+multiballs:
+  justice_league_multiball:
+    add_a_ball_grace_period: 5s
+    add_a_ball_hurry_up_time: 5s
+    add_a_ball_shoot_again: 30s
+    ball_count_type: total
+    ball_count: 3
+    # disable_events:
+    start_events: justice_league_multiball_shot_hit
+    
+show_player:
+  mode_justice_league_multiball_started: justice_league_complete

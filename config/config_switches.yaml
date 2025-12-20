@@ -1,5 +1,61 @@
 #config_version=6
 
+keyboard:
+  debug: yes
+  "1":
+    switch: s_trough1
+    toggle: true
+  "2":
+    switch: s_trough2
+    toggle: true
+  "3":
+    switch: s_trough3
+    toggle: true
+  "4":
+    switch: s_trough4
+    toggle: true
+  "5":
+    switch: s_trough5
+    toggle: true
+  "6":
+    switch: s_trough6
+    toggle: true
+  "o":
+    switch: s_orbit_left
+  "s":
+    switch: s_start
+  "p":
+    switch: s_plunger
+  "a":
+    switch: s_plunger_lane
+  "7":
+    switch: s_main_drop_left
+    toggle: true
+  "8":
+    switch: s_main_drop_middle
+    toggle: true
+  "9":
+    switch: s_main_drop_right
+    toggle: true
+
+  # ---- Steppenwolf shot switch (momentary is fine, but toggle also ok) ----
+  "0":
+    switch: s_steppenwolf
+    toggle: true
+
+drop_targets:
+  drop_main_left:
+    switch: s_main_drop_left
+  drop_main_middle:
+    switch: s_main_drop_middle
+  drop_main_right:
+    switch: s_main_drop_right
+
+drop_target_banks:
+  center_bank:
+    drop_targets: drop_main_left, drop_main_middle, drop_main_right
+    reset_events: ball_starting, drop_target_bank_center_bank_reset
+ 
 switches:
   # cabinet switches
   s_left_flipper:
@@ -68,18 +124,21 @@ switches:
     # tags: playfield_active
   s_main_drop_left:
     number: 25
-    tags: playfield_active
+    type: NC
+    # tags: playfield_active
   s_main_drop_middle:
     number: 26
-    tags: playfield_active
+    type: NC
+    # tags: playfield_active
   s_main_drop_right:
     number: 27
-    tags: playfield_active
-  s_main_drop_top:
+    type: NC
+    # tags: playfield_active
+  s_steppenwolf:
     number: 28
-    tags: playfield_active
-  s_main_kickback:
-    number: 29
+    # tags: playfield_active
+  # s_main_kickback:
+  #   number: 29
   s_left_drop_left:
     number: 30
     tags: playfield_active

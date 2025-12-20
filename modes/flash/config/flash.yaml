@@ -22,4 +22,5 @@ sound_player:
       action: play
       loops: -1
       bus: music
-      volume: 0.05
+      volume: 0.5
+      start_at: 9s

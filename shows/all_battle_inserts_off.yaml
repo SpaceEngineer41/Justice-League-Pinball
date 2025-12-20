@@ -1,0 +1,9 @@
+#show_version=6
+- duration: 0.5
+  lights:
+    l_themyscira: off
+    l_atlantis: off
+    l_gotham: off
+    l_metropolis: off
+    l_pozharnov: off
+    l_darkseid_battle: off
