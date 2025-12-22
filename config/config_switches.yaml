@@ -41,7 +41,7 @@ keyboard:
   # ---- Steppenwolf shot switch (momentary is fine, but toggle also ok) ----
   "0":
     switch: s_steppenwolf
-    toggle: true
+    # toggle: true
 
 drop_targets:
   drop_main_left:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://uyihwsdy3jif"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_dsnof"]
-[ext_resource type="VideoStream" uid="uid://dr61o4j2c302u" path="res://videos/batman_x1.ogv" id="2_dsnof"]
+[ext_resource type="VideoStream" uid="uid://dpssnb3xwmdr5" path="res://videos/batman_x1.ogv" id="2_dsnof"]
 [ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_mcrjt"]
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="4_1eomo"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_8hdj2"]

@@ -5,6 +5,9 @@ mode:
   priority: 700
   stop_events: battle_all_locations_completed
 
+# -----------------------------------------------------------------------------
+# PLAYER VARIABLES
+# -----------------------------------------------------------------------------
 variable_player:
   mode_battle_locations_started:
     battle_location_index:
@@ -17,6 +20,19 @@ variable_player:
       action: set
       int: 0
 
+    # Themyscira tracking
+    themyscira_drops_made:
+      action: set
+      int: 0
+
+    # Atlantis tracking
+    atlantis_bank_total_hits:
+      action: set
+      int: 0
+    atlantis_steppenwolf_hits:
+      action: set
+      int: 0
+
   battle_advance_location:
     battle_location_index:
       action: add
@@ -25,6 +41,17 @@ variable_player:
       action: set
       int: 0
     battle_bank_ready:
+      action: set
+      int: 0
+
+    themyscira_drops_made:
+      action: set
+      int: 0
+
+    atlantis_bank_total_hits:
+      action: set
+      int: 0
+    atlantis_steppenwolf_hits:
       action: set
       int: 0
 
@@ -43,6 +70,24 @@ variable_player:
       action: add
       int: 1
 
+  # --- Themyscira: increment per main drop down ---
+  battle_themyscira_inc_drops:
+    themyscira_drops_made:
+      action: add
+      int: 1
+
+  # --- Atlantis: increment per bank shot hit (the 3 “main drop” shots) ---
+  battle_atlantis_inc_bank_hit:
+    atlantis_bank_total_hits:
+      action: add
+      int: 1
+
+  # --- Atlantis: count steppenwolf completions inside Atlantis (1st = mid, 2nd = complete) ---
+  battle_atlantis_inc_steppenwolf:
+    atlantis_steppenwolf_hits:
+      action: add
+      int: 1
+
   # Optional scoring for drops
   drop_target_drop_main_left_down:
     score: 10000
@@ -55,6 +100,9 @@ variable_player:
   battle_steppenwolf_made:
     score: 250000
 
+# -----------------------------------------------------------------------------
+# EVENTS
+# -----------------------------------------------------------------------------
 event_player:
 
   # --- MODE START ---
@@ -62,36 +110,108 @@ event_player:
     battle_start_current_location:
       delay: 1ms
 
-  # --- BANK READY LOGIC ---
-  # Your log shows these events:
-  #   drop_target_bank_center_bank_down
-  #   drop_target_bank_center_bank_mixed
+  # ---------------------------------------------------------------------------
+  # THEMYSCIRA (index 0): PLAY x1/x2/x3 ON INDIVIDUAL DROP TARGETS
+  # ---------------------------------------------------------------------------
+  drop_target_drop_main_left_down{current_player.battle_location_index==0}:
+    - battle_themyscira_inc_drops
+    - battle_themyscira_play_drop_video
+
+  drop_target_drop_main_middle_down{current_player.battle_location_index==0}:
+    - battle_themyscira_inc_drops
+    - battle_themyscira_play_drop_video
+
+  drop_target_drop_main_right_down{current_player.battle_location_index==0}:
+    - battle_themyscira_inc_drops
+    - battle_themyscira_play_drop_video
+
+  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==1}: battle_themyscira_x1
+  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==2}: battle_themyscira_x2
+  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==3}: battle_themyscira_x3
+
+  # ---------------------------------------------------------------------------
+  # ATLANTIS (index 1):
+  #  - 1st set of 3 bank target hits => atlantis_x1, x2, x3
+  #  - Steppenwolf (armed) hit #1     => atlantis_steppenwolf_x1 + reset center bank
+  #  - 2nd set of 3 bank target hits => atlantis_x4, x5, x6
+  #  - Steppenwolf (armed) hit #2     => atlantis_complete + mode completes (sequences==2)
   #
-  # We only want to "arm" Steppenwolf when the bank is COMPLETE (all down).
-  # So we listen to _down but gate it with the bank's "complete" flag.
+  # Uses YOUR real events shown in the log for those three shots:
+  #   shot_main_drop_left_hit / shot_main_drop_middle_hit / shot_main_drop_right_hit
+  # ---------------------------------------------------------------------------
+
+  # Bank target hits (these count toward x1-x6)
+  shot_main_drop_left_hit{current_player.battle_location_index==1}:
+    - battle_atlantis_inc_bank_hit
+    - battle_atlantis_play_bank_video
+
+  shot_main_drop_middle_hit{current_player.battle_location_index==1}:
+    - battle_atlantis_inc_bank_hit
+    - battle_atlantis_play_bank_video
+
+  shot_main_drop_right_hit{current_player.battle_location_index==1}:
+    - battle_atlantis_inc_bank_hit
+    - battle_atlantis_play_bank_video
+
+  # Route x1-x6 based on total bank hits in Atlantis
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==1}: battle_atlantis_x1
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==2}: battle_atlantis_x2
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==3}: battle_atlantis_x3
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==4}: battle_atlantis_x4
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==5}: battle_atlantis_x5
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==6}: battle_atlantis_x6
+
+  # --- BANK READY LOGIC (CENTER BANK that arms Steppenwolf) ---
   drop_target_bank_center_bank_down{device.drop_target_banks.center_bank.complete}:
     battle_set_bank_ready: {}
 
-  # Any time the bank becomes mixed again, disarm it.
   drop_target_bank_center_bank_mixed:
     battle_clear_bank_ready: {}
 
-  # --- STEPPENWOLF HIT -> SEQUENCE PROGRESSION ---
-  # Use the shot event (your log shows shot_steppenwolf_hit)
-  shot_steppenwolf_hit{current_player.battle_bank_ready==1}:
+  # ---------------------------------------------------------------------------
+  # STEPPENWOLF HIT -> SEQUENCE PROGRESSION
+  #
+  # Themyscira: require bank_ready AND themyscira_drops_made>=3
+  # Atlantis:
+  #   - 1st Steppenwolf only when bank_ready AND bank_total_hits>=3 AND steppenwolf_hits==0
+  #   - 2nd Steppenwolf only when bank_ready AND bank_total_hits>=6 AND steppenwolf_hits==1
+  # Other locations: require bank_ready
+  # ---------------------------------------------------------------------------
+
+  # Themyscira gate
+  shot_steppenwolf_hit{current_player.battle_location_index==0 and current_player.battle_bank_ready==1 and current_player.themyscira_drops_made>=3}:
     battle_steppenwolf_made: {}
 
-  # On Steppenwolf made:
+  # Atlantis: FIRST Steppenwolf (armed) -> plays atlantis_steppenwolf_x1, resets center bank
+  shot_steppenwolf_hit{current_player.battle_location_index==1 and current_player.battle_bank_ready==1 and current_player.atlantis_bank_total_hits>=3 and current_player.atlantis_steppenwolf_hits==0}:
+    - battle_atlantis_steppenwolf_x1
+    - battle_atlantis_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Atlantis: SECOND Steppenwolf (armed) -> plays atlantis_complete and completes location (sequences hits 2)
+  shot_steppenwolf_hit{current_player.battle_location_index==1 and current_player.battle_bank_ready==1 and current_player.atlantis_bank_total_hits>=6 and current_player.atlantis_steppenwolf_hits==1}:
+    - battle_atlantis_complete
+    - battle_atlantis_inc_steppenwolf
+    - battle_steppenwolf_made
+
+  # Other locations (exclude 0 and 1)
+  shot_steppenwolf_hit{current_player.battle_location_index!=0 and current_player.battle_location_index!=1 and current_player.battle_bank_ready==1}:
+    battle_steppenwolf_made: {}
+
+  # On ANY Steppenwolf made:
   # - clear ready so you can't spam
   # - increment sequences
   # - check completion for current location
+  # - for Themyscira, also play the completion video event
   battle_steppenwolf_made:
     - battle_clear_bank_ready
     - battle_inc_sequences
     - battle_check_location_complete
+    - battle_themyscira_complete{current_player.battle_location_index==0 and current_player.themyscira_drops_made>=3}
 
   # --- SUBWAY CONFIRM / SAFE RESET + KICKOUT ---
-  # When ball arrives at mystery scoop, it's safely past the bank.
   balldevice_bd_mystery_scoop_ball_enter:
     drop_target_bank_center_bank_reset:
       delay: 300ms
@@ -130,8 +250,58 @@ event_player:
 
   battle_location_completed_darkseid: battle_all_locations_completed
 
+# -----------------------------------------------------------------------------
+# VIDEO PLAYBACK (slides)
+# -----------------------------------------------------------------------------
+slide_player:
+  # Themyscira
+  battle_themyscira_x1:
+    themyscira_x1:
+      priority: 900
+  battle_themyscira_x2:
+    themyscira_x2:
+      priority: 900
+  battle_themyscira_x3:
+    themyscira_x3:
+      priority: 900
+  battle_themyscira_complete:
+    themyscira_complete:
+      priority: 950
+
+  # Atlantis bank hit clips (x1-x6)
+  battle_atlantis_x1:
+    atlantis_x1:
+      priority: 900
+  battle_atlantis_x2:
+    atlantis_x2:
+      priority: 900
+  battle_atlantis_x3:
+    atlantis_x3:
+      priority: 900
+  battle_atlantis_x4:
+    atlantis_x5:
+      priority: 900
+  battle_atlantis_x5:
+    atlantis_x6:
+      priority: 900
+  battle_atlantis_x6:
+    atlantis_x7:
+      priority: 900
+
+  # Atlantis Steppenwolf clips
+  battle_atlantis_steppenwolf_x1:
+    atlantis_steppenwolf_x1:
+      priority: 950
+
+  battle_atlantis_complete:
+    atlantis_complete:
+      priority: 980
+
+# -----------------------------------------------------------------------------
+# SHOWS
+# -----------------------------------------------------------------------------
 show_player:
-  # Blink current location (only one at a time)
+  # Blink current location
   battle_start_themyscira:
     blink_themyscira:
       key: battle_location_blink
@@ -168,7 +338,7 @@ show_player:
       loops: -1
       priority: 3000
 
-  # Solid completed locations (each keeps its own key)
+  # Solid completed locations
   battle_location_completed_themyscira:
     solid_themyscira:
       key: battle_location_themyscira
@@ -205,6 +375,9 @@ show_player:
       loops: -1
       priority: 2500
 
+# -----------------------------------------------------------------------------
+# TIMERS
+# -----------------------------------------------------------------------------
 timers:
   steppenwolf_to_scoop_guard:
     start_value: 1
