@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba47sxsnla4h0"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_y8dpg"]
+[ext_resource type="VideoStream" uid="uid://c0l4fmr02apyf" path="res://videos/batman_mode_background.ogv" id="2_lyigf"]
+[ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_npg84"]
+
+[node name="BatmanModeBackground" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_y8dpg")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="batman_overlooking_gotham" type="VideoStreamPlayer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_left = 196.0
+offset_top = 117.0
+offset_right = 2116.0
+offset_bottom = 1197.0
+scale = Vector2(0.796, 0.796)
+stream = ExtResource("2_lyigf")
+autoplay = true
+loop = true
+script = ExtResource("3_npg84")
+preview_in_editor = true
+metadata/_custom_type_script = "uid://b0pcq24i8x4or"

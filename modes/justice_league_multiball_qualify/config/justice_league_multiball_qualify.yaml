@@ -7,77 +7,100 @@ slide_player:
   counter_flash_count_hit{count==1}:
     flash_x1:
       expire: 7.1s
+      priority: 900
   counter_flash_count_hit{count==2}:
     flash_x1:
       expire: 7.1s
+      priority: 900
   counter_flash_count_hit{count==3}:
     flash_x1:
       expire: 7.1s
+      priority: 900
 
   counter_batman_count_hit{count==1}:
     batman_x1:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
   counter_batman_count_hit{count==2}:
     batman_x2:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
   counter_batman_count_hit{count==3}:
     batman_x3:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
   counter_batman_count_hit{count==4}:
     batman_x4:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
 
   shot_line_1_hit:
     cyborg_x1:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
   shot_line_2_hit:
     cyborg_x2:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
   shot_line_3_hit:
     cyborg_x3:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
 
   counter_superman_count_hit{count==1}:
     superman_x1:
       # expire: 7.1s
+      priority: 900
   counter_superman_count_hit{count==2}:
     superman_x2:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
   counter_superman_count_hit{count==3}:
     superman_x3:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
   counter_superman_count_hit{count==4}:
     superman_x4:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
 
   counter_aquaman_count_hit{count==1}:
     aquaman_x1:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
   counter_aquaman_count_hit{count==2}:
     aquaman_x2:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
   counter_aquaman_count_hit{count==3}:
     aquaman_x3:
-      expire: 7.1s
+      # expire: 7.1s
+      priority: 900
 
   shot_left_drop_left_hit:
       wonder_woman_x1:
-        expire: 7.1s
+        # expire: 7.1s
+        priority: 900
   shot_left_drop_middle_hit:
       wonder_woman_x2:
-        expire: 7.1s
+        # expire: 7.1s
+        priority: 900
   shot_left_drop_right_hit:
       wonder_woman_x3:
-        expire: 7.1s
+        # expire: 7.1s
+        priority: 900
   shot_right_drop_left_hit:
       wonder_woman_x4:
-        expire: 7.1s
+        # expire: 7.1s
+        priority: 900
   shot_right_drop_middle_hit:
       wonder_woman_x5:
-        expire: 7.1s
+        # expire: 7.1s
+        priority: 900
   shot_right_drop_right_hit:
       wonder_woman_x6:
-        expire: 7.1s
+        # expire: 7.1s
+        priority: 900
 
 shots:
   justice_league_multiball:

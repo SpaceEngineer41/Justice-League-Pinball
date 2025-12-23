@@ -24,7 +24,6 @@ offset_bottom = 1197.0
 scale = Vector2(0.796, 0.796)
 stream = ExtResource("2_dsnof")
 autoplay = true
-loop = true
 script = ExtResource("3_mcrjt")
 preview_in_editor = true
 metadata/_custom_type_script = "uid://b0pcq24i8x4or"
