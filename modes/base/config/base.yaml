@@ -113,7 +113,30 @@ shots:
     switch: s_right_outlane
 
 # uncomment out to add scores to certain base shots....
+
 variable_player:
+  player_added:
+    select_filter_completed_only:
+      action: set
+      int: 0
+    wonder_woman_complete:
+      action: set
+      int: 0
+    flash_complete:
+      action: set
+      int: 0
+    batman_complete:
+      action: set
+      int: 0
+    cyborg_complete:
+      action: set
+      int: 0
+    superman_complete:
+      action: set
+      int: 0
+    aquaman_complete:
+      action: set
+      int: 0
   # shot_left_ramp_hit:
   #   score: 10000
   # shot_right_ramp_hit:

@@ -1,0 +1,140 @@
+#config_version=6
+
+mode:
+  start_events: game_starting
+  stop_events: game_ending
+  priority: 50
+  game_mode: true
+
+# ----------------------------
+# Player state + progression
+# ----------------------------
+variable_player:
+  # Initialize per-player vars at start of this mode (game start)
+  mode_progression_started:
+    jl_cycle:
+      action: set
+      int: 1
+    jl_mb_ready:
+      action: set
+      int: 0
+    select_filter_completed_only:
+      action: set
+      int: 0
+
+    batman_complete:
+      action: set
+      int: 0
+    flash_complete:
+      action: set
+      int: 0
+    wonder_woman_complete:
+      action: set
+      int: 0
+    cyborg_complete:
+      action: set
+      int: 0
+    superman_complete:
+      action: set
+      int: 0
+    aquaman_complete:
+      action: set
+      int: 0
+
+  # Character completion events (post these from each character mode)
+  batman_completed:
+    batman_complete:
+      action: set
+      int: 1
+
+  flash_completed:
+    flash_complete:
+      action: set
+      int: 1
+
+  wonder_woman_completed:
+    wonder_woman_complete:
+      action: set
+      int: 1
+
+  cyborg_completed:
+    cyborg_complete:
+      action: set
+      int: 1
+
+  superman_completed:
+    superman_complete:
+      action: set
+      int: 1
+
+  aquaman_completed:
+    aquaman_complete:
+      action: set
+      int: 1
+
+  # Set JL ready flag (fired by event_player below)
+  set_jl_ready:
+    jl_mb_ready:
+      action: set
+      int: 1
+
+  # When JL multiball ends, bump the cycle and reset all characters
+  justice_league_multiball_ended:
+    jl_cycle:
+      action: add
+      int: 1
+    jl_mb_ready:
+      action: set
+      int: 0
+
+    batman_complete:
+      action: set
+      int: 0
+    flash_complete:
+      action: set
+      int: 0
+    wonder_woman_complete:
+      action: set
+      int: 0
+    cyborg_complete:
+      action: set
+      int: 0
+    superman_complete:
+      action: set
+      int: 0
+    aquaman_complete:
+      action: set
+      int: 0
+
+    select_filter_completed_only:
+      action: set
+      int: 0
+
+  # When starting character select mid-game, restrict to completed-only
+  start_character_select_completed_only:
+    select_filter_completed_only:
+      action: set
+      int: 1
+
+# ----------------------------
+# Logic / routing
+# ----------------------------
+event_player:
+  # Re-check JL readiness whenever any completion var changes
+  player_batman_complete: progression_check_jl_ready
+  player_flash_complete: progression_check_jl_ready
+  player_wonder_woman_complete: progression_check_jl_ready
+  player_cyborg_complete: progression_check_jl_ready
+  player_superman_complete: progression_check_jl_ready
+  player_aquaman_complete: progression_check_jl_ready
+
+  # If all are complete -> set JL ready
+  progression_check_jl_ready{player.batman_complete==1 and player.flash_complete==1 and player.wonder_woman_complete==1 and player.cyborg_complete==1 and player.superman_complete==1 and player.aquaman_complete==1}:
+    set_jl_ready
+
+  # Mystery scoop routing (CHANGE THIS to your actual scoop event if needed)
+  s_mystery_scoop_active{player.jl_mb_ready==1}: start_justice_league_multiball
+  s_mystery_scoop_active{player.jl_mb_ready!=1 and (player.batman_complete==1 or player.flash_complete==1 or player.wonder_woman_complete==1 or player.cyborg_complete==1 or player.superman_complete==1 or player.aquaman_complete==1)}:
+    start_character_select_completed_only
+
+  start_character_select_completed_only: start_character_select_mode
