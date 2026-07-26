@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://c5r6fkmwfqcwq"
+uid="uid://btobnvott31pf"
 path="res://.godot/imported/batman_theme.wav-bda6b09e3ee001393b2a181fe057926d.sample"
 
 [deps]
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=2
+compress/mode=0

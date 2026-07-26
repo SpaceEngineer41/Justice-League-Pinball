@@ -20,6 +20,7 @@ offset_bottom = 965.0
 stream = ExtResource("2_gfe8a")
 autoplay = true
 script = ExtResource("3_cn10b")
+end_behavior = 1
 preview_in_editor = true
 metadata/_custom_type_script = "uid://b0pcq24i8x4or"
 

@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dhg12g7aho6hy"
+uid="uid://d2n71kjtbmmrc"
 path="res://.godot/imported/superman_theme.wav-4555bd12ee9c0c326d072c0163586dc2.sample"
 
 [deps]
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=2
+compress/mode=0

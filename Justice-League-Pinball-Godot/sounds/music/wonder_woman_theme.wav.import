@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://c1qg73vl67wct"
+uid="uid://sa57hg1htlfb"
 path="res://.godot/imported/wonder_woman_theme.wav-2f6891eb24f658de45833a90506e2874.sample"
 
 [deps]
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=2
+compress/mode=0

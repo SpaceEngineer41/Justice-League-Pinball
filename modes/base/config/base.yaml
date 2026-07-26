@@ -9,7 +9,9 @@ mode:
   priority: 100
 
 event_player:
-  ball_started{ball==1}: start_character_select_mode
+# Uncomment this if you want the player to select a character at the start of a game.
+
+  # ball_started{ball==1}: start_character_select_mode
 
   character_select_batman_selected:
   -  start_batman_mode
@@ -24,19 +26,6 @@ event_player:
   character_select_superman_selected:
   -  start_superman_mode
 
-  # start_character_select_wonder_woman:
-  # -  start_character_select_mode
-  # start_character_select_mode_batman:
-  # -  start_character_select_mode
-  # start_character_select_superman:
-  # -  start_character_select_mode
-  # start_character_select_flash:
-  # -  start_character_select_mode
-  # mode_base_started:
-  # -  start_mode_bumpers
-  # mode_base_will_stop:
-  # -  stop_mode_bumpers
-  # shot_left_ramp_hit: start_mode_hurryup
 
 slide_player:
   mode_base_started: base_slide

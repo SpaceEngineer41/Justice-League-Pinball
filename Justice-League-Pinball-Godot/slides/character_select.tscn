@@ -1,78 +1,690 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmxxk34lp0s8e"]
+[gd_scene load_steps=27 format=3 uid="uid://rod5ajk7fxg3"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_m80gf"]
-[ext_resource type="Script" uid="uid://bq052cwr8hqvd" path="res://addons/mpf-gmc/classes/mpf_carousel.gd" id="2_0tmem"]
-[ext_resource type="Texture2D" uid="uid://bkvv4k3qxc1g7" path="res://images/wonder_woman.png" id="3_6pvtl"]
-[ext_resource type="Texture2D" uid="uid://bmcm70m71grx" path="res://images/flash.png" id="4_5silw"]
-[ext_resource type="Texture2D" uid="uid://iltcg7t3c0ap" path="res://images/batman.png" id="5_bnqek"]
-[ext_resource type="Texture2D" uid="uid://cxotrpe44r031" path="res://images/cyborg.png" id="6_67y1v"]
-[ext_resource type="Texture2D" uid="uid://dtppoiso3d3up" path="res://images/superman.png" id="7_k1f14"]
-[ext_resource type="Texture2D" uid="uid://dl8oul3ksocal" path="res://images/aquaman.png" id="8_sevyy"]
+[ext_resource type="Script" uid="uid://dln0k376j31er" path="res://scripts/character_select_grid_controller.gd" id="2_67y1v"]
+[ext_resource type="Texture2D" uid="uid://dam3rom20om2q" path="res://images/Alfred Character Select.png" id="2_sevyy"]
+[ext_resource type="Texture2D" uid="uid://dofvywcri303j" path="res://images/wonder_woman.png" id="3_6pvtl"]
+[ext_resource type="Texture2D" uid="uid://ej5c2se2m1ep" path="res://images/wonder_woman_logo.png" id="3_c2iee"]
+[ext_resource type="Script" uid="uid://uc0gq3ac2b17" path="res://scripts/character_select_info_panel.gd" id="3_lot57"]
+[ext_resource type="Texture2D" uid="uid://bbp3a6b16dagc" path="res://images/flash.png" id="4_5silw"]
+[ext_resource type="Texture2D" uid="uid://beg6mqo74oste" path="res://images/flash_logo.png" id="4_lot57"]
+[ext_resource type="Texture2D" uid="uid://drj1gctbpivv4" path="res://images/batman_logo.png" id="5_3yhrf"]
+[ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="5_67y1v"]
+[ext_resource type="Texture2D" uid="uid://elxl2s2rnqlq" path="res://images/batman.png" id="5_bnqek"]
+[ext_resource type="Texture2D" uid="uid://6ffagaphx86y" path="res://images/cyborg.png" id="6_67y1v"]
+[ext_resource type="Texture2D" uid="uid://bvn0dsoktwh3x" path="res://images/cyborg_logo.png" id="6_agftb"]
+[ext_resource type="Script" uid="uid://b1p2buicq86d5" path="res://character_lock_toggle.gd" id="6_k1f14"]
+[ext_resource type="Texture2D" uid="uid://c038gpmkuek2j" path="res://images/superman.png" id="7_k1f14"]
+[ext_resource type="Texture2D" uid="uid://bnmfgbkt1hvf" path="res://images/superman_logo.png" id="7_stfrn"]
+[ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="8_6nojh"]
+[ext_resource type="Texture2D" uid="uid://cguntfpmodm3t" path="res://images/aquaman_logo.png" id="8_jt3u7"]
+[ext_resource type="Texture2D" uid="uid://duwnplsseww11" path="res://images/aquaman.png" id="8_sevyy"]
+[ext_resource type="Material" uid="uid://qx155bxeilea" path="res://materials/locked_grayscale_material.tres" id="15_lot57"]
 
-[node name="CharacterSelect" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lot57"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.658824, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yhrf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.658824, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agftb"]
+bg_color = Color(0.66, 0, 0, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.658824, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stfrn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.658824, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jt3u7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.658824, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbg8m"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.658824, 0, 0, 1)
+
+[node name="character_select" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m80gf")
 metadata/_custom_type_script = "uid://dm3a03xc57wbq"
 
-[node name="character_select" type="Control" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 120.0
+offset_right = 1727.0
+offset_bottom = 963.0
+color = Color(0.272655, 0.272655, 0.272655, 1)
+
+[node name="Alfred" type="Sprite2D" parent="."]
+position = Vector2(469.5, 538)
+scale = Vector2(0.998099, 1)
+texture = ExtResource("2_sevyy")
+script = ExtResource("6_k1f14")
+
+[node name="character_ability_title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 132.0
+offset_right = 732.0
+offset_bottom = 180.0
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 60
+text = "CHARACTER ABILITIES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="info_panel" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 207.0
+offset_top = 132.0
+offset_right = 731.0
+offset_bottom = 573.0
+script = ExtResource("3_lot57")
+grid_path = NodePath("../character_select")
+debug_print = true
+
+[node name="current_item_var" type="Label" parent="info_panel"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("8_6nojh")
+variable_name = "character_select_current_item"
+metadata/_custom_type_script = "uid://bkacutdegcp6n"
+
+[node name="wonder_woman_info" type="Control" parent="info_panel"]
+anchors_preset = 0
+offset_right = 525.0
+offset_bottom = 441.0
+
+[node name="wonder_woman_logo" type="Sprite2D" parent="info_panel/wonder_woman_info"]
+position = Vector2(267.75, 99.75)
+scale = Vector2(0.706452, 0.891304)
+texture = ExtResource("3_c2iee")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info_panel/wonder_woman_info"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 131.0
+offset_right = 524.0
+offset_bottom = 441.0
+
+[node name="amazonian_shield" type="Label" parent="info_panel/wonder_woman_info/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.843137, 0.678431, 0.317647, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 75
+text = "AMAZONIAN SHIELD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="flash_info" type="Control" parent="info_panel"]
+anchors_preset = 0
+offset_right = 525.0
+offset_bottom = 441.0
+
+[node name="flash_logo" type="Sprite2D" parent="info_panel/flash_info"]
+position = Vector2(271, 100.25)
+scale = Vector2(0.710817, 0.876812)
+texture = ExtResource("4_lot57")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info_panel/flash_info"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 132.0
+offset_right = 524.0
+offset_bottom = 442.0
+
+[node name="speed_force" type="Label" parent="info_panel/flash_info/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.670588, 0, 0.12549, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 75
+text = "SPEED FORCE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="batman_info" type="Control" parent="info_panel"]
+anchors_preset = 0
+offset_right = 525.0
+offset_bottom = 441.0
+
+[node name="batman_logo" type="Sprite2D" parent="info_panel/batman_info"]
+position = Vector2(271, 100)
+scale = Vector2(0.734091, 0.852941)
+texture = ExtResource("5_3yhrf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info_panel/batman_info"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 132.0
+offset_right = 524.0
+offset_bottom = 442.0
+
+[node name="waynetech_multiplier" type="Label" parent="info_panel/batman_info/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.329412, 0.486275, 0.666667, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 75
+text = "WAYNETECH MULTIPLIER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="cyborg_info" type="Control" parent="info_panel"]
+anchors_preset = 0
+offset_right = 525.0
+offset_bottom = 441.0
+
+[node name="cyborg_logo" type="Sprite2D" parent="info_panel/cyborg_info"]
+position = Vector2(268.5, 100)
+scale = Vector2(0.744344, 0.828571)
+texture = ExtResource("6_agftb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info_panel/cyborg_info"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 132.0
+offset_right = 524.0
+offset_bottom = 442.0
+
+[node name="system_override" type="Label" parent="info_panel/cyborg_info/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.752941, 0.0588235, 0.109804, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 75
+text = "SYSTEM OVERRIDE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="superman_info" type="Control" parent="info_panel"]
+anchors_preset = 0
+offset_right = 525.0
+offset_bottom = 441.0
+
+[node name="superman_logo" type="Sprite2D" parent="info_panel/superman_info"]
+position = Vector2(263.25, 99.5)
+scale = Vector2(0.71663, 0.838235)
+texture = ExtResource("7_stfrn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info_panel/superman_info"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 132.0
+offset_right = 524.0
+offset_bottom = 442.0
+
+[node name="kryptonian_strength" type="Label" parent="info_panel/superman_info/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 75
+text = "KRYPTONIAN STRENGTH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="aquaman_info" type="Control" parent="info_panel"]
+anchors_preset = 0
+offset_right = 525.0
+offset_bottom = 441.0
+
+[node name="aquaman_logo" type="Sprite2D" parent="info_panel/aquaman_info"]
+position = Vector2(263, 99.5)
+scale = Vector2(0.725664, 0.842857)
+texture = ExtResource("8_jt3u7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info_panel/aquaman_info"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 132.0
+offset_right = 524.0
+offset_bottom = 442.0
+
+[node name="trident_multiball" type="Label" parent="info_panel/aquaman_info/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.32549, 0.54902, 0.290196, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 75
+text = "TRIDENT MULTIBALL
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="character_select" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_0tmem")
-carousel_name = "character_select"
-metadata/_custom_type_script = "uid://bq052cwr8hqvd"
+columns = 3
+script = ExtResource("2_67y1v")
 
-[node name="wonder_woman" type="Sprite2D" parent="character_select"]
+[node name="wonder_woman" type="Control" parent="character_select"]
+layout_mode = 2
+
+[node name="wonder_woman" type="Sprite2D" parent="character_select/wonder_woman"]
 z_index = 10
-position = Vector2(196, 117)
-scale = Vector2(0.796354, 0.784259)
+position = Vector2(752, 138)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_6pvtl")
 centered = false
 
-[node name="flash" type="Sprite2D" parent="character_select"]
-visible = false
+[node name="locked_overlay" type="ColorRect" parent="character_select/wonder_woman"]
+layout_mode = 0
+offset_left = 752.0
+offset_top = 138.0
+offset_right = 1213.0
+offset_bottom = 399.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="locked_label" type="Label" parent="character_select/wonder_woman"]
 z_index = 10
-position = Vector2(196, 117)
-scale = Vector2(0.796354, 0.784259)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 752.0
+offset_top = 279.0
+offset_right = 1212.0
+offset_bottom = 399.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 100
+text = "NOT ASSEMBLED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="highlight" type="Panel" parent="character_select/wonder_woman"]
+visible = false
+z_index = 100
+layout_mode = 0
+offset_left = 742.0
+offset_top = 132.0
+offset_right = 1788.0
+offset_bottom = 800.0
+scale = Vector2(0.458153, 0.405697)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lot57")
+
+[node name="state" type="Node" parent="character_select/wonder_woman" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("6_k1f14")
+status_label = NodePath("../wonder_woman_status")
+locked_overlay = NodePath("../locked_overlay")
+locked_label = NodePath("../locked_label")
+character_sprite = NodePath("../wonder_woman")
+locked_material = ExtResource("15_lot57")
+
+[node name="wonder_woman_status" type="Label" parent="character_select/wonder_woman"]
+layout_mode = 0
+offset_left = -1616.0
+offset_top = 566.0
+offset_right = -1576.0
+offset_bottom = 589.0
+script = ExtResource("8_6nojh")
+variable_name = "wonder_woman_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="flash" type="Control" parent="character_select"]
+layout_mode = 2
+
+[node name="flash" type="Sprite2D" parent="character_select/flash"]
+z_index = 10
+position = Vector2(749, 409)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("4_5silw")
 centered = false
 
-[node name="batman" type="Sprite2D" parent="character_select"]
-visible = false
+[node name="locked_overlay" type="ColorRect" parent="character_select/flash"]
+layout_mode = 0
+offset_left = 749.0
+offset_top = 409.0
+offset_right = 1210.0
+offset_bottom = 669.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="locked_label" type="Label" parent="character_select/flash"]
 z_index = 10
-position = Vector2(196, 117)
-scale = Vector2(0.796354, 0.784259)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 749.0
+offset_top = 549.0
+offset_right = 1209.0
+offset_bottom = 669.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 100
+text = "NOT ASSEMBLED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="highlight" type="Panel" parent="character_select/flash"]
+visible = false
+z_index = 100
+layout_mode = 0
+offset_left = 738.0
+offset_top = 403.0
+offset_right = 1784.0
+offset_bottom = 1071.0
+scale = Vector2(0.458153, 0.405697)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3yhrf")
+
+[node name="state" type="Node" parent="character_select/flash" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("6_k1f14")
+status_label = NodePath("../flash_status")
+locked_overlay = NodePath("../locked_overlay")
+locked_label = NodePath("../locked_label")
+character_sprite = NodePath("../flash")
+locked_material = ExtResource("15_lot57")
+
+[node name="flash_status" type="Label" parent="character_select/flash"]
+layout_mode = 0
+offset_left = -1620.0
+offset_top = 101.0
+offset_right = -1580.0
+offset_bottom = 124.0
+script = ExtResource("8_6nojh")
+variable_name = "flash_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="batman" type="Control" parent="character_select"]
+layout_mode = 2
+
+[node name="batman" type="Sprite2D" parent="character_select/batman"]
+z_index = 10
+position = Vector2(745, 681)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("5_bnqek")
 centered = false
 
-[node name="cyborg" type="Sprite2D" parent="character_select"]
-visible = false
+[node name="locked_overlay" type="ColorRect" parent="character_select/batman"]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 680.0
+offset_right = 1206.0
+offset_bottom = 941.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="locked_label" type="Label" parent="character_select/batman"]
 z_index = 10
-position = Vector2(196, 117)
-scale = Vector2(0.796354, 0.784259)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 748.0
+offset_top = 817.0
+offset_right = 1208.0
+offset_bottom = 937.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 100
+text = "NOT ASSEMBLED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="highlight" type="Panel" parent="character_select/batman"]
+visible = false
+z_index = 100
+layout_mode = 0
+offset_left = 734.0
+offset_top = 674.0
+offset_right = 1780.0
+offset_bottom = 1342.0
+scale = Vector2(0.458153, 0.405697)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_agftb")
+
+[node name="state" type="Node" parent="character_select/batman" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("6_k1f14")
+status_label = NodePath("../batman_status")
+locked_overlay = NodePath("../locked_overlay")
+locked_label = NodePath("../locked_label")
+character_sprite = NodePath("../batman")
+locked_material = ExtResource("15_lot57")
+
+[node name="batman_status" type="Label" parent="character_select/batman"]
+layout_mode = 0
+offset_left = -1551.0
+offset_top = 1392.0
+offset_right = -1327.0
+offset_bottom = 1529.0
+theme_override_font_sizes/font_size = 100
+text = "TEST"
+script = ExtResource("8_6nojh")
+variable_name = "batman_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="cyborg" type="Control" parent="character_select"]
+layout_mode = 2
+
+[node name="cyborg" type="Sprite2D" parent="character_select/cyborg"]
+z_index = 10
+position = Vector2(1242, 134)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("6_67y1v")
 centered = false
 
-[node name="superman" type="Sprite2D" parent="character_select"]
-visible = false
+[node name="locked_overlay" type="ColorRect" parent="character_select/cyborg"]
+layout_mode = 0
+offset_left = 1241.0
+offset_top = 133.0
+offset_right = 1704.0
+offset_bottom = 395.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="locked_label" type="Label" parent="character_select/cyborg"]
 z_index = 10
-position = Vector2(196, 117)
-scale = Vector2(0.796354, 0.784259)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 1247.0
+offset_top = 271.0
+offset_right = 1702.0
+offset_bottom = 391.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 100
+text = "NOT ASSEMBLED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="highlight" type="Panel" parent="character_select/cyborg"]
+visible = false
+z_index = 100
+layout_mode = 0
+offset_left = 1234.0
+offset_top = 128.0
+offset_right = 2280.0
+offset_bottom = 796.0
+scale = Vector2(0.458153, 0.405697)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_stfrn")
+
+[node name="state" type="Node" parent="character_select/cyborg" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("6_k1f14")
+status_label = NodePath("../cyborg_status")
+locked_overlay = NodePath("../locked_overlay")
+locked_label = NodePath("../locked_label")
+character_sprite = NodePath("../cyborg")
+locked_material = ExtResource("15_lot57")
+
+[node name="cyborg_status" type="Label" parent="character_select/cyborg"]
+layout_mode = 0
+offset_left = -1360.0
+offset_top = 224.0
+offset_right = -1320.0
+offset_bottom = 247.0
+script = ExtResource("8_6nojh")
+variable_name = "cyborg_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="superman" type="Control" parent="character_select"]
+layout_mode = 2
+
+[node name="superman" type="Sprite2D" parent="character_select/superman"]
+z_index = 10
+position = Vector2(1239, 405)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("7_k1f14")
 centered = false
 
-[node name="aquaman" type="Sprite2D" parent="character_select"]
-visible = false
+[node name="locked_overlay" type="ColorRect" parent="character_select/superman"]
+layout_mode = 0
+offset_left = 1238.0
+offset_top = 405.0
+offset_right = 1699.0
+offset_bottom = 664.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="locked_label" type="Label" parent="character_select/superman"]
 z_index = 10
-position = Vector2(196, 117)
-scale = Vector2(0.796354, 0.784259)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 1239.0
+offset_top = 544.0
+offset_right = 1697.0
+offset_bottom = 664.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 100
+text = "NOT ASSEMBLED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="highlight" type="Panel" parent="character_select/superman"]
+visible = false
+z_index = 100
+layout_mode = 0
+offset_left = 1230.0
+offset_top = 399.0
+offset_right = 2276.0
+offset_bottom = 1067.0
+scale = Vector2(0.458153, 0.405697)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jt3u7")
+
+[node name="state" type="Node" parent="character_select/superman" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("6_k1f14")
+status_label = NodePath("../superman_status")
+locked_overlay = NodePath("../locked_overlay")
+locked_label = NodePath("../locked_label")
+character_sprite = NodePath("../superman")
+locked_material = ExtResource("15_lot57")
+
+[node name="superman_status" type="Label" parent="character_select/superman"]
+layout_mode = 0
+offset_left = -1345.0
+offset_top = 303.0
+offset_right = -1305.0
+offset_bottom = 326.0
+script = ExtResource("8_6nojh")
+variable_name = "superman_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="aquaman" type="Control" parent="character_select"]
+layout_mode = 2
+
+[node name="aquaman" type="Sprite2D" parent="character_select/aquaman"]
+z_index = 10
+position = Vector2(1235, 675)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("8_sevyy")
 centered = false
+
+[node name="locked_overlay" type="ColorRect" parent="character_select/aquaman"]
+layout_mode = 0
+offset_left = 1235.0
+offset_top = 675.0
+offset_right = 1696.0
+offset_bottom = 934.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="locked_label" type="Label" parent="character_select/aquaman"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 1233.0
+offset_top = 818.0
+offset_right = 1703.0
+offset_bottom = 938.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+theme_override_fonts/font = ExtResource("5_67y1v")
+theme_override_font_sizes/font_size = 100
+text = "NOT ASSEMBLED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="highlight" type="Panel" parent="character_select/aquaman"]
+visible = false
+layout_mode = 0
+offset_left = 1226.0
+offset_top = 670.0
+offset_right = 2272.0
+offset_bottom = 1338.0
+scale = Vector2(0.458153, 0.405697)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wbg8m")
+
+[node name="state" type="Node" parent="character_select/aquaman" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("6_k1f14")
+status_label = NodePath("../aquaman_status")
+locked_overlay = NodePath("../locked_overlay")
+locked_label = NodePath("../locked_label")
+character_sprite = NodePath("../aquaman")
+locked_material = ExtResource("15_lot57")
+
+[node name="aquaman_status" type="Label" parent="character_select/aquaman"]
+layout_mode = 0
+offset_left = -1176.0
+offset_top = 838.0
+offset_right = -1136.0
+offset_bottom = 861.0
+script = ExtResource("8_6nojh")
+variable_name = "aquaman_mode_status"
+min_players = 1
+max_players = 4

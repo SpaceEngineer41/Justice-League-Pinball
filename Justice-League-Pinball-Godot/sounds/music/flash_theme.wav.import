@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b7gne67ru04g"
+uid="uid://cftpelwo2o1kr"
 path="res://.godot/imported/flash_theme.wav-839932c82432d6f80f0105f10818e151.sample"
 
 [deps]
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=2
+compress/mode=0

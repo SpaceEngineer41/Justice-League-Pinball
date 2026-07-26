@@ -125,9 +125,15 @@ event_player:
     - battle_themyscira_inc_drops
     - battle_themyscira_play_drop_video
 
-  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==1}: battle_themyscira_x1
-  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==2}: battle_themyscira_x2
-  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==3}: battle_themyscira_x3
+  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==1}: 
+    - clear_battle_location_videos
+    - battle_themyscira_x1
+  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==2}: 
+    - clear_battle_location_videos
+    - battle_themyscira_x2
+  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==3}: 
+    - clear_battle_location_videos
+    - battle_themyscira_x3
 
   # ---------------------------------------------------------------------------
   # ATLANTIS (index 1):
@@ -154,12 +160,24 @@ event_player:
     - battle_atlantis_play_bank_video
 
   # Route x1-x6 based on total bank hits in Atlantis
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==1}: battle_atlantis_x1
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==2}: battle_atlantis_x2
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==3}: battle_atlantis_x3
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==4}: battle_atlantis_x4
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==5}: battle_atlantis_x5
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==6}: battle_atlantis_x6
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==1}: 
+    - clear_battle_location_videos
+    - battle_atlantis_x1
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==2}: 
+    - clear_battle_location_videos
+    - battle_atlantis_x2
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==3}: 
+    - clear_battle_location_videos
+    - battle_atlantis_x3
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==4}: 
+    - clear_battle_location_videos
+    - battle_atlantis_x4
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==5}: 
+    - clear_battle_location_videos
+    - battle_atlantis_x5
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==6}: 
+    - clear_battle_location_videos
+    - battle_atlantis_x6
 
   # --- BANK READY LOGIC (CENTER BANK that arms Steppenwolf) ---
   drop_target_bank_center_bank_down{device.drop_target_banks.center_bank.complete}:
@@ -254,6 +272,33 @@ event_player:
 # VIDEO PLAYBACK (slides)
 # -----------------------------------------------------------------------------
 slide_player:
+  clear_battle_location_videos:
+    themyscira_x1:
+      action: remove
+    themyscira_x2:
+      action: remove
+    themyscira_x3:
+      action: remove
+    themyscira_complete:
+      action: remove
+
+    atlantis_x1:
+      action: remove
+    atlantis_x2:
+      action: remove
+    atlantis_x3:
+      action: remove
+    atlantis_x5:
+      action: remove
+    atlantis_x6:
+      action: remove
+    atlantis_x7:
+      action: remove
+    atlantis_steppenwolf_x1:
+      action: remove
+    atlantis_complete:
+      action: remove
+  
   # Themyscira
   battle_themyscira_x1:
     themyscira_x1:

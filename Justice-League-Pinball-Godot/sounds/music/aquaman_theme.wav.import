@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bve0scmc4e2p5"
+uid="uid://crwxgwwkw56eb"
 path="res://.godot/imported/aquaman_theme.wav-fd5a2d0685288ef0e84bad868a82ea42.sample"
 
 [deps]
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=2
+compress/mode=0

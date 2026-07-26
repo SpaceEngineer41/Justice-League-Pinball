@@ -3,104 +3,233 @@
 mode:
   start_events: mode_base_started
 
-slide_player:
+event_player:
   counter_flash_count_hit{count==1}:
-    flash_x1:
-      expire: 7.1s
-      priority: 900
+    - clear_shot_videos
+    - show_flash_x1
   counter_flash_count_hit{count==2}:
+    - clear_shot_videos
+    - show_flash_x2
+  counter_flash_count_hit{count==3}:
+    - clear_shot_videos
+    - show_flash_x3
+
+  counter_batman_count_hit{count==1}:
+    - clear_shot_videos
+    - show_batman_x1
+  counter_batman_count_hit{count==2}:
+    - clear_shot_videos
+    - show_batman_x2
+  counter_batman_count_hit{count==3}:
+    - clear_shot_videos
+    - show_batman_x3
+  counter_batman_count_hit{count==4}:
+    - clear_shot_videos
+    - show_batman_x4
+
+  shot_line_1_hit:
+    - clear_shot_videos
+    - show_cyborg_x1
+  shot_line_2_hit:
+    - clear_shot_videos
+    - show_cyborg_x2
+  shot_line_3_hit:
+    - clear_shot_videos
+    - show_cyborg_x3
+
+  counter_superman_count_hit{count==1}:
+    - clear_shot_videos
+    - show_superman_x1
+  counter_superman_count_hit{count==2}:
+    - clear_shot_videos
+    - show_superman_x2
+  counter_superman_count_hit{count==3}:
+    - clear_shot_videos
+    - show_superman_x3
+  counter_superman_count_hit{count==4}:
+    - clear_shot_videos
+    - show_superman_x4
+
+  counter_aquaman_count_hit{count==1}:
+    - clear_shot_videos
+    - show_aquaman_x1
+  counter_aquaman_count_hit{count==2}:
+    - clear_shot_videos
+    - show_aquaman_x2
+  counter_aquaman_count_hit{count==3}:
+    - clear_shot_videos
+    - show_aquaman_x3
+
+  shot_left_drop_left_hit:
+    - clear_shot_videos
+    - show_wonder_woman_x1
+  shot_left_drop_middle_hit:
+    - clear_shot_video
+    - show_wonder_woman_x2
+  shot_left_drop_right_hit:
+    - clear_shot_videos
+    - show_wonder_woman_x3
+  shot_right_drop_left_hit:
+    - clear_shot_videos
+    - show_wonder_woman_x4
+  shot_right_drop_middle_hit:
+    - clear_shot_videos
+    - show_wonder_woman_x5
+  shot_right_drop_right_hit:
+    - clear_shot_videos
+    - show_wonder_woman_x6
+
+slide_player:
+  show_flash_x1:
     flash_x1:
       expire: 7.1s
       priority: 900
-  counter_flash_count_hit{count==3}:
-    flash_x1:
+  show_flash_x2:
+    flash_x2:
+      expire: 7.1s
+      priority: 900
+  show_flash_x3:
+    flash_x3:
       expire: 7.1s
       priority: 900
 
-  counter_batman_count_hit{count==1}:
+  show_batman_x1:
     batman_x1:
       # expire: 7.1s
       priority: 900
-  counter_batman_count_hit{count==2}:
+  show_batman_x2:
     batman_x2:
       # expire: 7.1s
       priority: 900
-  counter_batman_count_hit{count==3}:
+  show_batman_x3:
     batman_x3:
       # expire: 7.1s
       priority: 900
-  counter_batman_count_hit{count==4}:
+  show_batman_x4:
     batman_x4:
       # expire: 7.1s
       priority: 900
 
-  shot_line_1_hit:
+  show_cyborg_x1:
     cyborg_x1:
       # expire: 7.1s
       priority: 900
-  shot_line_2_hit:
+  show_cyborg_x2:
     cyborg_x2:
       # expire: 7.1s
       priority: 900
-  shot_line_3_hit:
+  show_cyborg_x3:
     cyborg_x3:
       # expire: 7.1s
       priority: 900
 
-  counter_superman_count_hit{count==1}:
+  show_superman_x1:
     superman_x1:
       # expire: 7.1s
       priority: 900
-  counter_superman_count_hit{count==2}:
+  show_superman_x2:
     superman_x2:
       # expire: 7.1s
       priority: 900
-  counter_superman_count_hit{count==3}:
+  show_superman_x3:
     superman_x3:
       # expire: 7.1s
       priority: 900
-  counter_superman_count_hit{count==4}:
+  show_superman_x4:
     superman_x4:
       # expire: 7.1s
       priority: 900
 
-  counter_aquaman_count_hit{count==1}:
+  show_aquaman_x1:
     aquaman_x1:
       # expire: 7.1s
       priority: 900
-  counter_aquaman_count_hit{count==2}:
+  show_aquaman_x2:
     aquaman_x2:
       # expire: 7.1s
       priority: 900
-  counter_aquaman_count_hit{count==3}:
+  show_aquaman_x3:
     aquaman_x3:
       # expire: 7.1s
       priority: 900
 
-  shot_left_drop_left_hit:
+  show_wonder_woman_x1:
       wonder_woman_x1:
         # expire: 7.1s
         priority: 900
-  shot_left_drop_middle_hit:
+  show_wonder_woman_x2:
       wonder_woman_x2:
         # expire: 7.1s
         priority: 900
-  shot_left_drop_right_hit:
+  show_wonder_woman_x3:
       wonder_woman_x3:
         # expire: 7.1s
         priority: 900
-  shot_right_drop_left_hit:
+  show_wonder_woman_x4:
       wonder_woman_x4:
         # expire: 7.1s
         priority: 900
-  shot_right_drop_middle_hit:
+  show_wonder_woman_x5:
       wonder_woman_x5:
         # expire: 7.1s
         priority: 900
-  shot_right_drop_right_hit:
+  show_wonder_woman_x6:
       wonder_woman_x6:
         # expire: 7.1s
         priority: 900
+
+  clear_shot_videos:
+    flash_x1:
+      action: remove
+    flash_x2:
+      action: remove
+    flash_x3:
+      action: remove
+
+    batman_x1:
+      action: remove
+    batman_x2:
+      action: remove
+    batman_x3:
+      action: remove
+    batman_x4:
+      action: remove
+
+    cyborg_x1:
+      action: remove
+    cyborg_x2:
+      action: remove
+    cyborg_x3:
+      action: remove
+
+    superman_x1:
+      action: remove
+    superman_x2:
+      action: remove
+    superman_x3:
+      action: remove
+    superman_x4:
+      action: remove
+
+    aquaman_x1:
+      action: remove
+    aquaman_x2:
+      action: remove
+    aquaman_x3:
+      action: remove
+
+    wonder_woman_x1:
+      action: remove
+    wonder_woman_x2:
+      action: remove
+    wonder_woman_x3:
+      action: remove
+    wonder_woman_x4:
+      action: remove
+    wonder_woman_x5:
+      action: remove
+    wonder_woman_x6:
+      action: remove
 
 shots:
   justice_league_multiball:
@@ -259,9 +388,25 @@ variable_player:
       string: complete
     flash_cycle_multi: 1
   counter_flash_count_hit:
-    flash_last_award:
+    # Absolute award for most points scored with flash shots???
+    flash_award_total:
+      action: set
       int: 10000 * device.counters.flash_count.value * current_player.flash_cycle_mult
-    score: 10000 * device.counters.flash_count.value * current_player.flash_cycle_mult
+    # NEW: delta for this hit
+    flash_last_award_change:
+      action: set
+      int: 10000 * device.counters.flash_count.value * current_player.flash_cycle_mult
+    score:
+      action: add
+      int: 10000 * device.counters.flash_count.value * current_player.flash_cycle_mult
+  flash_completion_points:
+    # NEW: completion delta
+    flash_last_award_change:
+      action: set
+      int: 250000 * current_player.flash_cycle_mult
+    score:
+      action: add
+      int: 250000 * current_player.flash_cycle_mult
 
   superman_count_complete:
     superman_mode_status:
@@ -269,9 +414,25 @@ variable_player:
       string: complete
     superman_cycle_multi: 1
   counter_superman_count_hit:
-    superman_last_award:
+    # Absolute award for most points scored with flash shots???
+    superman_award_total:
+      action: set
       int: 10000 * device.counters.superman_count.value * current_player.superman_cycle_mult
-    score: 10000 * device.counters.superman_count.value * current_player.superman_cycle_mult
+    # NEW: delta for this hit
+    superman_last_award_change:
+      action: set
+      int: 10000 * device.counters.superman_count.value * current_player.superman_cycle_mult
+    score:
+      action: add
+      int: 10000 * device.counters.superman_count.value * current_player.superman_cycle_mult
+  superman_completion_points:
+    # NEW: completion delta
+    superman_last_award_change:
+      action: set
+      int: 250000 * current_player.superman_cycle_mult
+    score:
+      action: add
+      int: 250000 * current_player.superman_cycle_mult
 
   aquaman_count_complete:
     aquaman_mode_status:
@@ -279,9 +440,25 @@ variable_player:
       string: complete
     aquaman_cycle_multi: 1
   counter_aquaman_count_hit:
-    aquaman_last_award:
+    # Absolute award for most points scored with flash shots???
+    aquaman_award_total:
+      action: set
       int: 10000 * device.counters.aquaman_count.value * current_player.aquaman_cycle_mult
-    score: 10000 * device.counters.aquaman_count.value * current_player.aquaman_cycle_mult
+    # NEW: delta for this hit
+    aquaman_last_award_change:
+      action: set
+      int: 10000 * device.counters.aquaman_count.value * current_player.aquaman_cycle_mult
+    score:
+      action: add
+      int: 10000 * device.counters.aquaman_count.value * current_player.aquaman_cycle_mult
+  aquaman_completion_points:
+    # NEW: completion delta
+    aquaman_last_award_change:
+      action: set
+      int: 250000 * current_player.aquaman_cycle_mult
+    score:
+      action: add
+      int: 250000 * current_player.aquaman_cycle_mult
 
   batman_count_complete:
     batman_mode_status:
@@ -289,10 +466,27 @@ variable_player:
       string: complete
     batman_cycle_multi: 1
   counter_batman_count_hit:
-    batman_last_award:
+    # Absolute award for most points scored with flash shots???
+    batman_award_total:
+      action: set
       int: 10000 * device.counters.batman_count.value * current_player.batman_cycle_mult
-    score: 10000 * device.counters.batman_count.value * current_player.batman_cycle_mult
+    # NEW: delta for this hit
+    batman_last_award_change:
+      action: set
+      int: 10000 * device.counters.batman_count.value * current_player.batman_cycle_mult
+    score:
+      action: add
+      int: 10000 * device.counters.batman_count.value * current_player.batman_cycle_mult
+  batman_completion_points:
+    # NEW: completion delta
+    batman_last_award_change:
+      action: set
+      int: 250000 * current_player.batman_cycle_mult
+    score:
+      action: add
+      int: 250000 * current_player.batman_cycle_mult
 
+#################### Need to change wonder woman logic since there isn't a counter ############################################
   wonder_woman_count_complete:
     wonder_woman_mode_status:
       action: set
@@ -302,7 +496,8 @@ variable_player:
     wonder_woman_last_award:
       int: 10000 * device.counters.wonder_woman_count.value * current_player.wonder_woman_cycle_mult
     score: 10000 * device.counters.wonder_woman_count.value * current_player.wonder_woman_cycle_mult
-    
+
+#################### Need to change cyborg logic since there isn't a counter ############################################    
   cyborg_count_complete:
     cyborg_mode_status:
       action: set
@@ -315,16 +510,16 @@ variable_player:
 
   wonder_woman_completion_points:
     score: 250000
-  flash_completion_points:
-    score: 250000
-  batman_completion_points:
-    score: 250000
+  # flash_completion_points:
+  #   score: 250000
+  # batman_completion_points:
+  #   score: 250000
   cyborg_completion_points:
     score: 250000
-  superman_completion_points:
-    score: 250000
-  aquaman_completion_points:
-    score: 250000
+  # superman_completion_points:
+  #   score: 250000
+  # aquaman_completion_points:
+  #   score: 250000
   justice_league_completion_points:
     score: 500000
 
