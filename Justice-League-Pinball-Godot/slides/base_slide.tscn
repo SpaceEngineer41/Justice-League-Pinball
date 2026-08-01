@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt44bgbhqa7sg"]
+[gd_scene load_steps=12 format=3 uid="uid://dt44bgbhqa7sg"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_a4vdr"]
-[ext_resource type="Texture2D" uid="uid://bv7cf4sajbsn1" path="res://images/Home Screen_New.png" id="2_3761s"]
+[ext_resource type="Texture2D" uid="uid://2cvfp3hg44ck" path="res://images/Home Screen_New.png" id="2_3761s"]
+[ext_resource type="Texture2D" uid="uid://dylogeg8xk3i4" path="res://images/Flash HUB.png" id="2_e3p2o"]
+[ext_resource type="Texture2D" uid="uid://bsb612fdcid8f" path="res://images/Aquaman HUB.png" id="3_8q07j"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="3_bu5wf"]
+[ext_resource type="Texture2D" uid="uid://3axnwj0q1b2m" path="res://images/Superman HUB.png" id="4_x80wu"]
+[ext_resource type="Texture2D" uid="uid://2bpuqopmeejt" path="res://images/Wonder Woman HUB.png" id="5_f4y2a"]
+[ext_resource type="Texture2D" uid="uid://dhunhfdih2xx7" path="res://images/Cyborg HUB.png" id="6_rxqy6"]
+[ext_resource type="Texture2D" uid="uid://c320ex0eblcqn" path="res://images/Batman HUB.png" id="7_ev3qb"]
+[ext_resource type="Script" uid="uid://b1p2buicq86d5" path="res://character_lock_toggle.gd" id="9_x80wu"]
+[ext_resource type="Material" uid="uid://qx155bxeilea" path="res://materials/locked_grayscale_material.tres" id="10_f4y2a"]
 
 [node name="BaseSlide" type="Control"]
 layout_mode = 3
@@ -13,6 +21,151 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a4vdr")
 metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="Flash Hub" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(1820, 750)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("2_e3p2o")
+
+[node name="state" type="Node" parent="Flash Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("9_x80wu")
+status_label = NodePath("../flash_status")
+locked_overlay = NodePath("")
+locked_label = NodePath("")
+character_sprite = NodePath("..")
+locked_material = ExtResource("10_f4y2a")
+
+[node name="flash_status" type="Label" parent="Flash Hub"]
+offset_left = -1620.0
+offset_top = 101.0
+offset_right = -1580.0
+offset_bottom = 124.0
+script = ExtResource("3_bu5wf")
+variable_name = "flash_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="Aquaman Hub" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(1820, 550)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("3_8q07j")
+
+[node name="state" type="Node" parent="Aquaman Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("9_x80wu")
+status_label = NodePath("../aquaman_status")
+locked_overlay = NodePath("")
+locked_label = NodePath("")
+character_sprite = NodePath("..")
+locked_material = ExtResource("10_f4y2a")
+
+[node name="aquaman_status" type="Label" parent="Aquaman Hub"]
+offset_left = -1176.0
+offset_top = 838.0
+offset_right = -1136.0
+offset_bottom = 861.0
+script = ExtResource("3_bu5wf")
+variable_name = "aquaman_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="Superman Hub" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(1820, 350)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("4_x80wu")
+
+[node name="state" type="Node" parent="Superman Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("9_x80wu")
+status_label = NodePath("../superman_status")
+locked_overlay = NodePath("")
+locked_label = NodePath("")
+character_sprite = NodePath("..")
+locked_material = ExtResource("10_f4y2a")
+
+[node name="superman_status" type="Label" parent="Superman Hub"]
+offset_left = -1345.0
+offset_top = 303.0
+offset_right = -1305.0
+offset_bottom = 326.0
+script = ExtResource("3_bu5wf")
+variable_name = "superman_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="Wonder Woman Hub" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(100, 750)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("5_f4y2a")
+
+[node name="state" type="Node" parent="Wonder Woman Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("9_x80wu")
+status_label = NodePath("../wonder_woman_status")
+locked_overlay = NodePath("")
+locked_label = NodePath("")
+character_sprite = NodePath("..")
+locked_material = ExtResource("10_f4y2a")
+
+[node name="wonder_woman_status" type="Label" parent="Wonder Woman Hub"]
+offset_left = -1616.0
+offset_top = 566.0
+offset_right = -1576.0
+offset_bottom = 589.0
+script = ExtResource("3_bu5wf")
+variable_name = "wonder_woman_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="Cyborg Hub" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(100, 550)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("6_rxqy6")
+
+[node name="state" type="Node" parent="Cyborg Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+script = ExtResource("9_x80wu")
+status_label = NodePath("../cyborg_status")
+locked_overlay = NodePath("")
+locked_label = NodePath("")
+character_sprite = NodePath("..")
+locked_material = ExtResource("10_f4y2a")
+
+[node name="cyborg_status" type="Label" parent="Cyborg Hub"]
+offset_left = -1360.0
+offset_top = 224.0
+offset_right = -1320.0
+offset_bottom = 247.0
+script = ExtResource("3_bu5wf")
+variable_name = "cyborg_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="Batman Hub" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(100, 350)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("7_ev3qb")
+
+[node name="batman_status" type="Label" parent="Batman Hub"]
+offset_left = -1551.0
+offset_top = 1392.0
+offset_right = -1327.0
+offset_bottom = 1529.0
+theme_override_font_sizes/font_size = 100
+text = "TEST"
+script = ExtResource("3_bu5wf")
+variable_name = "batman_mode_status"
+min_players = 1
+max_players = 4
+
+[node name="state" type="Node" parent="Batman Hub" node_paths=PackedStringArray("status_label", "locked_label", "character_sprite")]
+script = ExtResource("9_x80wu")
+status_label = NodePath("../batman_status")
+locked_label = NodePath("")
+character_sprite = NodePath("..")
+locked_material = ExtResource("10_f4y2a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3761s")

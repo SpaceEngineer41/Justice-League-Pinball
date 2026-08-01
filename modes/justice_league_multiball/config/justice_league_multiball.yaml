@@ -1,25 +1,80 @@
 #config_version=6
 
 mode:
-  start_events: start_justice_league_multiball
-  stop_events: ball_ending
+  start_events:
+    - start_justice_league_multiball
+
+  stop_events:
+    - multiball_justice_league_multiball_ended
+    - ball_ending
+
   priority: 1000
 
+
 slide_player:
-  mode_justice_league_multiball_started: justice_league_multiball
+  mode_justice_league_multiball_started:
+    justice_league_multiball:
+      priority: 1200
+
+  multiball_justice_league_multiball_ended:
+    justice_league_multiball:
+      action: remove
+
+  flipper_cancel:
+    justice_league_multiball:
+      action: remove
+
 
 event_player:
-  mode_justice_league_multiball_will_stop: justice_league_count_reset 
+  # Stop the currently active character mode and enable all character powers.
+  mode_justice_league_multiball_started:
+    - justice_league_multiball_beginning
+    - justice_league_enable_all_powers
+
+  # When multiball returns to one ball:
+  # disable the combined powers, reset all character progress,
+  # and enable double scoring for the next collection cycle.
+  #
+  # No character mode is resumed. The player must assemble a character
+  # again and use Character Select to begin a new character mode.
+  multiball_justice_league_multiball_ended:
+    - justice_league_disable_all_powers
+    - justice_league_count_reset
+    - justice_league_second_cycle
+
+
+variable_player:
+  justice_league_enable_all_powers:
+    justice_league_all_powers_active:
+      action: set
+      int: 1
+
+  justice_league_disable_all_powers:
+    justice_league_all_powers_active:
+      action: set
+      int: 0
+
+  # Clear the old resume flag so the next character selection follows
+  # the normal fresh-selection path and plays its intro.
+  multiball_justice_league_multiball_ended:
+    character_mode_resuming:
+      action: set
+      int: 0
+
 
 multiballs:
   justice_league_multiball:
+    ball_count_type: total
+    ball_count: 3
+
     add_a_ball_grace_period: 5s
     add_a_ball_hurry_up_time: 5s
     add_a_ball_shoot_again: 30s
-    ball_count_type: total
-    ball_count: 3
-    # disable_events:
-    start_events: justice_league_multiball_shot_hit
-    
+
+    start_events:
+      - mode_justice_league_multiball_started
+
+
 show_player:
-  mode_justice_league_multiball_started: justice_league_complete
+  mode_justice_league_multiball_started:
+    justice_league_complete

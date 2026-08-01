@@ -1,26 +1,56 @@
 #config_version=6
 
 mode:
-  start_events: start_aquaman_mode,
-  stop_events: stop_mode_aquaman, start_character_select_aquaman
+  start_events:
+    - start_aquaman_mode
+    - resume_aquaman_mode
+
+  stop_events:
+    - stop_mode_aquaman
+    - start_character_select_mode
+    - justice_league_multiball_beginning
+
   priority: 600
 
-variable_player: 
+
+variable_player:
   shot_left_ramp_hit:
     score: 25000
 
+
 slide_player:
-  mode_aquaman_started: 
+  # Fresh selection only: play the character intro.
+  mode_aquaman_started{current_player.character_mode_resuming == 0}:
     aquaman_character_select:
+      priority: 900
       expire: 5s
 
+  # Resume skips the intro. Add a persistent Aquaman gameplay slide
+  # here later if this character receives one.
+  #
+  # mode_aquaman_started{current_player.character_mode_resuming == 1}:
+  #   aquaman_mode_background:
+  #     priority: 100
+
+
 sound_player:
-  slide_aquaman_character_select_removed: 
+  # Fresh selection: start music after the intro is removed.
+  slide_aquaman_character_select_removed:
     aquaman_theme:
       action: play
       loops: -1
       bus: music
       volume: 0.05
 
+  # Resume: start music immediately without replaying the intro.
+  mode_aquaman_started{current_player.character_mode_resuming == 1}:
+    aquaman_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.05
 
-        
+  mode_aquaman_stopping:
+    aquaman_theme:
+      action: stop
+      bus: music

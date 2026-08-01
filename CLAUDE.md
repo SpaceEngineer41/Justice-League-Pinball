@@ -27,12 +27,27 @@ There is no in-repo build/test/lint tooling for either half (no requirements.txt
 - `addons/mpf-gmc/` is a vendored third-party framework (the Godot Media Controller). Treat it as upstream/read-only — put game-specific logic outside it.
 - `gmc.cfg` — keyboard-to-switch mappings for testing without real cabinet hardware, plus sound bus definitions (`music`, `effects`, `voice`).
 - `slides/` — the display slides (~40 `.tscn` files) plus their root scripts (`character_select_slide.gd`, `mpf_character_unlocks.gd`, `character_lock_toggle.gd`, `initials_logic.gd`, `alfred.gd`). Slide root scripts extend an addon base class (e.g. `MPFSceneBase`) and receive machine state via MPF signal callbacks — e.g. `MPF.server.player_variable_changed` → `_on_current_item_var_value_changed()` in `character_select_slide.gd` — rather than polling. Follow that event-driven pattern for new slides.
-- `scripts/` — supporting controllers not tied to one slide (`character_select_grid_controller.gd`, `character_info_panel_controller.gd`, `character_state.gd`, `mpf_grid_highlight.gd`).
+- `scripts/` — supporting controllers not tied to one slide (`character_select_grid_controller.gd`, `character_info_panel_controller.gd`, `character_state.gd`, `mpf_grid_highlight.gd`). Note: on the live `character_select.tscn` scene, the actually-attached scripts are `character_lock_toggle.gd` (repo root) + `character_select_grid_controller.gd` + `character_select_info_panel.gd` — `character_select_slide.gd`, `mpf_character_unlocks.gd`, `character_state.gd`, and `character_info_panel_controller.gd` are earlier iterations no longer referenced by any `.tscn`.
+- `widgets/` — `MPFWidget`-rooted scenes shown via `widget_player:` (not `slide_player:`), addable to any slide or to the display's special always-on-top `_overlay` container (`slide: _overlay` in the widget's YAML settings) so they persist regardless of which slide is currently active. `widgets/roster_icons/` holds the per-hero roster HUD icons (see below).
 - `shaders/` + `materials/` — currently just the grayscale "locked character" effect (`grayscale.gdshader`, `locked_grayscale*.tres`).
 - `videos/`, `images/`, `sounds/`, `fonts/` — large binary media assets, tracked via Git LFS.
 - **Ignore `project-DreamQuest.godot`** — a stray leftover project file, not the active one (`project.godot` is active).
 - **Ignore the sibling `justice-league-pinball-(4.4)/` directory** at the repo root — an untracked, pre-upgrade Godot 4.4 backup copy of this project (1.3 GB, not part of git). Never edit files there; always work in `Justice-League-Pinball-Godot/`.
 
+## Roster HUD (in progress)
+
+Persistent on-screen hero-status HUD: one icon per hero, greyed out while `<hero>_mode_status != complete`, full color once assembled, meant to stay visible on top of every slide during a ball (not just the home screen).
+
+- Mechanism: `modes/base/config/base.yaml` has a `widget_player:` block that plays/removes `widgets/roster_icons/<hero>_roster_icon.tscn` widgets on `mode_base_started`/`mode_base_stopping`, targeting `slide: _overlay` — the mpf-gmc addon's dedicated always-on-top container (`MPFDisplay._get_overlay_slide()` in `addons/mpf-gmc/classes/mpf_display.gd`, `z_index=4000`), not the normal slide stack. This was the first use of `widget_player`/`slide: _overlay` in this repo.
+- Each widget reuses existing pieces unmodified: `mpf_variable.gd` (binds a hidden Label to the `<hero>_mode_status` player var) + `character_lock_toggle.gd` (already used on `character_select.tscn`; swaps the icon's material between normal and `materials/locked_grayscale_material.tres` based on that Label's text).
+- **Status: Batman only, proof-of-concept.** `batman_roster_icon.tscn` and the `base.yaml` wiring exist and are pending manual in-editor verification (no in-repo test tooling to verify headlessly — see below). Icon art is a placeholder (`images/batman_logo.png`); real per-hero icon art is still needed. Once verified, the same pattern repeats for superman/flash/aquaman/cyborg/wonder_woman.
+
 ## Conventions
 
-- Git LFS covers binary media in both halves of the repo (`*.wav`, `*.png`, `*.jpg`, `*.mp4`, `*.ogv`, `*.ttf`, etc. — see `.gitattributes` at repo root and inside `Justice-League-Pinball-Godot/`, which track an overlapping but not identical set of extensions).
+- Git LFS covers binary media in both halves of the repo (`*.wav`, `*.png`, `*.jpg`, `*.mp4`, `*.ogv`, `*.ttf`, etc. — see `.gitattributes` at repo root and inside `Justice-League-Pinball-Godot/`, which track an overlapping but not identical set of extensions). GitHub's free LFS tier defaults to 1GB storage/1GB bandwidth per month — a push that fails on an LFS quota error is a GitHub billing issue, not a git mistake.
+
+## Git workflow
+
+- Two branches: `Working` is where day-to-day development happens (commit often, push regularly — nothing is backed up until it's pushed to `origin`); `main` is the stable "known-good" checkpoint branch, fast-forwarded from `Working` only when the game is in a solid, demoable state (`git checkout main && git merge Working && git push origin main`).
+- `.gitignore` (repo root) excludes `.vs/`, `.claude/settings.local.json`, and the sibling `justice-league-pinball-(4.4)/` backup folder — none of those should ever be committed.
+- Annotated tags mark known-good checkpoints worth being able to revert to, named `checkpoint-<date>-<short-description>` (e.g. `checkpoint-2026-07-25-working-game`). Create one whenever `main` is updated to a build worth preserving.

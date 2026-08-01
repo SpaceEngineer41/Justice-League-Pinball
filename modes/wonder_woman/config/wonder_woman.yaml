@@ -1,9 +1,17 @@
 #config_version=6
 
 mode:
-  start_events: start_wonder_woman_mode,
-  stop_events: stop_mode_wonder_woman, start_character_select_wonder_woman
+  start_events:
+    - start_wonder_woman_mode
+    - resume_wonder_woman_mode
+
+  stop_events:
+    - stop_mode_wonder_woman
+    - start_character_select_mode
+    - justice_league_multiball_beginning
+
   priority: 600
+
 
 variable_player:
   shot_left_drop_left_hit:
@@ -19,17 +27,40 @@ variable_player:
   shot_right_drop_right_hit:
     score: 25000
 
+
 slide_player:
-  mode_wonder_woman_started: 
+  # Fresh selection only: play the character intro.
+  mode_wonder_woman_started{current_player.character_mode_resuming == 0}:
     wonder_woman_character_select:
+      priority: 900
       expire: 5s
 
+  # Resume skips the intro. Add a persistent Wonder Woman gameplay slide
+  # here later if this character receives one.
+  #
+  # mode_wonder_woman_started{current_player.character_mode_resuming == 1}:
+  #   wonder_woman_mode_background:
+  #     priority: 100
+
+
 sound_player:
-  slide_wonder_woman_character_select_removed: 
+  # Fresh selection: start music after the intro is removed.
+  slide_wonder_woman_character_select_removed:
     wonder_woman_theme:
       action: play
       loops: -1
       bus: music
       volume: 0.05
 
+  # Resume: start music immediately without replaying the intro.
+  mode_wonder_woman_started{current_player.character_mode_resuming == 1}:
+    wonder_woman_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.05
 
+  mode_wonder_woman_stopping:
+    wonder_woman_theme:
+      action: stop
+      bus: music

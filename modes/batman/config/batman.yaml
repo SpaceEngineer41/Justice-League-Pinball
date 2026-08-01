@@ -1,36 +1,60 @@
 #config_version=6
 
 mode:
-  start_events: start_batman_mode
-  stop_events: stop_mode_batman, start_character_select_mode
+  start_events:
+    - start_batman_mode
+    - resume_batman_mode
+
+  stop_events:
+    - stop_mode_batman
+    - start_character_select_mode
+    - justice_league_multiball_beginning
+
   priority: 600
+
 
 variable_player:
   shot_left_ramp_hit:
     score: 25000
-  mode_batman_started:
+
+  mode_batman_started{current_player.character_mode_resuming == 0}:
     score: 1000000
 
-# Show character select first, then (when it is removed) show the background loop slide.
+
 slide_player:
-  mode_batman_started:
+  # Fresh selection only: play the character intro.
+  mode_batman_started{current_player.character_mode_resuming == 0}:
     batman_character_select:
       priority: 900
       expire: 5s
 
-  # This event is automatically posted when the above slide expires/removes
+  # After a fresh intro, restore the normal gameplay background.
   slide_batman_character_select_removed:
     batman_mode_background:
       priority: 100
 
-# Clean up the background slide when the mode ends (prevents “stuck” video layers)
+  # Resume after Justice League Multiball without replaying the intro.
+  mode_batman_started{current_player.character_mode_resuming == 1}:
+    batman_mode_background:
+      priority: 100
+
+
 event_player:
   mode_batman_stopping:
     remove_slide:
       slide: batman_mode_background
 
 sound_player:
+  # Fresh selection: start music after the intro is removed.
   slide_batman_character_select_removed:
+    batman_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.05
+
+  # Resume: start music immediately without replaying the intro.
+  mode_batman_started{current_player.character_mode_resuming == 1}:
     batman_theme:
       action: play
       loops: -1

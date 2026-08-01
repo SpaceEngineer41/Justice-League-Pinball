@@ -9,27 +9,96 @@ mode:
   priority: 100
 
 event_player:
-# Uncomment this if you want the player to select a character at the start of a game.
-
+  # Uncomment this if you want character select at the start of the first ball.
   # ball_started{ball==1}: start_character_select_mode
 
   character_select_batman_selected:
-  -  start_batman_mode
-  character_select_wonder_woman_selected:
-  -  start_wonder_woman_mode
-  character_select_aquaman_selected:
-  -  start_aquaman_mode
-  character_select_cyborg_selected:
-  -  start_cyborg_mode
-  character_select_flash_selected:
-  -  start_flash_mode
-  character_select_superman_selected:
-  -  start_superman_mode
+    - set_active_character_batman
+    - start_batman_mode
 
+  character_select_wonder_woman_selected:
+    - set_active_character_wonder_woman
+    - start_wonder_woman_mode
+
+  character_select_aquaman_selected:
+    - set_active_character_aquaman
+    - start_aquaman_mode
+
+  character_select_cyborg_selected:
+    - set_active_character_cyborg
+    - start_cyborg_mode
+
+  character_select_flash_selected:
+    - set_active_character_flash
+    - start_flash_mode
+
+  character_select_superman_selected:
+    - set_active_character_superman
+    - start_superman_mode
+
+variable_player:
+  set_active_character_batman:
+    active_character:
+      action: set
+      string: batman
+    character_mode_resuming:
+      action: set
+      int: 0
+
+  set_active_character_wonder_woman:
+    active_character:
+      action: set
+      string: wonder_woman
+    character_mode_resuming:
+      action: set
+      int: 0
+
+  set_active_character_aquaman:
+    active_character:
+      action: set
+      string: aquaman
+    character_mode_resuming:
+      action: set
+      int: 0
+
+  set_active_character_cyborg:
+    active_character:
+      action: set
+      string: cyborg
+    character_mode_resuming:
+      action: set
+      int: 0
+
+  set_active_character_flash:
+    active_character:
+      action: set
+      string: flash
+    character_mode_resuming:
+      action: set
+      int: 0
+
+  set_active_character_superman:
+    active_character:
+      action: set
+      string: superman
+    character_mode_resuming:
+      action: set
+      int: 0
 
 slide_player:
   mode_base_started: base_slide
 
+# Persistent roster HUD (hero icons, grey/color by <hero>_mode_status).
+widget_player:
+  mode_base_started:
+    batman_roster_icon:
+      slide: _overlay
+      x: 40
+      y: 20
+  mode_base_stopping:
+    batman_roster_icon:
+      slide: _overlay
+      action: remove
 
 shots:
   shot_left_ramp:
@@ -100,74 +169,3 @@ shots:
     switch: s_left_outlane
   shot_right_outlane:
     switch: s_right_outlane
-
-# uncomment out to add scores to certain base shots....
-variable_player:
-  # shot_left_ramp_hit:
-  #   score: 10000
-  # shot_right_ramp_hit:
-  #   score: 10000
-  # shot_line_1_hit:
-  #   score: 10000
-  # shot_line_2_hit:
-  #   score: 10000
-  # shot_line_3_hit:
-  #   score: 10000
-  # shot_line_kickback_hit:
-  #   score: 10000
-  # shot_pop_lane_left_hit:
-  #   score: 10000
-  # shot_pop_lane_right_hit:
-  #   score: 10000
-  # shot_pop_bumper_left_hit:
-  #   score: 10000
-  # shot_pop_bumper_right_hit:
-  #   score: 10000
-  # shot_pop_bumper_middle_hit:
-  #   score: 10000
-  # shot_right_inlane_hit:
-  #   score: 10000
-  # shot_left_inlane_hit:
-  #   score: 10000
-  # shot_orbit_top_hit:
-  #   score: 10000
-  # shot_orbit_left_hit:
-  #   score: 10000
-  # shot_orbit_right_hit:
-  #   score: 10000
-  # shot_slingshot_left_hit:
-  #   score: 10000
-  # shot_slingshot_right_hit:
-  #   score: 10000
-  # shot_main_drop_left_hit:
-  #   score: 10000
-  # shot_main_drop_middle_hit:
-  #   score: 10000
-  # shot_main_drop_right_hit:
-  #   score: 10000
-  # shot_main_drop_top_hit:
-  #   score: 10000
-  # shot_main_kickback_hit:
-  #   score: 10000
-  # shot_left_drop_left_hit:
-  #   score: 10000
-  # shot_left_drop_middle_hit:
-  #   score: 10000
-  # shot_left_drop_right_hit:
-  #   score: 10000
-  # shot_right_drop_left_hit:
-  #   score: 10000
-  # shot_right_drop_middle_hit:
-  #   score: 10000
-  # shot_right_drop_right_hit:
-  #   score: 10000
-  # shot_mystery_drop_hit:
-  #   score: 10000
-  # shot_mystery_scoop_hit:
-  #   score: 10000
-  # shot_spinner_hit:
-  #   score: 10000
-  # shot_left_outlane_hit:
-  #   score: 10000
-  # shot_right_outlane_hit:
-  #   score: 10000
