@@ -1,26 +1,54 @@
 #config_version=6
 
 mode:
-  start_events: start_superman_mode,
-  stop_events: stop_mode_superman, start_character_select_superman
+  start_events:
+    - start_superman_mode
+    - resume_superman_mode
+
+  stop_events:
+    - stop_mode_superman
+    - start_character_select_mode
+    - justice_league_multiball_beginning
+
   priority: 600
 
-variable_player: 
-  # shot_left_ramp_hit:
-  #   score: 25000
-  # mode_batman_started:
-  #   score: 1000000
- 
+
+variable_player:
+  # Character-specific scoring can be added here.\n
+
 slide_player:
-  mode_superman_started: 
+  # Fresh selection only: play the character intro.
+  mode_superman_started{current_player.character_mode_resuming == 0}:
     superman_character_select:
+      priority: 900
       expire: 5s
 
+  # Resume skips the intro. Add a persistent Superman gameplay slide
+  # here later if this character receives one.
+  #
+  # mode_superman_started{current_player.character_mode_resuming == 1}:
+  #   superman_mode_background:
+  #     priority: 100
+
+
 sound_player:
-  slide_superman_character_select_removed: 
+  # Fresh selection: start music after the intro is removed.
+  slide_superman_character_select_removed:
     superman_theme:
       action: play
       loops: -1
       bus: music
       volume: 0.05
 
+  # Resume: start music immediately without replaying the intro.
+  mode_superman_started{current_player.character_mode_resuming == 1}:
+    superman_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.05
+
+  mode_superman_stopping:
+    superman_theme:
+      action: stop
+      bus: music

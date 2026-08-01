@@ -14,9 +14,9 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Justice League Pinball"
+config/name="Justice League Pinball (4.4)"
 run/main_scene="uid://ds4gduf8660uj"
-config/features=PackedStringArray("4.7", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]

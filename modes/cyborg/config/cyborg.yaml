@@ -1,22 +1,54 @@
 #config_version=6
 
 mode:
-  start_events: start_cyborg_mode,
-  stop_events: stop_mode_cyborg, start_character_select_cyborg
+  start_events:
+    - start_cyborg_mode
+    - resume_cyborg_mode
+
+  stop_events:
+    - stop_mode_cyborg
+    - start_character_select_mode
+    - justice_league_multiball_beginning
+
   priority: 600
 
-variable_player: 
+
+variable_player:
+  # Character-specific scoring can be added here.\n
 
 slide_player:
-  mode_cyborg_started: 
+  # Fresh selection only: play the character intro.
+  mode_cyborg_started{current_player.character_mode_resuming == 0}:
     cyborg_character_select:
+      priority: 900
       expire: 5s
 
+  # Resume skips the intro. Add a persistent Cyborg gameplay slide
+  # here later if this character receives one.
+  #
+  # mode_cyborg_started{current_player.character_mode_resuming == 1}:
+  #   cyborg_mode_background:
+  #     priority: 100
+
+
 sound_player:
-  slide_cyborg_character_select_removed: 
+  # Fresh selection: start music after the intro is removed.
+  slide_cyborg_character_select_removed:
     cyborg_theme:
       action: play
       loops: -1
       bus: music
       volume: 0.05
-        
+
+  # Resume: start music immediately without replaying the intro.
+  mode_cyborg_started{current_player.character_mode_resuming == 1}:
+    cyborg_theme:
+      action: play
+      loops: -1
+      bus: music
+      volume: 0.05
+
+  mode_cyborg_stopping:
+    cyborg_theme:
+      action: stop
+      bus: music

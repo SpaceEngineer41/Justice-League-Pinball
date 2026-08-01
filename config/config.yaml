@@ -34,6 +34,18 @@ modes:
   - wonder_woman
 
 player_vars:
+  active_character:
+    initial_value: none
+    value_type: str
+
+  character_mode_resuming:
+    initial_value: 0
+    value_type: int
+
+  justice_league_all_powers_active:
+    initial_value: 0
+    value_type: int
+
   batman_mode_status:
     initial_value: incomplete
     value_type: str

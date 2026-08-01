@@ -1,47 +1,47 @@
 #config_version=6
 
-keyboard:
-  debug: yes
-  "1":
-    switch: s_trough1
-    toggle: true
-  "2":
-    switch: s_trough2
-    toggle: true
-  "3":
-    switch: s_trough3
-    toggle: true
-  "4":
-    switch: s_trough4
-    toggle: true
-  "5":
-    switch: s_trough5
-    toggle: true
-  "6":
-    switch: s_trough6
-    toggle: true
-  "o":
-    switch: s_orbit_left
-  "s":
-    switch: s_start
-  "p":
-    switch: s_plunger
-  "a":
-    switch: s_plunger_lane
-  "7":
-    switch: s_main_drop_left
-    toggle: true
-  "8":
-    switch: s_main_drop_middle
-    toggle: true
-  "9":
-    switch: s_main_drop_right
-    toggle: true
+# keyboard:
+#   debug: yes
+#   "1":
+#     switch: s_trough1
+#     toggle: true
+#   "2":
+#     switch: s_trough2
+#     toggle: true
+#   "3":
+#     switch: s_trough3
+#     toggle: true
+#   "4":
+#     switch: s_trough4
+#     toggle: true
+#   "5":
+#     switch: s_trough5
+#     toggle: true
+#   "6":
+#     switch: s_trough6
+#     toggle: true
+#   "o":
+#     switch: s_orbit_left
+#   "s":
+#     switch: s_start
+#   "p":
+#     switch: s_plunger
+#   "a":
+#     switch: s_plunger_lane
+#   "7":
+#     switch: s_main_drop_left
+#     toggle: true
+#   "8":
+#     switch: s_main_drop_middle
+#     toggle: true
+#   "9":
+#     switch: s_main_drop_right
+#     toggle: true
 
-  # ---- Steppenwolf shot switch (momentary is fine, but toggle also ok) ----
-  "0":
-    switch: s_steppenwolf
-    # toggle: true
+#   # ---- Steppenwolf shot switch (momentary is fine, but toggle also ok) ----
+#   "0":
+#     switch: s_steppenwolf
+#     # toggle: true
 
 drop_targets:
   drop_main_left:

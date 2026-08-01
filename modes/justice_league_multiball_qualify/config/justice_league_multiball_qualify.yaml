@@ -1,9 +1,19 @@
 #config_version=6
-# this is a test! doesitupdatethecodeautomatically to onedrive?
 mode:
   start_events: mode_base_started
 
 event_player:
+  # Start Character Select only when at least one character is still incomplete.
+  character_select_requested{current_player.justice_league_all_powers_active == 0 and (current_player.batman_mode_status != "complete" or current_player.wonder_woman_mode_status != "complete" or current_player.cyborg_mode_status != "complete" or current_player.flash_mode_status != "complete" or current_player.superman_mode_status != "complete" or current_player.aquaman_mode_status != "complete")}:
+    - start_character_select_mode
+
+  # Once all six characters are assembled, the mystery scoop starts
+  # Justice League Multiball. Completing the sixth character alone
+  # does not start the mode.
+  shot_mystery_scoop_hit{current_player.justice_league_all_powers_active == 0 and current_player.batman_mode_status == "complete" and current_player.wonder_woman_mode_status == "complete" and current_player.cyborg_mode_status == "complete" and current_player.flash_mode_status == "complete" and current_player.superman_mode_status == "complete" and current_player.aquaman_mode_status == "complete"}:
+    - start_justice_league_multiball
+    - justice_league_completion_points
+
   counter_flash_count_hit{count==1}:
     - clear_shot_videos
     - show_flash_x1
@@ -64,7 +74,7 @@ event_player:
     - clear_shot_videos
     - show_wonder_woman_x1
   shot_left_drop_middle_hit:
-    - clear_shot_video
+    - clear_shot_videos
     - show_wonder_woman_x2
   shot_left_drop_right_hit:
     - clear_shot_videos
@@ -306,13 +316,6 @@ accruals:
     reset_events: justice_league_count_reset
     disable_on_complete: false
 
-  justice_league_assembled:
-    events: justice_league_count_complete, justice_league_multiball_hit
-    events_when_complete: start_justice_league_multiball, justice_league_completion_points
-    persist_state: true
-    reset_events: justice_league_count_reset
-    disable_on_complete: false
-
   cyborg_count:
     events: shot_line_1_hit, shot_line_2_hit, shot_line_3_hit, shot_line_kickback_hit
     events_when_complete: cyborg_count_complete, cyborg_completion_points
@@ -330,8 +333,15 @@ accruals:
     disable_on_complete: false
 
   character_select_start:
-    events: character_select_lit, shot_mystery_scoop_hit
-    events_when_complete: start_character_select_mode
+    events:
+      - character_select_lit
+      - shot_mystery_scoop_hit
+    events_when_complete:
+      - character_select_requested
+    reset_events:
+      - mode_character_select_started
+      - justice_league_count_reset
+    persist_state: true
     disable_on_complete: false
 
   # justice_league_multiball_start:
@@ -346,7 +356,7 @@ counters:
     count_events: shot_orbit_left_hit
     events_when_complete: flash_count_complete, flash_completion_points
     persist_state: true
-    reset_on_complete: true
+    reset_on_complete: false
     disable_on_complete: false
     reset_events: justice_league_count_reset
 
@@ -386,7 +396,6 @@ variable_player:
     flash_mode_status:
       action: set
       string: complete
-    flash_cycle_multi: 1
   counter_flash_count_hit:
     # Absolute award for most points scored with flash shots???
     flash_award_total:
@@ -412,7 +421,6 @@ variable_player:
     superman_mode_status:
       action: set
       string: complete
-    superman_cycle_multi: 1
   counter_superman_count_hit:
     # Absolute award for most points scored with flash shots???
     superman_award_total:
@@ -438,7 +446,6 @@ variable_player:
     aquaman_mode_status:
       action: set
       string: complete
-    aquaman_cycle_multi: 1
   counter_aquaman_count_hit:
     # Absolute award for most points scored with flash shots???
     aquaman_award_total:
@@ -464,7 +471,6 @@ variable_player:
     batman_mode_status:
       action: set
       string: complete
-    batman_cycle_multi: 1
   counter_batman_count_hit:
     # Absolute award for most points scored with flash shots???
     batman_award_total:
@@ -491,7 +497,6 @@ variable_player:
     wonder_woman_mode_status:
       action: set
       string: complete
-    wonder_woman_cycle_multi: 1
   counter_wonder_woman_count_hit:
     wonder_woman_last_award:
       int: 10000 * device.counters.wonder_woman_count.value * current_player.wonder_woman_cycle_mult
@@ -502,26 +507,74 @@ variable_player:
     cyborg_mode_status:
       action: set
       string: complete
-    cyborg_cycle_multi: 1
   counter_cyborg_count_hit:
     cyborg_last_award:
       int: 10000 * device.counters.cyborg_count.value * current_player.cyborg_cycle_mult
     score: 10000 * device.counters.cyborg_count.value * current_player.cyborg_cycle_mult
 
   wonder_woman_completion_points:
-    score: 250000
+    score:
+      action: add
+      int: 250000 * current_player.wonder_woman_cycle_mult
   # flash_completion_points:
   #   score: 250000
   # batman_completion_points:
   #   score: 250000
   cyborg_completion_points:
-    score: 250000
+    score:
+      action: add
+      int: 250000 * current_player.cyborg_cycle_mult
   # superman_completion_points:
   #   score: 250000
   # aquaman_completion_points:
   #   score: 250000
   justice_league_completion_points:
     score: 500000
+
+
+  # Reset all six assembled-status variables after Justice League
+  # Multiball returns to one ball.
+  justice_league_count_reset:
+    batman_mode_status:
+      action: set
+      string: incomplete
+    wonder_woman_mode_status:
+      action: set
+      string: incomplete
+    cyborg_mode_status:
+      action: set
+      string: incomplete
+    flash_mode_status:
+      action: set
+      string: incomplete
+    superman_mode_status:
+      action: set
+      string: incomplete
+    aquaman_mode_status:
+      action: set
+      string: incomplete
+
+  # All character awards are worth 2x after the first Justice League
+  # Multiball has ended.
+  justice_league_second_cycle:
+    batman_cycle_mult:
+      action: set
+      int: 2
+    wonder_woman_cycle_mult:
+      action: set
+      int: 2
+    cyborg_cycle_mult:
+      action: set
+      int: 2
+    flash_cycle_mult:
+      action: set
+      int: 2
+    superman_cycle_mult:
+      action: set
+      int: 2
+    aquaman_cycle_mult:
+      action: set
+      int: 2
 
 light_player:
   shot_right_drop_left_hit:
