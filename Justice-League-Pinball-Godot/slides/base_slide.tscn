@@ -28,11 +28,9 @@ position = Vector2(1820, 750)
 scale = Vector2(0.17, 0.17)
 texture = ExtResource("2_e3p2o")
 
-[node name="state" type="Node" parent="Flash Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+[node name="state" type="Node" parent="Flash Hub" node_paths=PackedStringArray("status_label", "character_sprite")]
 script = ExtResource("9_x80wu")
 status_label = NodePath("../flash_status")
-locked_overlay = NodePath("")
-locked_label = NodePath("")
 character_sprite = NodePath("..")
 locked_material = ExtResource("10_f4y2a")
 
@@ -52,11 +50,9 @@ position = Vector2(1820, 550)
 scale = Vector2(0.17, 0.17)
 texture = ExtResource("3_8q07j")
 
-[node name="state" type="Node" parent="Aquaman Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+[node name="state" type="Node" parent="Aquaman Hub" node_paths=PackedStringArray("status_label", "character_sprite")]
 script = ExtResource("9_x80wu")
 status_label = NodePath("../aquaman_status")
-locked_overlay = NodePath("")
-locked_label = NodePath("")
 character_sprite = NodePath("..")
 locked_material = ExtResource("10_f4y2a")
 
@@ -76,11 +72,9 @@ position = Vector2(1820, 350)
 scale = Vector2(0.17, 0.17)
 texture = ExtResource("4_x80wu")
 
-[node name="state" type="Node" parent="Superman Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+[node name="state" type="Node" parent="Superman Hub" node_paths=PackedStringArray("status_label", "character_sprite")]
 script = ExtResource("9_x80wu")
 status_label = NodePath("../superman_status")
-locked_overlay = NodePath("")
-locked_label = NodePath("")
 character_sprite = NodePath("..")
 locked_material = ExtResource("10_f4y2a")
 
@@ -100,11 +94,9 @@ position = Vector2(100, 750)
 scale = Vector2(0.17, 0.17)
 texture = ExtResource("5_f4y2a")
 
-[node name="state" type="Node" parent="Wonder Woman Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+[node name="state" type="Node" parent="Wonder Woman Hub" node_paths=PackedStringArray("status_label", "character_sprite")]
 script = ExtResource("9_x80wu")
 status_label = NodePath("../wonder_woman_status")
-locked_overlay = NodePath("")
-locked_label = NodePath("")
 character_sprite = NodePath("..")
 locked_material = ExtResource("10_f4y2a")
 
@@ -124,11 +116,9 @@ position = Vector2(100, 550)
 scale = Vector2(0.17, 0.17)
 texture = ExtResource("6_rxqy6")
 
-[node name="state" type="Node" parent="Cyborg Hub" node_paths=PackedStringArray("status_label", "locked_overlay", "locked_label", "character_sprite")]
+[node name="state" type="Node" parent="Cyborg Hub" node_paths=PackedStringArray("status_label", "character_sprite")]
 script = ExtResource("9_x80wu")
 status_label = NodePath("../cyborg_status")
-locked_overlay = NodePath("")
-locked_label = NodePath("")
 character_sprite = NodePath("..")
 locked_material = ExtResource("10_f4y2a")
 
@@ -160,10 +150,9 @@ variable_name = "batman_mode_status"
 min_players = 1
 max_players = 4
 
-[node name="state" type="Node" parent="Batman Hub" node_paths=PackedStringArray("status_label", "locked_label", "character_sprite")]
+[node name="state" type="Node" parent="Batman Hub" node_paths=PackedStringArray("status_label", "character_sprite")]
 script = ExtResource("9_x80wu")
 status_label = NodePath("../batman_status")
-locked_label = NodePath("")
 character_sprite = NodePath("..")
 locked_material = ExtResource("10_f4y2a")
 
