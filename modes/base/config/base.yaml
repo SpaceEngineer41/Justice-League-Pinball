@@ -8,6 +8,7 @@ mode:
   stop_events: ball_will_end
   priority: 100
 
+
 event_player:
   # Uncomment this if you want character select at the start of the first ball.
   # ball_started{ball==1}: start_character_select_mode
@@ -35,6 +36,26 @@ event_player:
   character_select_superman_selected:
     - set_active_character_superman
     - start_superman_mode
+
+  # Remove the base idle video after a character mode starts.
+  mode_batman_started:
+    - stop_base_idle_video
+
+  mode_wonder_woman_started:
+    - stop_base_idle_video
+
+  mode_aquaman_started:
+    - stop_base_idle_video
+
+  mode_cyborg_started:
+    - stop_base_idle_video
+
+  mode_flash_started:
+    - stop_base_idle_video
+
+  mode_superman_started:
+    - stop_base_idle_video
+
 
 variable_player:
   set_active_character_batman:
@@ -85,87 +106,131 @@ variable_player:
       action: set
       int: 0
 
-slide_player:
-  mode_base_started: base_slide
 
-# Persistent roster HUD (hero icons, grey/color by <hero>_mode_status).
+slide_player:
+  mode_base_started:
+    base_slide:
+      action: play
+
+
+# Persistent base gameplay video.
 widget_player:
   mode_base_started:
-    batman_roster_icon:
+    base_idle_video:
       slide: _overlay
-      x: 40
-      y: 20
-  mode_base_stopping:
-    batman_roster_icon:
+      action: play
+      priority: 1
+
+  stop_base_idle_video:
+    base_idle_video:
       slide: _overlay
       action: remove
+
+  mode_base_stopping:
+    base_idle_video:
+      slide: _overlay
+      action: remove
+
 
 shots:
   shot_left_ramp:
     switch: s_left_ramp
+
   shot_right_ramp:
     switch: s_right_ramp
+
   shot_line_1:
     switch: s_line_drop_1
+
   shot_line_2:
     switch: s_line_drop_2
+
   shot_line_3:
     switch: s_line_drop_3
+
   shot_line_kickback:
     switch: s_line_kickback
+
   shot_jet_lane_left:
     switch: s_jet_lane_left
+
   shot_jet_lane_middle:
     switch: s_jet_lane_middle
+
   shot_jet_lane_right:
     switch: s_jet_lane_right
+
   shot_pop_bumper_left:
     switch: s_pop_bumper_left
+
   shot_pop_bumper_right:
     switch: s_pop_bumper_right
+
   shot_pop_bumper_bottom:
     switch: s_pop_bumper_bottom
+
   shot_right_inlane:
     switch: s_right_inlane
+
   shot_left_inlane:
     switch: s_left_inlane
+
   shot_orbit_top:
     switch: s_orbit_top
+
   shot_orbit_left:
     switch: s_orbit_left
+
   shot_orbit_right:
     switch: s_orbit_right
+
   shot_slingshot_left:
     switch: s_slingshot_left
+
   shot_slingshot_right:
     switch: s_slingshot_right
+
   shot_main_drop_left:
     switch: s_main_drop_left
+
   shot_main_drop_middle:
     switch: s_main_drop_middle
+
   shot_main_drop_right:
     switch: s_main_drop_right
+
   shot_steppenwolf:
     switch: s_steppenwolf
+
   shot_left_drop_left:
     switch: s_left_drop_left
+
   shot_left_drop_middle:
     switch: s_left_drop_middle
+
   shot_left_drop_right:
     switch: s_left_drop_right
+
   shot_right_drop_left:
     switch: s_right_drop_left
+
   shot_right_drop_middle:
     switch: s_right_drop_middle
+
   shot_right_drop_right:
     switch: s_right_drop_right
+
   shot_mystery_drop:
     switch: s_mystery_drop
+
   shot_mystery_scoop:
     switch: s_mystery_scoop
+
   shot_spinner:
     switch: s_spinner
+
   shot_left_outlane:
     switch: s_left_outlane
+
   shot_right_outlane:
     switch: s_right_outlane
