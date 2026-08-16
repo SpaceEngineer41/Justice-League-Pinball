@@ -284,3 +284,9 @@ lights:
     number: 51
   l_darkseid_battle:        # <- changed from L_darkseid_battle
     number: 52
+
+sounds:
+  Look_To_The_Stars:
+    file: Look_To_The_Stars.wav
+    track: music
+    volume: 0.5

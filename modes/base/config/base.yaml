@@ -8,7 +8,6 @@ mode:
   stop_events: ball_will_end
   priority: 100
 
-
 event_player:
   # Uncomment this if you want character select at the start of the first ball.
   # ball_started{ball==1}: start_character_select_mode
@@ -36,25 +35,6 @@ event_player:
   character_select_superman_selected:
     - set_active_character_superman
     - start_superman_mode
-
-  # Remove the base idle video after a character mode starts.
-  mode_batman_started:
-    - stop_base_idle_video
-
-  mode_wonder_woman_started:
-    - stop_base_idle_video
-
-  mode_aquaman_started:
-    - stop_base_idle_video
-
-  mode_cyborg_started:
-    - stop_base_idle_video
-
-  mode_flash_started:
-    - stop_base_idle_video
-
-  mode_superman_started:
-    - stop_base_idle_video
 
 
 variable_player:
@@ -107,29 +87,11 @@ variable_player:
       int: 0
 
 
+# This remains the normal underlying gameplay slide.
 slide_player:
   mode_base_started:
     base_slide:
-      action: play
-
-
-# Persistent base gameplay video.
-widget_player:
-  mode_base_started:
-    base_idle_video:
-      slide: _overlay
-      action: play
       priority: 1
-
-  stop_base_idle_video:
-    base_idle_video:
-      slide: _overlay
-      action: remove
-
-  mode_base_stopping:
-    base_idle_video:
-      slide: _overlay
-      action: remove
 
 
 shots:

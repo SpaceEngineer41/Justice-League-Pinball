@@ -1,194 +1,442 @@
 #config_version=6
+
 mode:
   start_events: mode_base_started
 
+
+############################################################
+# BASE GAMEPLAY VIDEO
+############################################################
+
+# IMPORTANT:
+# base_idle_video is attached to base_slide, NOT _overlay.
+#
+# This allows higher-priority shot slides to cover it.
+#
+# Normal behavior:
+#
+# base_slide + base_idle_video
+#       ↓
+# player hits shot
+#       ↓
+# batman_x1 / flash_x1 / etc. appears at priority 900
+#       ↓
+# shot video finishes/is replaced
+#       ↓
+# base_slide becomes visible again
+#
+
+widget_player:
+
+  mode_justice_league_multiball_qualify_started:
+    base_idle_video:
+      slide: base_slide
+      action: play
+
+  start_base_idle_video:
+    base_idle_video:
+      slide: base_slide
+      action: play
+
+  stop_base_idle_video:
+    base_idle_video:
+      slide: base_slide
+      action: remove
+
+  mode_justice_league_multiball_qualify_stopping:
+    base_idle_video:
+      slide: base_slide
+      action: remove
+
+
+############################################################
+# EVENTS
+############################################################
+
 event_player:
-  # Start Character Select only when at least one character is still incomplete.
+
+  ##########################################################
+  # CHARACTER SELECT
+  ##########################################################
+
+  # Start Character Select only when at least one character
+  # is still incomplete.
+
   character_select_requested{current_player.justice_league_all_powers_active == 0 and (current_player.batman_mode_status != "complete" or current_player.wonder_woman_mode_status != "complete" or current_player.cyborg_mode_status != "complete" or current_player.flash_mode_status != "complete" or current_player.superman_mode_status != "complete" or current_player.aquaman_mode_status != "complete")}:
     - start_character_select_mode
 
-  # Once all six characters are assembled, the mystery scoop starts
-  # Justice League Multiball. Completing the sixth character alone
-  # does not start the mode.
+
+  ##########################################################
+  # JUSTICE LEAGUE MULTIBALL START
+  ##########################################################
+
+  # Once all six characters are assembled, the mystery
+  # scoop starts Justice League Multiball.
+  #
+  # Completing the sixth character alone does NOT start it.
+
   shot_mystery_scoop_hit{current_player.justice_league_all_powers_active == 0 and current_player.batman_mode_status == "complete" and current_player.wonder_woman_mode_status == "complete" and current_player.cyborg_mode_status == "complete" and current_player.flash_mode_status == "complete" and current_player.superman_mode_status == "complete" and current_player.aquaman_mode_status == "complete"}:
     - start_justice_league_multiball
     - justice_league_completion_points
 
+
+  ##########################################################
+  # FLASH SHOT VIDEOS
+  ##########################################################
+
   counter_flash_count_hit{count==1}:
     - clear_shot_videos
     - show_flash_x1
+
   counter_flash_count_hit{count==2}:
     - clear_shot_videos
     - show_flash_x2
+
   counter_flash_count_hit{count==3}:
     - clear_shot_videos
     - show_flash_x3
 
+
+  ##########################################################
+  # BATMAN SHOT VIDEOS
+  ##########################################################
+
   counter_batman_count_hit{count==1}:
     - clear_shot_videos
     - show_batman_x1
+
   counter_batman_count_hit{count==2}:
     - clear_shot_videos
     - show_batman_x2
+
   counter_batman_count_hit{count==3}:
     - clear_shot_videos
     - show_batman_x3
+
   counter_batman_count_hit{count==4}:
     - clear_shot_videos
     - show_batman_x4
 
+
+  ##########################################################
+  # CYBORG SHOT VIDEOS
+  ##########################################################
+
   shot_line_1_hit:
     - clear_shot_videos
     - show_cyborg_x1
+
   shot_line_2_hit:
     - clear_shot_videos
     - show_cyborg_x2
+
   shot_line_3_hit:
     - clear_shot_videos
     - show_cyborg_x3
 
+
+  ##########################################################
+  # SUPERMAN SHOT VIDEOS
+  ##########################################################
+
   counter_superman_count_hit{count==1}:
     - clear_shot_videos
     - show_superman_x1
+
   counter_superman_count_hit{count==2}:
     - clear_shot_videos
     - show_superman_x2
+
   counter_superman_count_hit{count==3}:
     - clear_shot_videos
     - show_superman_x3
+
   counter_superman_count_hit{count==4}:
     - clear_shot_videos
     - show_superman_x4
 
+
+  ##########################################################
+  # AQUAMAN SHOT VIDEOS
+  ##########################################################
+
   counter_aquaman_count_hit{count==1}:
     - clear_shot_videos
     - show_aquaman_x1
+
   counter_aquaman_count_hit{count==2}:
     - clear_shot_videos
     - show_aquaman_x2
+
   counter_aquaman_count_hit{count==3}:
     - clear_shot_videos
     - show_aquaman_x3
 
+
+  ##########################################################
+  # WONDER WOMAN SHOT VIDEOS
+  ##########################################################
+
   shot_left_drop_left_hit:
     - clear_shot_videos
     - show_wonder_woman_x1
+
   shot_left_drop_middle_hit:
     - clear_shot_videos
     - show_wonder_woman_x2
+
   shot_left_drop_right_hit:
     - clear_shot_videos
     - show_wonder_woman_x3
+
   shot_right_drop_left_hit:
     - clear_shot_videos
     - show_wonder_woman_x4
+
   shot_right_drop_middle_hit:
     - clear_shot_videos
     - show_wonder_woman_x5
+
   shot_right_drop_right_hit:
     - clear_shot_videos
     - show_wonder_woman_x6
 
+
+  ##########################################################
+  # STOP BASE A/V WHEN AN ACTIVE MODE STARTS
+  ##########################################################
+
+  mode_character_select_started:
+    - stop_base_idle_video
+    - stop_base_music
+
+  mode_batman_started:
+    - clear_shot_videos
+    - stop_base_idle_video
+    - stop_base_music
+
+  mode_wonder_woman_started:
+    - clear_shot_videos
+    - stop_base_idle_video
+    - stop_base_music
+
+  mode_aquaman_started:
+    - clear_shot_videos
+    - stop_base_idle_video
+    - stop_base_music
+
+  mode_cyborg_started:
+    - clear_shot_videos
+    - stop_base_idle_video
+    - stop_base_music
+
+  mode_flash_started:
+    - clear_shot_videos
+    - stop_base_idle_video
+    - stop_base_music
+
+  mode_superman_started:
+    - clear_shot_videos
+    - stop_base_idle_video
+    - stop_base_music
+
+  mode_justice_league_multiball_started:
+    - clear_shot_videos
+    - stop_base_idle_video
+    - stop_base_music
+
+
+  ##########################################################
+  # RETURN TO NORMAL GAMEPLAY
+  ##########################################################
+
+  mode_batman_stopped:
+    - start_base_idle_video
+    - start_base_music
+
+  mode_wonder_woman_stopped:
+    - start_base_idle_video
+    - start_base_music
+
+  mode_aquaman_stopped:
+    - start_base_idle_video
+    - start_base_music
+
+  mode_cyborg_stopped:
+    - start_base_idle_video
+    - start_base_music
+
+  mode_flash_stopped:
+    - start_base_idle_video
+    - start_base_music
+
+  mode_superman_stopped:
+    - start_base_idle_video
+    - start_base_music
+
+
+############################################################
+# BASE GAMEPLAY MUSIC
+############################################################
+
+sound_player:
+
+  mode_justice_league_multiball_qualify_started:
+    Look_To_The_Stars:
+      action: play
+      loops: -1
+
+  stop_base_music:
+    Look_To_The_Stars:
+      action: stop
+
+  start_base_music:
+    Look_To_The_Stars:
+      action: play
+      loops: -1
+
+  mode_justice_league_multiball_qualify_stopped:
+    Look_To_The_Stars:
+      action: stop
+
+
+############################################################
+# SLIDES / SHOT VIDEOS
+############################################################
+
 slide_player:
+
+  ##########################################################
+  # FLASH
+  ##########################################################
+
   show_flash_x1:
     flash_x1:
       expire: 7.1s
       priority: 900
+
   show_flash_x2:
     flash_x2:
       expire: 7.1s
       priority: 900
+
   show_flash_x3:
     flash_x3:
       expire: 7.1s
       priority: 900
 
+
+  ##########################################################
+  # BATMAN
+  ##########################################################
+
   show_batman_x1:
     batman_x1:
-      # expire: 7.1s
       priority: 900
+
   show_batman_x2:
     batman_x2:
-      # expire: 7.1s
       priority: 900
+
   show_batman_x3:
     batman_x3:
-      # expire: 7.1s
       priority: 900
+
   show_batman_x4:
     batman_x4:
-      # expire: 7.1s
       priority: 900
+
+
+  ##########################################################
+  # CYBORG
+  ##########################################################
 
   show_cyborg_x1:
     cyborg_x1:
-      # expire: 7.1s
       priority: 900
+
   show_cyborg_x2:
     cyborg_x2:
-      # expire: 7.1s
       priority: 900
+
   show_cyborg_x3:
     cyborg_x3:
-      # expire: 7.1s
       priority: 900
+
+
+  ##########################################################
+  # SUPERMAN
+  ##########################################################
 
   show_superman_x1:
     superman_x1:
-      # expire: 7.1s
       priority: 900
+
   show_superman_x2:
     superman_x2:
-      # expire: 7.1s
       priority: 900
+
   show_superman_x3:
     superman_x3:
-      # expire: 7.1s
       priority: 900
+
   show_superman_x4:
     superman_x4:
-      # expire: 7.1s
       priority: 900
+
+
+  ##########################################################
+  # AQUAMAN
+  ##########################################################
 
   show_aquaman_x1:
     aquaman_x1:
-      # expire: 7.1s
       priority: 900
+
   show_aquaman_x2:
     aquaman_x2:
-      # expire: 7.1s
       priority: 900
+
   show_aquaman_x3:
     aquaman_x3:
-      # expire: 7.1s
       priority: 900
 
+
+  ##########################################################
+  # WONDER WOMAN
+  ##########################################################
+
   show_wonder_woman_x1:
-      wonder_woman_x1:
-        # expire: 7.1s
-        priority: 900
+    wonder_woman_x1:
+      priority: 900
+
   show_wonder_woman_x2:
-      wonder_woman_x2:
-        # expire: 7.1s
-        priority: 900
+    wonder_woman_x2:
+      priority: 900
+
   show_wonder_woman_x3:
-      wonder_woman_x3:
-        # expire: 7.1s
-        priority: 900
+    wonder_woman_x3:
+      priority: 900
+
   show_wonder_woman_x4:
-      wonder_woman_x4:
-        # expire: 7.1s
-        priority: 900
+    wonder_woman_x4:
+      priority: 900
+
   show_wonder_woman_x5:
-      wonder_woman_x5:
-        # expire: 7.1s
-        priority: 900
+    wonder_woman_x5:
+      priority: 900
+
   show_wonder_woman_x6:
-      wonder_woman_x6:
-        # expire: 7.1s
-        priority: 900
+    wonder_woman_x6:
+      priority: 900
+
+
+  ##########################################################
+  # REMOVE ANY CURRENT SHOT VIDEO
+  ##########################################################
 
   clear_shot_videos:
+
     flash_x1:
       action: remove
     flash_x2:
@@ -241,31 +489,39 @@ slide_player:
     wonder_woman_x6:
       action: remove
 
+
+############################################################
+# SHOTS
+############################################################
+
 shots:
+
   justice_league_multiball:
     switch: s_mystery_scoop
+
   character_select:
     switch: s_mystery_scoop
 
+
+############################################################
+# ACHIEVEMENTS
+############################################################
+
 achievements:
+
   justice_league_assembled:
     start_events: justice_league_count_complete
-    # complete_events: justice_league_assembled
-    events_when_completed: justice_league_multiball_lit 
+    events_when_completed: justice_league_multiball_lit
     show_when_started: justice_league_lit
     show_when_completed: justice_league_complete
     reset_events: justice_league_count_reset
-
-    # show_when_enabled:
 
   batman_assembled:
     start_events: shot_left_ramp_hit
     complete_events: batman_count_complete
     events_when_completed: character_select_lit
-    show_when_completed: batman_complete 
+    show_when_completed: batman_complete
     reset_events: justice_league_count_reset
-
-    # show_when_enabled:
 
   wonder_woman_assembled:
     start_events: shot_left_drop_left_hit, shot_left_drop_middle_hit, shot_left_drop_right_hit, shot_right_drop_right_hit, shot_right_drop_middle_hit, shot_right_drop_left_hit
@@ -273,48 +529,49 @@ achievements:
     events_when_completed: character_select_lit
     show_when_completed: wonder_woman_complete
     reset_events: justice_league_count_reset
- 
-    # show_when_enabled:
 
   flash_assembled:
     start_events: shot_orbit_left_hit
     complete_events: flash_count_complete
     events_when_completed: character_select_lit
-    show_when_completed: flash_complete 
-    reset_events: justice_league_count_reset 
-    # show_when_enabled:
+    show_when_completed: flash_complete
+    reset_events: justice_league_count_reset
 
   cyborg_assembled:
     start_events: shot_line_1_hit
     complete_events: cyborg_count_complete
     events_when_completed: character_select_lit
-    show_when_completed: cyborg_complete   
-    reset_events: justice_league_count_reset 
-    # show_when_enabled:
+    show_when_completed: cyborg_complete
+    reset_events: justice_league_count_reset
 
   superman_assembled:
     start_events: shot_right_ramp_hit
     complete_events: superman_count_complete
     events_when_completed: character_select_lit
     show_when_completed: superman_complete
-    reset_events: justice_league_count_reset 
-    # show_when_enabled:
+    reset_events: justice_league_count_reset
 
   aquaman_assembled:
     start_events: shot_orbit_right_hit
     complete_events: aquaman_count_complete
     events_when_completed: character_select_lit
     show_when_completed: aquaman_complete
-    reset_events: justice_league_count_reset 
-    # show_when_enabled:
+    reset_events: justice_league_count_reset
+
+
+############################################################
+# ACCRUALS
+############################################################
 
 accruals:
+
   justice_league_count_complete:
     events: wonder_woman_count_complete, cyborg_count_complete, flash_count_complete, batman_count_complete, superman_count_complete, aquaman_count_complete
     events_when_complete: justice_league_count_complete
     persist_state: true
     reset_events: justice_league_count_reset
     disable_on_complete: false
+
 
   cyborg_count:
     events: shot_line_1_hit, shot_line_2_hit, shot_line_3_hit, shot_line_kickback_hit
@@ -324,6 +581,7 @@ accruals:
     reset_events: justice_league_count_reset
     disable_on_complete: false
 
+
   wonder_woman_count:
     events: shot_left_drop_left_hit, shot_left_drop_middle_hit, shot_left_drop_right_hit, shot_right_drop_right_hit, shot_right_drop_middle_hit, shot_right_drop_left_hit
     events_when_complete: wonder_woman_count_complete, wonder_woman_completion_points
@@ -332,24 +590,29 @@ accruals:
     reset_events: justice_league_count_reset
     disable_on_complete: false
 
+
   character_select_start:
     events:
       - character_select_lit
       - shot_mystery_scoop_hit
+
     events_when_complete:
       - character_select_requested
+
     reset_events:
       - mode_character_select_started
       - justice_league_count_reset
+
     persist_state: true
     disable_on_complete: false
 
-  # justice_league_multiball_start:
-  #   events: justice_league_multiball_lit, shot_mystery_scoop_hit, character_select_lit
-  #   events_when_complete: start_justice_league_multiball
-  #   disable_on_complete: false
+
+############################################################
+# COUNTERS
+############################################################
 
 counters:
+
   flash_count:
     starting_count: 0
     count_complete_value: 3
@@ -359,6 +622,7 @@ counters:
     reset_on_complete: false
     disable_on_complete: false
     reset_events: justice_league_count_reset
+
 
   superman_count:
     starting_count: 0
@@ -370,6 +634,7 @@ counters:
     disable_on_complete: false
     reset_events: justice_league_count_reset
 
+
   aquaman_count:
     starting_count: 0
     count_complete_value: 3
@@ -379,7 +644,7 @@ counters:
     reset_on_complete: false
     reset_events: justice_league_count_reset
     disable_on_complete: false
-    disable_events: 
+
 
   batman_count:
     starting_count: 0
@@ -391,287 +656,405 @@ counters:
     disable_on_complete: false
     reset_events: justice_league_count_reset
 
+
+############################################################
+# PLAYER VARIABLES / SCORING
+############################################################
+
 variable_player:
+
+  ##########################################################
+  # FLASH
+  ##########################################################
+
   flash_count_complete:
     flash_mode_status:
       action: set
       string: complete
+
   counter_flash_count_hit:
-    # Absolute award for most points scored with flash shots???
+
     flash_award_total:
       action: set
       int: 10000 * device.counters.flash_count.value * current_player.flash_cycle_mult
-    # NEW: delta for this hit
+
     flash_last_award_change:
       action: set
       int: 10000 * device.counters.flash_count.value * current_player.flash_cycle_mult
+
     score:
       action: add
       int: 10000 * device.counters.flash_count.value * current_player.flash_cycle_mult
+
   flash_completion_points:
-    # NEW: completion delta
+
     flash_last_award_change:
       action: set
       int: 250000 * current_player.flash_cycle_mult
+
     score:
       action: add
       int: 250000 * current_player.flash_cycle_mult
+
+
+  ##########################################################
+  # SUPERMAN
+  ##########################################################
 
   superman_count_complete:
     superman_mode_status:
       action: set
       string: complete
+
   counter_superman_count_hit:
-    # Absolute award for most points scored with flash shots???
+
     superman_award_total:
       action: set
       int: 10000 * device.counters.superman_count.value * current_player.superman_cycle_mult
-    # NEW: delta for this hit
+
     superman_last_award_change:
       action: set
       int: 10000 * device.counters.superman_count.value * current_player.superman_cycle_mult
+
     score:
       action: add
       int: 10000 * device.counters.superman_count.value * current_player.superman_cycle_mult
+
   superman_completion_points:
-    # NEW: completion delta
+
     superman_last_award_change:
       action: set
       int: 250000 * current_player.superman_cycle_mult
+
     score:
       action: add
       int: 250000 * current_player.superman_cycle_mult
+
+
+  ##########################################################
+  # AQUAMAN
+  ##########################################################
 
   aquaman_count_complete:
     aquaman_mode_status:
       action: set
       string: complete
+
   counter_aquaman_count_hit:
-    # Absolute award for most points scored with flash shots???
+
     aquaman_award_total:
       action: set
       int: 10000 * device.counters.aquaman_count.value * current_player.aquaman_cycle_mult
-    # NEW: delta for this hit
+
     aquaman_last_award_change:
       action: set
       int: 10000 * device.counters.aquaman_count.value * current_player.aquaman_cycle_mult
+
     score:
       action: add
       int: 10000 * device.counters.aquaman_count.value * current_player.aquaman_cycle_mult
+
   aquaman_completion_points:
-    # NEW: completion delta
+
     aquaman_last_award_change:
       action: set
       int: 250000 * current_player.aquaman_cycle_mult
+
     score:
       action: add
       int: 250000 * current_player.aquaman_cycle_mult
+
+
+  ##########################################################
+  # BATMAN
+  ##########################################################
 
   batman_count_complete:
     batman_mode_status:
       action: set
       string: complete
+
   counter_batman_count_hit:
-    # Absolute award for most points scored with flash shots???
+
     batman_award_total:
       action: set
       int: 10000 * device.counters.batman_count.value * current_player.batman_cycle_mult
-    # NEW: delta for this hit
+
     batman_last_award_change:
       action: set
       int: 10000 * device.counters.batman_count.value * current_player.batman_cycle_mult
+
     score:
       action: add
       int: 10000 * device.counters.batman_count.value * current_player.batman_cycle_mult
+
   batman_completion_points:
-    # NEW: completion delta
+
     batman_last_award_change:
       action: set
       int: 250000 * current_player.batman_cycle_mult
+
     score:
       action: add
       int: 250000 * current_player.batman_cycle_mult
 
-#################### Need to change wonder woman logic since there isn't a counter ############################################
+
+  ##########################################################
+  # WONDER WOMAN
+  ##########################################################
+
   wonder_woman_count_complete:
     wonder_woman_mode_status:
       action: set
       string: complete
+
   counter_wonder_woman_count_hit:
+
     wonder_woman_last_award:
       int: 10000 * device.counters.wonder_woman_count.value * current_player.wonder_woman_cycle_mult
-    score: 10000 * device.counters.wonder_woman_count.value * current_player.wonder_woman_cycle_mult
 
-#################### Need to change cyborg logic since there isn't a counter ############################################    
+    score:
+      10000 * device.counters.wonder_woman_count.value * current_player.wonder_woman_cycle_mult
+
+
+  ##########################################################
+  # CYBORG
+  ##########################################################
+
   cyborg_count_complete:
     cyborg_mode_status:
       action: set
       string: complete
+
   counter_cyborg_count_hit:
+
     cyborg_last_award:
       int: 10000 * device.counters.cyborg_count.value * current_player.cyborg_cycle_mult
-    score: 10000 * device.counters.cyborg_count.value * current_player.cyborg_cycle_mult
+
+    score:
+      10000 * device.counters.cyborg_count.value * current_player.cyborg_cycle_mult
+
+
+  ##########################################################
+  # COMPLETION POINTS
+  ##########################################################
 
   wonder_woman_completion_points:
     score:
       action: add
       int: 250000 * current_player.wonder_woman_cycle_mult
-  # flash_completion_points:
-  #   score: 250000
-  # batman_completion_points:
-  #   score: 250000
+
   cyborg_completion_points:
     score:
       action: add
       int: 250000 * current_player.cyborg_cycle_mult
-  # superman_completion_points:
-  #   score: 250000
-  # aquaman_completion_points:
-  #   score: 250000
+
   justice_league_completion_points:
     score: 500000
 
 
-  # Reset all six assembled-status variables after Justice League
-  # Multiball returns to one ball.
+  ##########################################################
+  # RESET AFTER JUSTICE LEAGUE MULTIBALL
+  ##########################################################
+
   justice_league_count_reset:
+
     batman_mode_status:
       action: set
       string: incomplete
+
     wonder_woman_mode_status:
       action: set
       string: incomplete
+
     cyborg_mode_status:
       action: set
       string: incomplete
+
     flash_mode_status:
       action: set
       string: incomplete
+
     superman_mode_status:
       action: set
       string: incomplete
+
     aquaman_mode_status:
       action: set
       string: incomplete
 
-  # All character awards are worth 2x after the first Justice League
-  # Multiball has ended.
+
+  ##########################################################
+  # SECOND JUSTICE LEAGUE CYCLE = 2X
+  ##########################################################
+
   justice_league_second_cycle:
+
     batman_cycle_mult:
       action: set
       int: 2
+
     wonder_woman_cycle_mult:
       action: set
       int: 2
+
     cyborg_cycle_mult:
       action: set
       int: 2
+
     flash_cycle_mult:
       action: set
       int: 2
+
     superman_cycle_mult:
       action: set
       int: 2
+
     aquaman_cycle_mult:
       action: set
       int: 2
 
+
+############################################################
+# LIGHTS
+############################################################
+
 light_player:
+
   shot_right_drop_left_hit:
     l_right_drop_left: yellow
+
   shot_right_drop_middle_hit:
     l_right_drop_middle: yellow
+
   shot_right_drop_right_hit:
     l_right_drop_right: yellow
+
   shot_left_drop_right_hit:
     l_left_drop_right: yellow
+
   shot_left_drop_middle_hit:
     l_left_drop_middle: yellow
+
   shot_left_drop_left_hit:
     l_left_drop_left: yellow
 
+
   counter_superman_count_hit{count == 1}:
     l_right_ramp_3: blue
+
   counter_superman_count_hit{count == 2}:
     l_right_ramp_2: blue
+
   counter_superman_count_hit{count == 3}:
     l_right_ramp_1: blue
+
   counter_superman_count_hit{count == 4}:
     l_right_ramp_arrow: blue
 
+
   counter_batman_count_hit{count == 1}:
     l_left_ramp_3: yellow
+
   counter_batman_count_hit{count == 2}:
     l_left_ramp_2: yellow
+
   counter_batman_count_hit{count == 3}:
     l_left_ramp_1: yellow
+
   counter_batman_count_hit{count == 4}:
     l_left_ramp_arrow: yellow
 
+
   counter_flash_count_hit{count == 1}:
     l_orbit_left_3: red
+
   counter_flash_count_hit{count == 2}:
     l_orbit_left_2: red
+
   counter_flash_count_hit{count == 3}:
     l_orbit_left_1: red
 
+
   counter_aquaman_count_hit{count == 1}:
     l_orbit_right_3: green
+
   counter_aquaman_count_hit{count == 2}:
     l_orbit_right_2: green
+
   counter_aquaman_count_hit{count == 3}:
     l_orbit_right_1: green
+
 
   shot_line_kickback_hit:
     l_line: red
 
+
   mode_justice_league_multiball_will_stop:
+
     l_left_ramp_arrow: off
     l_left_ramp_1: off
     l_left_ramp_2: off
     l_left_ramp_3: off
+
     l_right_ramp_arrow: off
     l_right_ramp_1: off
     l_right_ramp_2: off
     l_right_ramp_3: off
+
     l_line: off
     l_mystery: off
+
     l_orbit_left_arrow: off
     l_orbit_left_1: off
     l_orbit_left_2: off
     l_orbit_left_3: off
+
     l_right_drop_right: off
     l_right_drop_middle: off
     l_right_drop_left: off
+
     l_left_drop_left: off
     l_left_drop_middle: off
     l_left_drop_right: off
+
     l_orbit_right_arrow: off
     l_orbit_right_1: off
     l_orbit_right_2: off
     l_orbit_right_3: off
+
     l_batman: off
     l_superman: off
     l_flash: off
     l_cyborg: off
     l_aquaman: off
     l_wonder_woman: off
+
     l_steppenwolf: off
+
     l_main_drop_left: off
     l_main_drop_middle: off
     l_main_drop_right: off
+
     l_jet_lane_left: off
     l_jet_lane_middle: off
     l_jet_lane_right: off
+
     l_outlane_left: off
     l_outlane_right: off
+
     l_inlane_left: off
     l_inlane_right: off
+
     l_justice_league: off
 
 
+############################################################
+# BLINKENLIGHTS
+############################################################
 
 blinkenlight_player:
+
   character_select_lit:
     blinkenlight_character_select:
       color: blue
@@ -679,7 +1062,7 @@ blinkenlight_player:
   justice_league_multiball_lit:
     blinkenlight_character_select:
       color: blue
-  
+
   mode_character_select_will_start:
     blinkenlight_character_select:
       action: remove
@@ -688,56 +1071,72 @@ blinkenlight_player:
     blinkenlight_character_select:
       action: remove
 
+
   counter_superman_count_hit{count == 1}:
     blinkenlight_right_ramp_x2:
       color: blue
+
   counter_superman_count_hit{count == 2}:
     blinkenlight_right_ramp_x3:
       color: blue
     blinkenlight_right_ramp_x2: remove
+
   counter_superman_count_hit{count == 3}:
     blinkenlight_right_ramp_arrow:
       color: blue
     blinkenlight_right_ramp_x3: remove
+
   counter_superman_count_hit{count == 4}:
     blinkenlight_right_ramp_arrow: remove
+
 
   counter_batman_count_hit{count == 1}:
     blinkenlight_left_ramp_x2:
       color: yellow
+
   counter_batman_count_hit{count == 2}:
     blinkenlight_left_ramp_x3:
       color: yellow
     blinkenlight_left_ramp_x2: remove
+
   counter_batman_count_hit{count == 3}:
     blinkenlight_left_ramp_arrow:
       color: yellow
     blinkenlight_left_ramp_x3: remove
+
   counter_batman_count_hit{count == 4}:
     blinkenlight_left_ramp_arrow: remove
+
 
   counter_flash_count_hit{count == 1}:
     blinkenlight_left_orbit_x2:
       color: red
+
   counter_flash_count_hit{count == 2}:
     blinkenlight_left_orbit_x3:
       color: red
     blinkenlight_left_orbit_x2: remove
+
   counter_flash_count_hit{count == 3}:
     blinkenlight_left_orbit_x3: remove
-  
+
+
   counter_aquaman_count_hit{count == 1}:
     blinkenlight_right_orbit_x2:
       color: green
+
   counter_aquaman_count_hit{count == 2}:
     blinkenlight_right_orbit_x3:
       color: green
     blinkenlight_right_orbit_x2: remove
+
   counter_aquaman_count_hit{count == 3}:
     blinkenlight_right_orbit_x3: remove
+
 
   shot_line_3_hit:
     blinkenlight_cyborg:
       color: red
+
   shot_line_kickback_hit:
     blinkenlight_cyborg: remove

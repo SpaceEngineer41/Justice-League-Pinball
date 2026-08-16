@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_f161n"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_twbla"]
 [ext_resource type="Texture2D" uid="uid://dshgobcooluj" path="res://images/last_scores.png" id="6_hhnfk"]
-[ext_resource type="Texture2D" uid="uid://dounln3l35d26" path="res://addons/mpf-gmc/images/logo_mpf.png" id="6_twbla"]
+[ext_resource type="Texture2D" uid="uid://bwui6rxvdqtsa" path="res://addons/mpf-gmc/images/logo_mpf.png" id="6_twbla"]
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="7_h0ope"]
 [ext_resource type="Texture2D" uid="uid://24511hrt3tco" path="res://images/justice_league_title_new.png" id="7_nlvwg"]
 [ext_resource type="Texture2D" uid="uid://btqofg0ejlt5" path="res://images/high_scores.png" id="8_vr35g"]
@@ -37,6 +37,7 @@ carousel_name = "attract"
 metadata/_custom_type_script = "uid://bq052cwr8hqvd"
 
 [node name="AttractTestLabel" type="Label" parent="attract"]
+visible = false
 z_index = 100
 layout_mode = 1
 anchors_preset = 8
@@ -56,7 +57,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="intro_video" type="VideoStreamPlayer" parent="attract"]
-visible = false
 z_index = 99
 layout_mode = 1
 anchors_preset = 15
