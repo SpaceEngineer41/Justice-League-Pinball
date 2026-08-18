@@ -37,9 +37,9 @@ enum EndBehavior {
 @export var preview_in_editor: bool = false
 
 
-
 @warning_ignore("shadowed_global_identifier")
 var log: GMCLogger
+
 
 func _enter_tree() -> void:
 	if Engine.is_editor_hint():
@@ -47,6 +47,7 @@ func _enter_tree() -> void:
 	self.log = preload("res://addons/mpf-gmc/scripts/log.gd").new("VideoPlayer<%s>" % self.name)
 	if not self.is_visible_in_tree() and self.hide_behavior != HideBehavior.CONTINUE:
 		self.stop()
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -56,36 +57,66 @@ func _ready() -> void:
 
 	self.finished.connect(self._on_finished)
 	self.visibility_changed.connect(self._on_visibility)
+
 	if self.is_playing() and self.ducking:
-		self.ducking.calculate_release_time(Time.get_ticks_msec())
-		#self.ducking.bus.duck(self.ducking)
-		MPF.media.sound.buses[self.ducking.target_bus].duck(self.ducking)
+		self._start_ducking()
+
 
 func _play() -> void:
 	self.play()
 	if self.ducking:
+		self._start_ducking()
+
+
+func _start_ducking() -> void:
+	if not self.ducking:
+		return
+
+	if self.ducking.release_from_start > 0.0:
+		# Preserve the original timer-based behavior when a value is entered.
 		self.ducking.calculate_release_time(Time.get_ticks_msec())
-		self.ducking.bus.duck(self.ducking)
+	else:
+		# A zero Release From Start means: keep ducking until the video
+		# actually ends. The long duration is only a safety fallback.
+		self.ducking.duration = 86400.0
+		self.ducking.release_time = Time.get_ticks_msec() + int(self.ducking.duration * 1000.0)
+
+	MPF.media.sound.buses[self.ducking.target_bus].duck(self.ducking)
+
+
+func _stop_ducking() -> void:
+	if not self.ducking:
+		return
+
+	MPF.media.sound.buses[self.ducking.target_bus].release_duck(self.ducking)
+
 
 func _on_visibility() -> void:
 	var do_show: bool = self.is_visible_in_tree() and self.autoplay and not Engine.is_editor_hint()
 	self.log.debug("Visibility change, visible is now %s", do_show)
+
 	match self.hide_behavior:
 		HideBehavior.RESTART:
 			if do_show:
 				self._play()
 			else:
 				self.stop()
+				self._stop_ducking()
+
 		HideBehavior.PAUSE:
 			self.paused = not do_show
 			self.log.debug("Pause state set to %s", self.paused)
 			if not self.paused and not self.is_playing():
 				self._play()
+
 		HideBehavior.CONTINUE:
 			if do_show and not self.is_playing():
 				self._play()
 
+
 func _on_finished() -> void:
+	self._stop_ducking()
+
 	if end_behavior == EndBehavior.REMOVE_SLIDE:
 		self._remove_self()
 	elif end_behavior == EndBehavior.CUSTOM_METHOD:
@@ -97,6 +128,7 @@ func _on_finished() -> void:
 		# TBD: Will the events come as a string or an array?
 		for e in events_when_stopped.split(","):
 			MPF.server.send_event(e.strip_edges())
+
 
 func _remove_self():
 	var parent = self._get_parent()
@@ -111,6 +143,7 @@ func _remove_self():
 		return
 	grandparent.action_remove(parent)
 
+
 func _get_parent():
 	var parent = self
 	while parent:
@@ -121,6 +154,8 @@ func _get_parent():
 		printerr("No parent slide or widget found?")
 		return
 
+
 func on_carousel_activated():
 	self.stop()
-	self.play()
+	self._stop_ducking()
+	self._play()

@@ -1,57 +1,53 @@
 events:
   game_ended: 9
-  game_started: 481
+  game_started: 501
 missing_switches:
-  s_jet_lane_left: 481
-  s_jet_lane_middle: 481
-  s_jet_lane_right: 481
-  s_launch_button: 325
-  s_left_drop_left: 34
-  s_left_drop_middle: 34
-  s_left_drop_right: 34
-  s_left_flipper: 34
-  s_left_inlane: 481
-  s_left_outlane: 481
-  s_left_ramp: 1
-  s_line_drop_1: 34
-  s_line_drop_2: 34
-  s_line_drop_3: 34
-  s_line_kickback: 34
-  s_lockbar: 34
-  s_main_drop_left: 36
-  s_main_drop_middle: 36
-  s_main_drop_right: 36
+  s_jet_lane_left: 501
+  s_jet_lane_middle: 501
+  s_jet_lane_right: 501
+  s_launch_button: 345
+  s_left_drop_left: 54
+  s_left_drop_middle: 54
+  s_left_drop_right: 54
+  s_left_flipper: 54
+  s_left_inlane: 501
+  s_left_outlane: 501
+  s_line_drop_1: 54
+  s_line_drop_2: 54
+  s_line_drop_3: 54
+  s_line_kickback: 54
+  s_lockbar: 54
+  s_main_drop_middle: 5
+  s_main_drop_right: 5
   s_main_drop_top: 7
   s_main_kickback: 7
-  s_mystery_drop: 41
-  s_mystery_scoop: 34
-  s_orbit_left: 34
-  s_orbit_right: 34
-  s_orbit_top: 344
-  s_plunger: 1
-  s_plunger_lane: 230
-  s_pop_bumper_bottom: 49
-  s_pop_bumper_left: 248
-  s_pop_bumper_right: 248
-  s_right_drop_left: 34
-  s_right_drop_middle: 34
-  s_right_drop_right: 34
-  s_right_flipper: 25
-  s_right_inlane: 260
-  s_right_outlane: 481
-  s_right_ramp: 1
-  s_slingshot_left: 481
-  s_slingshot_right: 481
-  s_spinner: 36
-  s_start: 19
-  s_steppenwolf: 36
-  s_trough1: 35
-  s_trough2: 34
-  s_trough3: 34
-  s_trough4: 42
-  s_trough5: 481
-  s_trough6: 481
-  s_trough_jam: 331
+  s_mystery_drop: 61
+  s_mystery_scoop: 54
+  s_orbit_left: 54
+  s_orbit_right: 54
+  s_orbit_top: 364
+  s_plunger_lane: 250
+  s_pop_bumper_bottom: 69
+  s_pop_bumper_left: 268
+  s_pop_bumper_right: 268
+  s_right_drop_left: 54
+  s_right_drop_middle: 54
+  s_right_drop_right: 54
+  s_right_flipper: 45
+  s_right_inlane: 280
+  s_right_outlane: 501
+  s_slingshot_left: 501
+  s_slingshot_right: 501
+  s_spinner: 56
+  s_start: 17
+  s_steppenwolf: 5
+  s_trough1: 2
+  s_trough2: 54
+  s_trough3: 54
+  s_trough4: 62
+  s_trough5: 501
+  s_trough6: 501
+  s_trough_jam: 351
 player:
   score:
     average: 1894581
@@ -77,14 +73,14 @@ shots:
   shot_left_drop_left: 55
   shot_left_drop_middle: 54
   shot_left_drop_right: 54
-  shot_left_ramp: 1724
+  shot_left_ramp: 1744
   shot_line_1: 47
   shot_line_2: 44
   shot_line_3: 45
   shot_line_kickback: 45
-  shot_main_drop_left: 135
-  shot_main_drop_middle: 108
-  shot_main_drop_right: 100
+  shot_main_drop_left: 137
+  shot_main_drop_middle: 109
+  shot_main_drop_right: 101
   shot_main_drop_top: 4
   shot_main_kickback: 3
   shot_mystery_drop: 12
@@ -99,9 +95,9 @@ shots:
   shot_right_drop_middle: 50
   shot_right_drop_right: 50
   shot_right_inlane: 19
-  shot_right_ramp: 328
+  shot_right_ramp: 336
   shot_spinner: 36
-  shot_steppenwolf: 99
+  shot_steppenwolf: 100
 switches:
   s_jet_lane_left: 0
   s_jet_lane_middle: 0
@@ -113,15 +109,15 @@ switches:
   s_left_flipper: 378
   s_left_inlane: 0
   s_left_outlane: 0
-  s_left_ramp: 1841
+  s_left_ramp: 1861
   s_line_drop_1: 47
   s_line_drop_2: 44
   s_line_drop_3: 45
   s_line_kickback: 45
   s_lockbar: 377
-  s_main_drop_left: 135
-  s_main_drop_middle: 108
-  s_main_drop_right: 100
+  s_main_drop_left: 137
+  s_main_drop_middle: 109
+  s_main_drop_right: 101
   s_main_drop_top: 4
   s_main_kickback: 3
   s_mystery_drop: 12
@@ -129,7 +125,7 @@ switches:
   s_orbit_left: 404
   s_orbit_right: 441
   s_orbit_top: 4
-  s_plunger: 387
+  s_plunger: 407
   s_plunger_lane: 184
   s_pop_bumper_bottom: 25
   s_pop_bumper_left: 75
@@ -140,13 +136,13 @@ switches:
   s_right_flipper: 1685
   s_right_inlane: 19
   s_right_outlane: 0
-  s_right_ramp: 387
+  s_right_ramp: 395
   s_slingshot_left: 0
   s_slingshot_right: 0
   s_spinner: 38
-  s_start: 99
-  s_steppenwolf: 99
-  s_trough1: 103
+  s_start: 100
+  s_steppenwolf: 100
+  s_trough1: 107
   s_trough2: 13
   s_trough3: 18
   s_trough4: 3

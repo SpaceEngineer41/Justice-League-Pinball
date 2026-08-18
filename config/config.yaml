@@ -289,4 +289,5 @@ sounds:
   Look_To_The_Stars:
     file: Look_To_The_Stars.wav
     track: music
+    bus: music
     volume: 0.5

@@ -62,6 +62,24 @@ func duck(settings) -> void:
 	self._duck_release_timer.set_meta("ducking", settings)
 	self._duck_release_timer.start(settings.duration)
 
+func release_duck(settings: DuckSettings) -> void:
+	# Release one specific ducking request.
+	# This allows video ducking to end when the video actually finishes.
+	if not self.duckings.has(settings):
+		return
+
+	# If this duck currently owns the release timer, stop the timer and
+	# use the normal release logic so the bus fades back correctly.
+	if self._duck_release_timer and self._duck_release_timer.get_meta("ducking", null) == settings:
+		self._duck_release_timer.stop()
+		self.duck_release()
+		return
+
+	# Otherwise this duck is waiting behind a stronger duck.
+	# It never became the active timed duck, so remove only this request.
+	self.duckings.erase(settings)
+
+
 func duck_release() -> void:
 	# TODO: Use a uuid to identify which ducking to release
 	# Remove this duck from the list of duckings

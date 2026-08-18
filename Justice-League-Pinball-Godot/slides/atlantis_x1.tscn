@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="4_lbt6j"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_b7i6n"]
 
-[node name="FlashX1" type="Control"]
+[node name="AtlantisX1" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0

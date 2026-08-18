@@ -1,12 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://uyihwsdy3jif"]
+[gd_scene load_steps=8 format=3 uid="uid://uyihwsdy3jif"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_dsnof"]
 [ext_resource type="VideoStream" uid="uid://dpssnb3xwmdr5" path="res://videos/batman_x1.ogv" id="2_dsnof"]
 [ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_mcrjt"]
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="4_1eomo"]
+[ext_resource type="Script" uid="uid://cfdad7ou4cnvy" path="res://addons/mpf-gmc/classes/mpf_ducking.gd" id="4_txo34"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_8hdj2"]
 
-[node name="FlashX1" type="Control"]
+[sub_resource type="Resource" id="Resource_mcrjt"]
+script = ExtResource("4_txo34")
+target_bus = "music"
+delay = 0.0
+attenuation = 1.0
+attack = 0.1
+release = 0.0
+release_from_start = 0.0
+release_point = 0.0
+metadata/_custom_type_script = "uid://cfdad7ou4cnvy"
+
+[node name="BatmanX1" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
@@ -24,8 +36,10 @@ offset_bottom = 1197.0
 scale = Vector2(0.796, 0.796)
 stream = ExtResource("2_dsnof")
 autoplay = true
+bus = &"shot_videos"
 script = ExtResource("3_mcrjt")
 end_behavior = 1
+ducking = SubResource("Resource_mcrjt")
 preview_in_editor = true
 metadata/_custom_type_script = "uid://b0pcq24i8x4or"
 
