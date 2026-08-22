@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://4ym8p7fenv01"]
+[gd_scene load_steps=7 format=3 uid="uid://4ym8p7fenv01"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_f0vsk"]
 [ext_resource type="VideoStream" uid="uid://sa5jdkweyxe5" path="res://videos/Themyscira_x1.ogv" id="2_f0vsk"]
 [ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_rgj3w"]
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="4_3whwe"]
+[ext_resource type="Resource" uid="uid://ceahtkf46yr8p" path="res://duck_music_bus.tres" id="4_vmm7h"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_ebr25"]
 
 [node name="FlashX1" type="Control"]
@@ -25,6 +26,7 @@ scale = Vector2(0.796, 0.796)
 stream = ExtResource("2_f0vsk")
 autoplay = true
 script = ExtResource("3_rgj3w")
+ducking = ExtResource("4_vmm7h")
 preview_in_editor = true
 metadata/_custom_type_script = "uid://b0pcq24i8x4or"
 

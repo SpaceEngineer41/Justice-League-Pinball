@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtd4s8ja0k80n"]
+[gd_scene load_steps=7 format=3 uid="uid://dtd4s8ja0k80n"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_5antu"]
 [ext_resource type="VideoStream" uid="uid://conatjb0oy5k1" path="res://videos/atlantis_x6.ogv" id="2_5antu"]
 [ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_471sd"]
+[ext_resource type="Resource" uid="uid://ceahtkf46yr8p" path="res://duck_music_bus.tres" id="4_ge4g6"]
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="4_tg16o"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_q2nl7"]
 
@@ -25,6 +26,7 @@ scale = Vector2(0.796, 0.796)
 stream = ExtResource("2_5antu")
 autoplay = true
 script = ExtResource("3_471sd")
+ducking = ExtResource("4_ge4g6")
 preview_in_editor = true
 metadata/_custom_type_script = "uid://b0pcq24i8x4or"
 

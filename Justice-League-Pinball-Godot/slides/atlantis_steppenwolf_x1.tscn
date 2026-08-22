@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3elgp6vr7qrr"]
+[gd_scene load_steps=8 format=3 uid="uid://d3elgp6vr7qrr"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_fvf4y"]
 [ext_resource type="VideoStream" uid="uid://cimibynf3tf61" path="res://videos/atlantis_x4.ogv" id="2_fvf4y"]
 [ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_o6bte"]
+[ext_resource type="Script" uid="uid://cfdad7ou4cnvy" path="res://addons/mpf-gmc/classes/mpf_ducking.gd" id="4_qljxb"]
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="4_ty1wl"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_r5kmj"]
+
+[sub_resource type="Resource" id="Resource_0vyxc"]
+script = ExtResource("4_qljxb")
+target_bus = "music"
+delay = 0.0
+attenuation = 1.0
+attack = 0.1
+release = 0.0
+release_from_start = 0.0
+release_point = 0.0
+metadata/_custom_type_script = "uid://cfdad7ou4cnvy"
 
 [node name="FlashX1" type="Control"]
 layout_mode = 3
@@ -25,6 +37,7 @@ scale = Vector2(0.796, 0.796)
 stream = ExtResource("2_fvf4y")
 autoplay = true
 script = ExtResource("3_o6bte")
+ducking = SubResource("Resource_0vyxc")
 preview_in_editor = true
 metadata/_custom_type_script = "uid://b0pcq24i8x4or"
 

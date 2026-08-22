@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DuckSettings" load_steps=2 format=3 uid="uid://ceahtkf46yr8p"]
+
+[ext_resource type="Script" uid="uid://cfdad7ou4cnvy" path="res://addons/mpf-gmc/classes/mpf_ducking.gd" id="1_qjqag"]
+
+[resource]
+script = ExtResource("1_qjqag")
+target_bus = "music"
+delay = 0.0
+attenuation = 1.0
+attack = 0.1
+release = 0.0
+release_from_start = 0.0
+release_point = 0.0
+metadata/_custom_type_script = "uid://cfdad7ou4cnvy"

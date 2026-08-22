@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cikqg6ffficnu"]
+[gd_scene load_steps=7 format=3 uid="uid://cikqg6ffficnu"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_57rcc"]
 [ext_resource type="VideoStream" uid="uid://b0dbb5m02k7xq" path="res://videos/themyscira_complete.ogv" id="2_57rcc"]
 [ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_qfx3u"]
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="4_oq26m"]
+[ext_resource type="Resource" uid="uid://ceahtkf46yr8p" path="res://duck_music_bus.tres" id="4_pmxvv"]
 [ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="5_cxbov"]
 
 [node name="FlashX1" type="Control"]
@@ -17,14 +18,15 @@ metadata/_custom_type_script = "uid://dm3a03xc57wbq"
 [node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 0
-offset_left = 196.0
+offset_left = 197.0
 offset_top = 117.0
-offset_right = 2116.0
+offset_right = 2117.0
 offset_bottom = 1197.0
 scale = Vector2(0.796, 0.796)
 stream = ExtResource("2_57rcc")
 autoplay = true
 script = ExtResource("3_qfx3u")
+ducking = ExtResource("4_pmxvv")
 preview_in_editor = true
 metadata/_custom_type_script = "uid://b0pcq24i8x4or"
 
