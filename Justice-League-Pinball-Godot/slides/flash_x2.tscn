@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bsmji35crtqxk"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_gf4w3"]
-[ext_resource type="VideoStream" uid="uid://442bg3khvv7a" path="res://videos/Flash X1.ogv" id="2_c4jyp"]
+[ext_resource type="VideoStream" uid="uid://duase5a82xg33" path="res://videos/flash_x2.ogv" id="2_c4jyp"]
 [ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_8bog8"]
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="4_1uq0r"]
 [ext_resource type="Resource" uid="uid://ceahtkf46yr8p" path="res://duck_music_bus.tres" id="4_c4jyp"]

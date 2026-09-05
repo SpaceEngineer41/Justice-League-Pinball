@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://buassnjr7prj1"]
+
+[ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_etbci"]
+[ext_resource type="VideoStream" uid="uid://c3lxourx8uib2" path="res://videos/aquaman_x1.ogv" id="2_etbci"]
+[ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_7uf25"]
+[ext_resource type="Script" uid="uid://cfdad7ou4cnvy" path="res://addons/mpf-gmc/classes/mpf_ducking.gd" id="4_8572d"]
+[ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="5_k3e1s"]
+[ext_resource type="Script" uid="uid://bkacutdegcp6n" path="res://addons/mpf-gmc/classes/mpf_variable.gd" id="6_g5gnw"]
+
+[sub_resource type="Resource" id="Resource_adtqp"]
+script = ExtResource("4_8572d")
+target_bus = "music"
+delay = 0.0
+attenuation = 1.0
+attack = 0.1
+release = 0.0
+release_from_start = 0.0
+release_point = 0.0
+metadata/_custom_type_script = "uid://cfdad7ou4cnvy"
+
+[node name="FlashX1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_etbci")
+metadata/_custom_type_script = "uid://dm3a03xc57wbq"
+
+[node name="MPFVideoPlayer" type="VideoStreamPlayer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_left = 196.0
+offset_top = 117.0
+offset_right = 2116.0
+offset_bottom = 1197.0
+scale = Vector2(0.796, 0.796)
+stream = ExtResource("2_etbci")
+autoplay = true
+script = ExtResource("3_7uf25")
+end_behavior = 1
+ducking = SubResource("Resource_adtqp")
+preview_in_editor = true
+metadata/_custom_type_script = "uid://b0pcq24i8x4or"
+
+[node name="HIGH SCORE 1" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = -341.0
+offset_right = 684.0
+offset_bottom = -101.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_k3e1s")
+theme_override_font_sizes/font_size = 200
+text = "+ 10,000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_g5gnw")
+variable_name = "aquaman_last_award_change"
+comma_separate = true
+min_digits = 0
+template_string = "+ %s"
+max_players = 4
+metadata/_custom_type_script = "uid://bkacutdegcp6n"

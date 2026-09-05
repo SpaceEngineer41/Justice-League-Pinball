@@ -33,6 +33,30 @@ variable_player:
       action: set
       int: 0
 
+    # Gotham tracking
+    gotham_bank_total_hits:
+      action: set
+      int: 0
+    gotham_steppenwolf_hits:
+      action: set
+      int: 0
+
+    # Metropolis tracking
+    metropolis_bank_total_hits:
+      action: set
+      int: 0
+    metropolis_steppenwolf_hits:
+      action: set
+      int: 0
+
+    # Pozharnov tracking
+    pozharnov_bank_total_hits:
+      action: set
+      int: 0
+    pozharnov_steppenwolf_hits:
+      action: set
+      int: 0
+
   battle_advance_location:
     battle_location_index:
       action: add
@@ -55,6 +79,27 @@ variable_player:
       action: set
       int: 0
 
+    gotham_bank_total_hits:
+      action: set
+      int: 0
+    gotham_steppenwolf_hits:
+      action: set
+      int: 0
+
+    metropolis_bank_total_hits:
+      action: set
+      int: 0
+    metropolis_steppenwolf_hits:
+      action: set
+      int: 0
+
+    pozharnov_bank_total_hits:
+      action: set
+      int: 0
+    pozharnov_steppenwolf_hits:
+      action: set
+      int: 0
+
   battle_set_bank_ready:
     battle_bank_ready:
       action: set
@@ -70,21 +115,53 @@ variable_player:
       action: add
       int: 1
 
-  # --- Themyscira: increment per main drop down ---
+  # --- Themyscira ---
   battle_themyscira_inc_drops:
     themyscira_drops_made:
       action: add
       int: 1
 
-  # --- Atlantis: increment per bank shot hit (the 3 “main drop” shots) ---
+  # --- Atlantis ---
   battle_atlantis_inc_bank_hit:
     atlantis_bank_total_hits:
       action: add
       int: 1
 
-  # --- Atlantis: count steppenwolf completions inside Atlantis (1st = mid, 2nd = complete) ---
   battle_atlantis_inc_steppenwolf:
     atlantis_steppenwolf_hits:
+      action: add
+      int: 1
+
+  # --- Gotham ---
+  battle_gotham_inc_bank_hit:
+    gotham_bank_total_hits:
+      action: add
+      int: 1
+
+  battle_gotham_inc_steppenwolf:
+    gotham_steppenwolf_hits:
+      action: add
+      int: 1
+
+  # --- Metropolis ---
+  battle_metropolis_inc_bank_hit:
+    metropolis_bank_total_hits:
+      action: add
+      int: 1
+
+  battle_metropolis_inc_steppenwolf:
+    metropolis_steppenwolf_hits:
+      action: add
+      int: 1
+
+  # --- Pozharnov ---
+  battle_pozharnov_inc_bank_hit:
+    pozharnov_bank_total_hits:
+      action: add
+      int: 1
+
+  battle_pozharnov_inc_steppenwolf:
+    pozharnov_steppenwolf_hits:
       action: add
       int: 1
 
@@ -100,19 +177,25 @@ variable_player:
   battle_steppenwolf_made:
     score: 250000
 
+
 # -----------------------------------------------------------------------------
 # EVENTS
 # -----------------------------------------------------------------------------
 event_player:
 
-  # --- MODE START ---
+  # ---------------------------------------------------------------------------
+  # MODE START
+  # ---------------------------------------------------------------------------
   mode_battle_locations_started:
     battle_start_current_location:
       delay: 1ms
 
-  # ---------------------------------------------------------------------------
-  # THEMYSCIRA (index 0): PLAY x1/x2/x3 ON INDIVIDUAL DROP TARGETS
-  # ---------------------------------------------------------------------------
+
+  # ===========================================================================
+  # THEMYSCIRA - INDEX 0
+  # 3 individual drops -> Steppenwolf -> complete
+  # ===========================================================================
+
   drop_target_drop_main_left_down{current_player.battle_location_index==0}:
     - battle_themyscira_inc_drops
     - battle_themyscira_play_drop_video
@@ -125,28 +208,26 @@ event_player:
     - battle_themyscira_inc_drops
     - battle_themyscira_play_drop_video
 
-  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==1}: 
+  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==1}:
     - clear_battle_location_videos
     - battle_themyscira_x1
-  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==2}: 
+
+  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==2}:
     - clear_battle_location_videos
     - battle_themyscira_x2
-  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==3}: 
+
+  battle_themyscira_play_drop_video{current_player.themyscira_drops_made==3}:
     - clear_battle_location_videos
     - battle_themyscira_x3
 
-  # ---------------------------------------------------------------------------
-  # ATLANTIS (index 1):
-  #  - 1st set of 3 bank target hits => atlantis_x1, x2, x3
-  #  - Steppenwolf (armed) hit #1     => atlantis_steppenwolf_x1 + reset center bank
-  #  - 2nd set of 3 bank target hits => atlantis_x4, x5, x6
-  #  - Steppenwolf (armed) hit #2     => atlantis_complete + mode completes (sequences==2)
-  #
-  # Uses YOUR real events shown in the log for those three shots:
-  #   shot_main_drop_left_hit / shot_main_drop_middle_hit / shot_main_drop_right_hit
-  # ---------------------------------------------------------------------------
 
-  # Bank target hits (these count toward x1-x6)
+  # ===========================================================================
+  # ATLANTIS - INDEX 1
+  # 2 sequences
+  # 3 bank hits -> Steppenwolf
+  # 3 more bank hits -> Steppenwolf -> complete
+  # ===========================================================================
+
   shot_main_drop_left_hit{current_player.battle_location_index==1}:
     - battle_atlantis_inc_bank_hit
     - battle_atlantis_play_bank_video
@@ -159,48 +240,226 @@ event_player:
     - battle_atlantis_inc_bank_hit
     - battle_atlantis_play_bank_video
 
-  # Route x1-x6 based on total bank hits in Atlantis
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==1}: 
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==1}:
     - clear_battle_location_videos
     - battle_atlantis_x1
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==2}: 
+
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==2}:
     - clear_battle_location_videos
     - battle_atlantis_x2
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==3}: 
+
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==3}:
     - clear_battle_location_videos
     - battle_atlantis_x3
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==4}: 
+
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==4}:
     - clear_battle_location_videos
     - battle_atlantis_x4
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==5}: 
+
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==5}:
     - clear_battle_location_videos
     - battle_atlantis_x5
-  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==6}: 
+
+  battle_atlantis_play_bank_video{current_player.atlantis_bank_total_hits==6}:
     - clear_battle_location_videos
     - battle_atlantis_x6
 
-  # --- BANK READY LOGIC (CENTER BANK that arms Steppenwolf) ---
+
+  # ===========================================================================
+  # GOTHAM - INDEX 2
+  # 3 sequences
+  # 9 total main-drop hits
+  # ===========================================================================
+
+  shot_main_drop_left_hit{current_player.battle_location_index==2}:
+    - battle_gotham_inc_bank_hit
+    - battle_gotham_play_bank_video
+
+  shot_main_drop_middle_hit{current_player.battle_location_index==2}:
+    - battle_gotham_inc_bank_hit
+    - battle_gotham_play_bank_video
+
+  shot_main_drop_right_hit{current_player.battle_location_index==2}:
+    - battle_gotham_inc_bank_hit
+    - battle_gotham_play_bank_video
+
+  battle_gotham_play_bank_video{current_player.gotham_bank_total_hits==1}:
+    - clear_battle_location_videos
+    - battle_gotham_x1
+  battle_gotham_play_bank_video{current_player.gotham_bank_total_hits==2}:
+    - clear_battle_location_videos
+    - battle_gotham_x2
+  battle_gotham_play_bank_video{current_player.gotham_bank_total_hits==3}:
+    - clear_battle_location_videos
+    - battle_gotham_x3
+  battle_gotham_play_bank_video{current_player.gotham_bank_total_hits==4}:
+    - clear_battle_location_videos
+    - battle_gotham_x4
+  battle_gotham_play_bank_video{current_player.gotham_bank_total_hits==5}:
+    - clear_battle_location_videos
+    - battle_gotham_x5
+  battle_gotham_play_bank_video{current_player.gotham_bank_total_hits==6}:
+    - clear_battle_location_videos
+    - battle_gotham_x6
+  battle_gotham_play_bank_video{current_player.gotham_bank_total_hits==7}:
+    - clear_battle_location_videos
+    - battle_gotham_x7
+  battle_gotham_play_bank_video{current_player.gotham_bank_total_hits==8}:
+    - clear_battle_location_videos
+    - battle_gotham_x8
+  battle_gotham_play_bank_video{current_player.gotham_bank_total_hits==9}:
+    - clear_battle_location_videos
+    - battle_gotham_x9
+
+
+  # ===========================================================================
+  # METROPOLIS - INDEX 3
+  # 4 sequences
+  # 12 total main-drop hits
+  # ===========================================================================
+
+  shot_main_drop_left_hit{current_player.battle_location_index==3}:
+    - battle_metropolis_inc_bank_hit
+    - battle_metropolis_play_bank_video
+
+  shot_main_drop_middle_hit{current_player.battle_location_index==3}:
+    - battle_metropolis_inc_bank_hit
+    - battle_metropolis_play_bank_video
+
+  shot_main_drop_right_hit{current_player.battle_location_index==3}:
+    - battle_metropolis_inc_bank_hit
+    - battle_metropolis_play_bank_video
+
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==1}:
+    - clear_battle_location_videos
+    - battle_metropolis_x1
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==2}:
+    - clear_battle_location_videos
+    - battle_metropolis_x2
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==3}:
+    - clear_battle_location_videos
+    - battle_metropolis_x3
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==4}:
+    - clear_battle_location_videos
+    - battle_metropolis_x4
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==5}:
+    - clear_battle_location_videos
+    - battle_metropolis_x5
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==6}:
+    - clear_battle_location_videos
+    - battle_metropolis_x6
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==7}:
+    - clear_battle_location_videos
+    - battle_metropolis_x7
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==8}:
+    - clear_battle_location_videos
+    - battle_metropolis_x8
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==9}:
+    - clear_battle_location_videos
+    - battle_metropolis_x9
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==10}:
+    - clear_battle_location_videos
+    - battle_metropolis_x10
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==11}:
+    - clear_battle_location_videos
+    - battle_metropolis_x11
+  battle_metropolis_play_bank_video{current_player.metropolis_bank_total_hits==12}:
+    - clear_battle_location_videos
+    - battle_metropolis_x12
+
+
+  # ===========================================================================
+  # POZHARNOV - INDEX 4
+  # 5 sequences
+  # 15 total main-drop hits
+  # ===========================================================================
+
+  shot_main_drop_left_hit{current_player.battle_location_index==4}:
+    - battle_pozharnov_inc_bank_hit
+    - battle_pozharnov_play_bank_video
+
+  shot_main_drop_middle_hit{current_player.battle_location_index==4}:
+    - battle_pozharnov_inc_bank_hit
+    - battle_pozharnov_play_bank_video
+
+  shot_main_drop_right_hit{current_player.battle_location_index==4}:
+    - battle_pozharnov_inc_bank_hit
+    - battle_pozharnov_play_bank_video
+
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==1}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x1
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==2}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x2
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==3}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x3
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==4}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x4
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==5}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x5
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==6}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x6
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==7}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x7
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==8}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x8
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==9}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x9
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==10}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x10
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==11}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x11
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==12}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x12
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==13}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x13
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==14}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x14
+  battle_pozharnov_play_bank_video{current_player.pozharnov_bank_total_hits==15}:
+    - clear_battle_location_videos
+    - battle_pozharnov_x15
+
+
+  # ---------------------------------------------------------------------------
+  # CENTER BANK READY LOGIC
+  # ---------------------------------------------------------------------------
+
   drop_target_bank_center_bank_down{device.drop_target_banks.center_bank.complete}:
     battle_set_bank_ready: {}
 
   drop_target_bank_center_bank_mixed:
     battle_clear_bank_ready: {}
 
-  # ---------------------------------------------------------------------------
-  # STEPPENWOLF HIT -> SEQUENCE PROGRESSION
-  #
-  # Themyscira: require bank_ready AND themyscira_drops_made>=3
-  # Atlantis:
-  #   - 1st Steppenwolf only when bank_ready AND bank_total_hits>=3 AND steppenwolf_hits==0
-  #   - 2nd Steppenwolf only when bank_ready AND bank_total_hits>=6 AND steppenwolf_hits==1
-  # Other locations: require bank_ready
-  # ---------------------------------------------------------------------------
 
-  # Themyscira gate
+  # ===========================================================================
+  # STEPPENWOLF PROGRESSION
+  # ===========================================================================
+
+  # ---------------------------------------------------------------------------
+  # THEMYSCIRA
+  # ---------------------------------------------------------------------------
   shot_steppenwolf_hit{current_player.battle_location_index==0 and current_player.battle_bank_ready==1 and current_player.themyscira_drops_made>=3}:
     battle_steppenwolf_made: {}
 
-  # Atlantis: FIRST Steppenwolf (armed) -> plays atlantis_steppenwolf_x1, resets center bank
+
+  # ---------------------------------------------------------------------------
+  # ATLANTIS
+  # ---------------------------------------------------------------------------
+
+  # Sequence 1
   shot_steppenwolf_hit{current_player.battle_location_index==1 and current_player.battle_bank_ready==1 and current_player.atlantis_bank_total_hits>=3 and current_player.atlantis_steppenwolf_hits==0}:
     - battle_atlantis_steppenwolf_x1
     - battle_atlantis_inc_steppenwolf
@@ -208,71 +467,252 @@ event_player:
     - drop_target_bank_center_bank_reset
     - battle_steppenwolf_made
 
-  # Atlantis: SECOND Steppenwolf (armed) -> plays atlantis_complete and completes location (sequences hits 2)
+  # Sequence 2 - Complete
   shot_steppenwolf_hit{current_player.battle_location_index==1 and current_player.battle_bank_ready==1 and current_player.atlantis_bank_total_hits>=6 and current_player.atlantis_steppenwolf_hits==1}:
     - battle_atlantis_complete
     - battle_atlantis_inc_steppenwolf
     - battle_steppenwolf_made
 
-  # Other locations (exclude 0 and 1)
-  shot_steppenwolf_hit{current_player.battle_location_index!=0 and current_player.battle_location_index!=1 and current_player.battle_bank_ready==1}:
-    battle_steppenwolf_made: {}
 
-  # On ANY Steppenwolf made:
-  # - clear ready so you can't spam
-  # - increment sequences
-  # - check completion for current location
-  # - for Themyscira, also play the completion video event
+  # ---------------------------------------------------------------------------
+  # GOTHAM
+  # ---------------------------------------------------------------------------
+
+  # Sequence 1
+  shot_steppenwolf_hit{current_player.battle_location_index==2 and current_player.battle_bank_ready==1 and current_player.gotham_bank_total_hits>=3 and current_player.gotham_steppenwolf_hits==0}:
+    - battle_gotham_steppenwolf_x1
+    - battle_gotham_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Sequence 2
+  shot_steppenwolf_hit{current_player.battle_location_index==2 and current_player.battle_bank_ready==1 and current_player.gotham_bank_total_hits>=6 and current_player.gotham_steppenwolf_hits==1}:
+    - battle_gotham_steppenwolf_x2
+    - battle_gotham_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Sequence 3 - Complete
+  shot_steppenwolf_hit{current_player.battle_location_index==2 and current_player.battle_bank_ready==1 and current_player.gotham_bank_total_hits>=9 and current_player.gotham_steppenwolf_hits==2}:
+    - battle_gotham_complete
+    - battle_gotham_inc_steppenwolf
+    - battle_steppenwolf_made
+
+
+  # ---------------------------------------------------------------------------
+  # METROPOLIS
+  # ---------------------------------------------------------------------------
+
+  # Sequence 1
+  shot_steppenwolf_hit{current_player.battle_location_index==3 and current_player.battle_bank_ready==1 and current_player.metropolis_bank_total_hits>=3 and current_player.metropolis_steppenwolf_hits==0}:
+    - battle_metropolis_steppenwolf_x1
+    - battle_metropolis_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Sequence 2
+  shot_steppenwolf_hit{current_player.battle_location_index==3 and current_player.battle_bank_ready==1 and current_player.metropolis_bank_total_hits>=6 and current_player.metropolis_steppenwolf_hits==1}:
+    - battle_metropolis_steppenwolf_x2
+    - battle_metropolis_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Sequence 3
+  shot_steppenwolf_hit{current_player.battle_location_index==3 and current_player.battle_bank_ready==1 and current_player.metropolis_bank_total_hits>=9 and current_player.metropolis_steppenwolf_hits==2}:
+    - battle_metropolis_steppenwolf_x3
+    - battle_metropolis_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Sequence 4 - Complete
+  shot_steppenwolf_hit{current_player.battle_location_index==3 and current_player.battle_bank_ready==1 and current_player.metropolis_bank_total_hits>=12 and current_player.metropolis_steppenwolf_hits==3}:
+    - battle_metropolis_complete
+    - battle_metropolis_inc_steppenwolf
+    - battle_steppenwolf_made
+
+
+  # ---------------------------------------------------------------------------
+  # POZHARNOV
+  # ---------------------------------------------------------------------------
+
+  # Sequence 1
+  shot_steppenwolf_hit{current_player.battle_location_index==4 and current_player.battle_bank_ready==1 and current_player.pozharnov_bank_total_hits>=3 and current_player.pozharnov_steppenwolf_hits==0}:
+    - battle_pozharnov_steppenwolf_x1
+    - battle_pozharnov_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Sequence 2
+  shot_steppenwolf_hit{current_player.battle_location_index==4 and current_player.battle_bank_ready==1 and current_player.pozharnov_bank_total_hits>=6 and current_player.pozharnov_steppenwolf_hits==1}:
+    - battle_pozharnov_steppenwolf_x2
+    - battle_pozharnov_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Sequence 3
+  shot_steppenwolf_hit{current_player.battle_location_index==4 and current_player.battle_bank_ready==1 and current_player.pozharnov_bank_total_hits>=9 and current_player.pozharnov_steppenwolf_hits==2}:
+    - battle_pozharnov_steppenwolf_x3
+    - battle_pozharnov_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Sequence 4
+  shot_steppenwolf_hit{current_player.battle_location_index==4 and current_player.battle_bank_ready==1 and current_player.pozharnov_bank_total_hits>=12 and current_player.pozharnov_steppenwolf_hits==3}:
+    - battle_pozharnov_steppenwolf_x4
+    - battle_pozharnov_inc_steppenwolf
+    - battle_clear_bank_ready
+    - drop_target_bank_center_bank_reset
+    - battle_steppenwolf_made
+
+  # Sequence 5 - Complete
+  shot_steppenwolf_hit{current_player.battle_location_index==4 and current_player.battle_bank_ready==1 and current_player.pozharnov_bank_total_hits>=15 and current_player.pozharnov_steppenwolf_hits==4}:
+    - battle_pozharnov_complete
+    - battle_pozharnov_inc_steppenwolf
+    - battle_steppenwolf_made
+
+
+  # ===========================================================================
+  # DARKSEID - CURRENTLY DISABLED
+  # ===========================================================================
+  #
+  # Leaving this here for future use if Darkseid becomes a battle location.
+  #
+  # shot_steppenwolf_hit{current_player.battle_location_index==5 and current_player.battle_bank_ready==1}:
+  #   battle_steppenwolf_made: {}
+
+
+  # ---------------------------------------------------------------------------
+  # ANY SUCCESSFUL STEPPENWOLF HIT
+  # ---------------------------------------------------------------------------
   battle_steppenwolf_made:
     - battle_clear_bank_ready
     - battle_inc_sequences
     - battle_check_location_complete
     - battle_themyscira_complete{current_player.battle_location_index==0 and current_player.themyscira_drops_made>=3}
 
-  # --- SUBWAY CONFIRM / SAFE RESET + KICKOUT ---
+
+  # ---------------------------------------------------------------------------
+  # SUBWAY CONFIRM / SAFE RESET + KICKOUT
+  # ---------------------------------------------------------------------------
   balldevice_bd_mystery_scoop_ball_enter:
     drop_target_bank_center_bank_reset:
       delay: 300ms
     eject_bd_mystery_scoop:
       delay: 600ms
 
-  # --- START CURRENT LOCATION (BLINK) ---
-  battle_start_current_location{current_player.battle_location_index==0}: battle_start_themyscira
-  battle_start_current_location{current_player.battle_location_index==1}: battle_start_atlantis
-  battle_start_current_location{current_player.battle_location_index==2}: battle_start_gotham
-  battle_start_current_location{current_player.battle_location_index==3}: battle_start_metropolis
-  battle_start_current_location{current_player.battle_location_index==4}: battle_start_pozharnov
-  battle_start_current_location{current_player.battle_location_index==5}: battle_start_darkseid
 
-  # --- COMPLETION THRESHOLDS ---
-  battle_check_location_complete{current_player.battle_location_index==0 and current_player.battle_sequences_made>=1}: battle_location_completed
-  battle_check_location_complete{current_player.battle_location_index==1 and current_player.battle_sequences_made>=2}: battle_location_completed
-  battle_check_location_complete{current_player.battle_location_index==2 and current_player.battle_sequences_made>=3}: battle_location_completed
-  battle_check_location_complete{current_player.battle_location_index==3 and current_player.battle_sequences_made>=4}: battle_location_completed
-  battle_check_location_complete{current_player.battle_location_index==4 and current_player.battle_sequences_made>=5}: battle_location_completed
-  battle_check_location_complete{current_player.battle_location_index==5 and current_player.battle_sequences_made>=6}: battle_location_completed
+  # ===========================================================================
+  # START CURRENT LOCATION
+  # ===========================================================================
 
-  # --- ON LOCATION COMPLETE: SOLID IT, ADVANCE, START NEXT BLINK ---
+  battle_start_current_location{current_player.battle_location_index==0}:
+    battle_start_themyscira
+
+  battle_start_current_location{current_player.battle_location_index==1}:
+    battle_start_atlantis
+
+  battle_start_current_location{current_player.battle_location_index==2}:
+    battle_start_gotham
+
+  battle_start_current_location{current_player.battle_location_index==3}:
+    battle_start_metropolis
+
+  battle_start_current_location{current_player.battle_location_index==4}:
+    battle_start_pozharnov
+
+  # Darkseid currently disabled
+  # battle_start_current_location{current_player.battle_location_index==5}:
+  #   battle_start_darkseid
+
+
+  # ===========================================================================
+  # COMPLETION THRESHOLDS
+  # ===========================================================================
+
+  battle_check_location_complete{current_player.battle_location_index==0 and current_player.battle_sequences_made>=1}:
+    battle_location_completed
+
+  battle_check_location_complete{current_player.battle_location_index==1 and current_player.battle_sequences_made>=2}:
+    battle_location_completed
+
+  battle_check_location_complete{current_player.battle_location_index==2 and current_player.battle_sequences_made>=3}:
+    battle_location_completed
+
+  battle_check_location_complete{current_player.battle_location_index==3 and current_player.battle_sequences_made>=4}:
+    battle_location_completed
+
+  battle_check_location_complete{current_player.battle_location_index==4 and current_player.battle_sequences_made>=5}:
+    battle_location_completed
+
+  # Darkseid currently disabled
+  # battle_check_location_complete{current_player.battle_location_index==5 and current_player.battle_sequences_made>=6}:
+  #   battle_location_completed
+
+
+  # ---------------------------------------------------------------------------
+  # LOCATION COMPLETE
+  # ---------------------------------------------------------------------------
   battle_location_completed:
     - battle_lights_location_completed
     - battle_advance_location
     - battle_start_current_location
 
-  # Solid the one we just completed (based on current index BEFORE it advances)
-  battle_lights_location_completed{current_player.battle_location_index==0}: battle_location_completed_themyscira
-  battle_lights_location_completed{current_player.battle_location_index==1}: battle_location_completed_atlantis
-  battle_lights_location_completed{current_player.battle_location_index==2}: battle_location_completed_gotham
-  battle_lights_location_completed{current_player.battle_location_index==3}: battle_location_completed_metropolis
-  battle_lights_location_completed{current_player.battle_location_index==4}: battle_location_completed_pozharnov
-  battle_lights_location_completed{current_player.battle_location_index==5}: battle_location_completed_darkseid
 
-  battle_location_completed_darkseid: battle_all_locations_completed
+  # ---------------------------------------------------------------------------
+  # COMPLETED LOCATION LIGHT
+  # Evaluated before index advances
+  # ---------------------------------------------------------------------------
+
+  battle_lights_location_completed{current_player.battle_location_index==0}:
+    battle_location_completed_themyscira
+
+  battle_lights_location_completed{current_player.battle_location_index==1}:
+    battle_location_completed_atlantis
+
+  battle_lights_location_completed{current_player.battle_location_index==2}:
+    battle_location_completed_gotham
+
+  battle_lights_location_completed{current_player.battle_location_index==3}:
+    battle_location_completed_metropolis
+
+  battle_lights_location_completed{current_player.battle_location_index==4}:
+    battle_location_completed_pozharnov
+
+  # Darkseid currently disabled
+  # battle_lights_location_completed{current_player.battle_location_index==5}:
+  #   battle_location_completed_darkseid
+
+
+  # ---------------------------------------------------------------------------
+  # POZHARNOV IS CURRENTLY THE FINAL LOCATION
+  # ---------------------------------------------------------------------------
+  battle_location_completed_pozharnov:
+    battle_all_locations_completed
+
+  # Future Darkseid ending:
+  # battle_location_completed_darkseid:
+  #   battle_all_locations_completed
+
 
 # -----------------------------------------------------------------------------
-# VIDEO PLAYBACK (slides)
+# VIDEO PLAYBACK
 # -----------------------------------------------------------------------------
 slide_player:
+
+  # ---------------------------------------------------------------------------
+  # CLEAR ALL BATTLE LOCATION VIDEOS
+  # ---------------------------------------------------------------------------
   clear_battle_location_videos:
+
+    # Themyscira
     themyscira_x1:
       action: remove
     themyscira_x2:
@@ -282,6 +722,7 @@ slide_player:
     themyscira_complete:
       action: remove
 
+    # Atlantis
     atlantis_x1:
       action: remove
     atlantis_x2:
@@ -298,42 +739,160 @@ slide_player:
       action: remove
     atlantis_complete:
       action: remove
-  
-  # Themyscira
+
+    # Gotham
+    gotham_x1:
+      action: remove
+    gotham_x2:
+      action: remove
+    gotham_x3:
+      action: remove
+    gotham_x4:
+      action: remove
+    gotham_x5:
+      action: remove
+    gotham_x6:
+      action: remove
+    gotham_x7:
+      action: remove
+    gotham_x8:
+      action: remove
+    gotham_x9:
+      action: remove
+    gotham_steppenwolf_x1:
+      action: remove
+    gotham_steppenwolf_x2:
+      action: remove
+    gotham_complete:
+      action: remove
+
+    # Metropolis
+    metropolis_x1:
+      action: remove
+    metropolis_x2:
+      action: remove
+    metropolis_x3:
+      action: remove
+    metropolis_x4:
+      action: remove
+    metropolis_x5:
+      action: remove
+    metropolis_x6:
+      action: remove
+    metropolis_x7:
+      action: remove
+    metropolis_x8:
+      action: remove
+    metropolis_x9:
+      action: remove
+    metropolis_x10:
+      action: remove
+    metropolis_x11:
+      action: remove
+    metropolis_x12:
+      action: remove
+    metropolis_steppenwolf_x1:
+      action: remove
+    metropolis_steppenwolf_x2:
+      action: remove
+    metropolis_steppenwolf_x3:
+      action: remove
+    metropolis_complete:
+      action: remove
+
+    # Pozharnov
+    pozharnov_x1:
+      action: remove
+    pozharnov_x2:
+      action: remove
+    pozharnov_x3:
+      action: remove
+    pozharnov_x4:
+      action: remove
+    pozharnov_x5:
+      action: remove
+    pozharnov_x6:
+      action: remove
+    pozharnov_x7:
+      action: remove
+    pozharnov_x8:
+      action: remove
+    pozharnov_x9:
+      action: remove
+    pozharnov_x10:
+      action: remove
+    pozharnov_x11:
+      action: remove
+    pozharnov_x12:
+      action: remove
+    pozharnov_x13:
+      action: remove
+    pozharnov_x14:
+      action: remove
+    pozharnov_x15:
+      action: remove
+    pozharnov_steppenwolf_x1:
+      action: remove
+    pozharnov_steppenwolf_x2:
+      action: remove
+    pozharnov_steppenwolf_x3:
+      action: remove
+    pozharnov_steppenwolf_x4:
+      action: remove
+    pozharnov_complete:
+      action: remove
+
+
+  # ===========================================================================
+  # THEMYSCIRA
+  # ===========================================================================
+
   battle_themyscira_x1:
     themyscira_x1:
       priority: 900
+
   battle_themyscira_x2:
     themyscira_x2:
       priority: 900
+
   battle_themyscira_x3:
     themyscira_x3:
       priority: 900
+
   battle_themyscira_complete:
     themyscira_complete:
       priority: 950
 
-  # Atlantis bank hit clips (x1-x6)
+
+  # ===========================================================================
+  # ATLANTIS
+  # ===========================================================================
+
   battle_atlantis_x1:
     atlantis_x1:
       priority: 900
+
   battle_atlantis_x2:
     atlantis_x2:
       priority: 900
+
   battle_atlantis_x3:
     atlantis_x3:
       priority: 900
+
+  # Existing Atlantis naming preserved from your current file
   battle_atlantis_x4:
     atlantis_x5:
       priority: 900
+
   battle_atlantis_x5:
     atlantis_x6:
       priority: 900
+
   battle_atlantis_x6:
     atlantis_x7:
       priority: 900
 
-  # Atlantis Steppenwolf clips
   battle_atlantis_steppenwolf_x1:
     atlantis_steppenwolf_x1:
       priority: 950
@@ -342,11 +901,190 @@ slide_player:
     atlantis_complete:
       priority: 980
 
+
+  # ===========================================================================
+  # GOTHAM
+  # ===========================================================================
+
+  battle_gotham_x1:
+    gotham_x1:
+      priority: 900
+  battle_gotham_x2:
+    gotham_x2:
+      priority: 900
+  battle_gotham_x3:
+    gotham_x3:
+      priority: 900
+  battle_gotham_x4:
+    gotham_x4:
+      priority: 900
+  battle_gotham_x5:
+    gotham_x5:
+      priority: 900
+  battle_gotham_x6:
+    gotham_x6:
+      priority: 900
+  battle_gotham_x7:
+    gotham_x7:
+      priority: 900
+  battle_gotham_x8:
+    gotham_x8:
+      priority: 900
+  battle_gotham_x9:
+    gotham_x9:
+      priority: 900
+
+  battle_gotham_steppenwolf_x1:
+    gotham_steppenwolf_x1:
+      priority: 950
+
+  battle_gotham_steppenwolf_x2:
+    gotham_steppenwolf_x2:
+      priority: 950
+
+  battle_gotham_complete:
+    gotham_complete:
+      priority: 980
+
+
+  # ===========================================================================
+  # METROPOLIS
+  # ===========================================================================
+
+  battle_metropolis_x1:
+    metropolis_x1:
+      priority: 900
+  battle_metropolis_x2:
+    metropolis_x2:
+      priority: 900
+  battle_metropolis_x3:
+    metropolis_x3:
+      priority: 900
+  battle_metropolis_x4:
+    metropolis_x4:
+      priority: 900
+  battle_metropolis_x5:
+    metropolis_x5:
+      priority: 900
+  battle_metropolis_x6:
+    metropolis_x6:
+      priority: 900
+  battle_metropolis_x7:
+    metropolis_x7:
+      priority: 900
+  battle_metropolis_x8:
+    metropolis_x8:
+      priority: 900
+  battle_metropolis_x9:
+    metropolis_x9:
+      priority: 900
+  battle_metropolis_x10:
+    metropolis_x10:
+      priority: 900
+  battle_metropolis_x11:
+    metropolis_x11:
+      priority: 900
+  battle_metropolis_x12:
+    metropolis_x12:
+      priority: 900
+
+  battle_metropolis_steppenwolf_x1:
+    metropolis_steppenwolf_x1:
+      priority: 950
+
+  battle_metropolis_steppenwolf_x2:
+    metropolis_steppenwolf_x2:
+      priority: 950
+
+  battle_metropolis_steppenwolf_x3:
+    metropolis_steppenwolf_x3:
+      priority: 950
+
+  battle_metropolis_complete:
+    metropolis_complete:
+      priority: 980
+
+
+  # ===========================================================================
+  # POZHARNOV
+  # ===========================================================================
+
+  battle_pozharnov_x1:
+    pozharnov_x1:
+      priority: 900
+  battle_pozharnov_x2:
+    pozharnov_x2:
+      priority: 900
+  battle_pozharnov_x3:
+    pozharnov_x3:
+      priority: 900
+  battle_pozharnov_x4:
+    pozharnov_x4:
+      priority: 900
+  battle_pozharnov_x5:
+    pozharnov_x5:
+      priority: 900
+  battle_pozharnov_x6:
+    pozharnov_x6:
+      priority: 900
+  battle_pozharnov_x7:
+    pozharnov_x7:
+      priority: 900
+  battle_pozharnov_x8:
+    pozharnov_x8:
+      priority: 900
+  battle_pozharnov_x9:
+    pozharnov_x9:
+      priority: 900
+  battle_pozharnov_x10:
+    pozharnov_x10:
+      priority: 900
+  battle_pozharnov_x11:
+    pozharnov_x11:
+      priority: 900
+  battle_pozharnov_x12:
+    pozharnov_x12:
+      priority: 900
+  battle_pozharnov_x13:
+    pozharnov_x13:
+      priority: 900
+  battle_pozharnov_x14:
+    pozharnov_x14:
+      priority: 900
+  battle_pozharnov_x15:
+    pozharnov_x15:
+      priority: 900
+
+  battle_pozharnov_steppenwolf_x1:
+    pozharnov_steppenwolf_x1:
+      priority: 950
+
+  battle_pozharnov_steppenwolf_x2:
+    pozharnov_steppenwolf_x2:
+      priority: 950
+
+  battle_pozharnov_steppenwolf_x3:
+    pozharnov_steppenwolf_x3:
+      priority: 950
+
+  battle_pozharnov_steppenwolf_x4:
+    pozharnov_steppenwolf_x4:
+      priority: 950
+
+  battle_pozharnov_complete:
+    pozharnov_complete:
+      priority: 980
+
+
 # -----------------------------------------------------------------------------
 # SHOWS
 # -----------------------------------------------------------------------------
 show_player:
-  # Blink current location
+
+  # ---------------------------------------------------------------------------
+  # BLINK CURRENT LOCATION
+  # ---------------------------------------------------------------------------
+
   battle_start_themyscira:
     blink_themyscira:
       key: battle_location_blink
@@ -377,13 +1115,18 @@ show_player:
       loops: -1
       priority: 3000
 
-  battle_start_darkseid:
-    blink_darkseid:
-      key: battle_location_blink
-      loops: -1
-      priority: 3000
+  # Darkseid currently disabled
+  # battle_start_darkseid:
+  #   blink_darkseid:
+  #     key: battle_location_blink
+  #     loops: -1
+  #     priority: 3000
 
-  # Solid completed locations
+
+  # ---------------------------------------------------------------------------
+  # SOLID COMPLETED LOCATIONS
+  # ---------------------------------------------------------------------------
+
   battle_location_completed_themyscira:
     solid_themyscira:
       key: battle_location_themyscira
@@ -414,23 +1157,28 @@ show_player:
       loops: -1
       priority: 2500
 
-  battle_location_completed_darkseid:
-    solid_darkseid:
-      key: battle_location_darkseid
-      loops: -1
-      priority: 2500
+  # Darkseid currently disabled
+  # battle_location_completed_darkseid:
+  #   solid_darkseid:
+  #     key: battle_location_darkseid
+  #     loops: -1
+  #     priority: 2500
+
 
 # -----------------------------------------------------------------------------
 # TIMERS
 # -----------------------------------------------------------------------------
 timers:
+
   steppenwolf_to_scoop_guard:
     start_value: 1
     end_value: 0
     direction: down
     tick_interval: 1s
+
     control_events:
       - event: shot_steppenwolf_hit
         action: start
+
       - event: balldevice_bd_mystery_scoop_ball_enter
         action: stop
