@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dptstxmyfb3yu"]
 
 [ext_resource type="Script" uid="uid://dm3a03xc57wbq" path="res://addons/mpf-gmc/classes/mpf_slide.gd" id="1_wsso6"]
-[ext_resource type="VideoStream" uid="uid://sa5jdkweyxe5" path="res://videos/Themyscira_x1.ogv" id="2_8upul"]
+[ext_resource type="VideoStream" uid="uid://lafsi3oykscj" path="res://videos/gotham_x8.ogv" id="2_wsso6"]
 [ext_resource type="Script" uid="uid://b0pcq24i8x4or" path="res://addons/mpf-gmc/classes/mpf_video_player.gd" id="3_kdc4j"]
 [ext_resource type="Resource" uid="uid://ceahtkf46yr8p" path="res://duck_music_bus.tres" id="4_gj73q"]
 [ext_resource type="FontFile" uid="uid://cu64nu5g44rht" path="res://fonts/DharmaGothicC-Heavy.ttf" id="5_r48mk"]
@@ -23,7 +23,7 @@ offset_top = 117.0
 offset_right = 2116.0
 offset_bottom = 1197.0
 scale = Vector2(0.796, 0.796)
-stream = ExtResource("2_8upul")
+stream = ExtResource("2_wsso6")
 autoplay = true
 script = ExtResource("3_kdc4j")
 ducking = ExtResource("4_gj73q")
